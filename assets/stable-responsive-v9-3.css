@@ -1,0 +1,1111 @@
+
+/* ==========================================================================
+   MARKZOSUF AI NEXUS QUANTUM V9.3 — STABLE RESPONSIVE UI
+   This is the only final layout override loaded by index.html.
+   ========================================================================== */
+
+:root {
+  --stable-header: 64px;
+  --stable-sidebar: 258px;
+}
+
+html,
+body {
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  height: var(--app-height, 100dvh);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Creator IDs are available only inside the About/Profile modal. */
+.top-creator-links,
+.hero-social-links,
+.creator-social-links {
+  display: none !important;
+}
+
+.workspace-mode-switch,
+.nexus-mobile-nav {
+  display: none !important;
+}
+
+.app-shell,
+.workspace,
+.chat-stage,
+.messages,
+.composer-zone {
+  min-width: 0;
+  min-height: 0;
+}
+
+.workspace-panel {
+  z-index: 500;
+}
+
+/* Prevent older decorative pseudo-elements from blocking the composer. */
+.composer-zone::before,
+.composer-zone::after,
+.composer::before,
+.composer::after {
+  content: none !important;
+  display: none !important;
+}
+
+.composer-zone,
+.composer,
+#promptInput,
+.composer-toolbar,
+.composer-actions,
+.composer-tool,
+.send-button {
+  pointer-events: auto !important;
+}
+
+/* --------------------------------------------------------------------------
+   DESKTOP / LAPTOP
+   -------------------------------------------------------------------------- */
+@media (min-width: 861px) {
+  :root {
+    --stable-header: 64px;
+    --stable-sidebar: 258px;
+  }
+
+  body.sidebar-collapsed {
+    --stable-sidebar: 74px;
+  }
+
+  .app-shell,
+  .app-shell.panel-open {
+    display: grid !important;
+    grid-template-columns: var(--stable-sidebar) minmax(0, 1fr) 0 !important;
+    width: 100vw !important;
+    height: var(--app-height, 100dvh) !important;
+    overflow: hidden !important;
+  }
+
+  .sidebar,
+  .sidebar:hover,
+  .sidebar:focus-within {
+    position: relative !important;
+    inset: auto !important;
+    z-index: 120 !important;
+    width: var(--stable-sidebar) !important;
+    min-width: var(--stable-sidebar) !important;
+    max-width: var(--stable-sidebar) !important;
+    height: var(--app-height, 100dvh) !important;
+    display: grid !important;
+    grid-template-rows:
+      var(--stable-header)
+      auto
+      auto
+      minmax(0, auto)
+      auto
+      minmax(0, 1fr)
+      auto !important;
+    overflow: hidden !important;
+    transform: none !important;
+    transition: width .18s ease, min-width .18s ease, max-width .18s ease !important;
+    box-shadow: none !important;
+  }
+
+  .brand {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: var(--stable-header) !important;
+    min-height: var(--stable-header) !important;
+    padding: 0 10px 0 12px !important;
+    display: grid !important;
+    grid-template-columns: 42px minmax(0, 1fr) 34px !important;
+    align-items: center !important;
+    gap: 9px !important;
+    overflow: hidden !important;
+  }
+
+  .brand-mark {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+  }
+
+  .brand-copy {
+    min-width: 0 !important;
+    display: flex !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .brand-copy strong,
+  .brand-copy span {
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .brand-copy strong {
+    font-size: .82rem !important;
+    letter-spacing: .055em !important;
+  }
+
+  .brand-copy span {
+    margin-top: 3px !important;
+    font-size: .61rem !important;
+  }
+
+  .sidebar-collapse-button {
+    position: static !important;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+  }
+
+  .new-chat-button,
+  .sidebar:hover .new-chat-button,
+  .sidebar:focus-within .new-chat-button {
+    width: calc(100% - 20px) !important;
+    min-width: 0 !important;
+    min-height: 44px !important;
+    margin: 9px 10px !important;
+    padding: 9px 10px !important;
+    display: grid !important;
+    grid-template-columns: 24px minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 8px !important;
+    overflow: hidden !important;
+  }
+
+  .new-chat-button span:nth-child(2),
+  .new-chat-button kbd {
+    display: initial !important;
+  }
+
+  .new-chat-button span:nth-child(2) {
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    font-size: .8rem !important;
+  }
+
+  .new-chat-button kbd {
+    white-space: nowrap !important;
+    font-size: .54rem !important;
+  }
+
+  .sidebar-search {
+    width: calc(100% - 20px) !important;
+    min-width: 0 !important;
+    margin: 0 10px 7px !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .sidebar-search input {
+    min-width: 0 !important;
+  }
+
+  .sidebar-primary-nav {
+    min-height: 0 !important;
+    max-height: min(322px, 41vh) !important;
+    padding: 3px 10px 7px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    scrollbar-width: thin;
+  }
+
+  .sidebar-primary-nav button {
+    min-height: 35px !important;
+    padding: 6px 8px !important;
+    display: grid !important;
+    grid-template-columns: 25px minmax(0, 1fr) !important;
+    align-items: center !important;
+  }
+
+  .sidebar-primary-nav b {
+    min-width: 0 !important;
+    display: block !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    font-size: .68rem !important;
+  }
+
+  .sidebar-label {
+    min-height: 29px !important;
+    margin: 0 10px !important;
+    padding: 5px 4px !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .chat-history {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    padding: 0 9px 7px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .sidebar-footer {
+    position: relative !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-height: none !important;
+    padding: 8px 10px !important;
+    overflow: hidden !important;
+  }
+
+  .profile-card,
+  .sidebar:hover .profile-card,
+  .sidebar:focus-within .profile-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 48px !important;
+    padding: 7px 8px !important;
+  }
+
+  .profile-user-copy {
+    min-width: 0 !important;
+    opacity: 1 !important;
+  }
+
+  .profile-user-copy strong,
+  .profile-user-copy span {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .profile-arrow,
+  .sidebar-footer-actions .soft-button {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .sidebar-footer-actions {
+    margin-top: 5px !important;
+  }
+
+  .sidebar-footer-actions .soft-button {
+    width: 100% !important;
+    min-height: 34px !important;
+  }
+
+  .workspace {
+    width: 100% !important;
+    height: var(--app-height, 100dvh) !important;
+    display: grid !important;
+    grid-template-rows: var(--stable-header) minmax(0, 1fr) auto !important;
+    overflow: hidden !important;
+  }
+
+  .topbar {
+    position: relative !important;
+    inset: auto !important;
+    z-index: 100 !important;
+    width: 100% !important;
+    height: var(--stable-header) !important;
+    min-height: var(--stable-header) !important;
+    padding: 0 16px !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 14px !important;
+    overflow: hidden !important;
+  }
+
+  .topbar-left {
+    min-width: 0 !important;
+    max-width: 420px !important;
+    overflow: hidden !important;
+  }
+
+  body.empty-chat .topbar-left {
+    visibility: hidden !important;
+  }
+
+  .conversation-heading,
+  #chatTitleInput {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .topbar-actions {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    flex-wrap: nowrap !important;
+    gap: 7px !important;
+    overflow: hidden !important;
+  }
+
+  .topbar-actions > * {
+    flex: 0 0 auto !important;
+  }
+
+  .model-picker {
+    order: 1 !important;
+    width: auto !important;
+    min-width: 132px !important;
+    max-width: 168px !important;
+    height: 38px !important;
+    padding: 0 8px !important;
+    overflow: hidden !important;
+  }
+
+  .model-picker select {
+    min-width: 0 !important;
+    max-width: 126px !important;
+    white-space: nowrap !important;
+  }
+
+  #themeButton {
+    order: 2 !important;
+  }
+
+  #exportChatButton,
+  #workspacePanelButton {
+    display: none !important;
+  }
+
+  .auth-actions {
+    position: static !important;
+    order: 3 !important;
+    min-width: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    margin: 0 !important;
+  }
+
+  .auth-login-button,
+  .auth-signup-button,
+  .auth-user-button {
+    min-height: 36px !important;
+    max-width: 170px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .chat-stage {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .messages {
+    height: 100% !important;
+    min-height: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+  }
+
+  body.empty-chat .welcome-screen {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    overflow: hidden !important;
+    transform: none !important;
+  }
+
+  body.empty-chat .welcome-screen > :not(h1):not(.suggestion-grid) {
+    display: none !important;
+  }
+
+  body.empty-chat .welcome-screen h1 {
+    position: absolute !important;
+    top: 28% !important;
+    left: 50% !important;
+    width: min(720px, calc(100% - 72px)) !important;
+    margin: 0 !important;
+    transform: translate(-50%, -50%) !important;
+    text-align: center !important;
+    font-size: clamp(1.72rem, 2.55vw, 2.45rem) !important;
+    line-height: 1.15 !important;
+    white-space: normal !important;
+  }
+
+  body.empty-chat .composer-zone {
+    position: absolute !important;
+    top: 43% !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: 50% !important;
+    z-index: 45 !important;
+    width: min(760px, calc(100% - 80px)) !important;
+    max-width: 760px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: translateX(-50%) !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  body.empty-chat .attachment-tray {
+    margin-bottom: 8px !important;
+  }
+
+  body.empty-chat .composer {
+    width: 100% !important;
+    min-height: 62px !important;
+    margin: 0 !important;
+    padding: 8px 10px !important;
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    border-radius: 29px !important;
+    box-shadow: 0 15px 44px rgba(0, 0, 0, .2) !important;
+  }
+
+  body.empty-chat #promptInput {
+    min-width: 0 !important;
+    min-height: 44px !important;
+    max-height: 150px !important;
+    padding: 10px 8px !important;
+  }
+
+  body.empty-chat .composer-meta {
+    display: none !important;
+  }
+
+  body.empty-chat .suggestion-grid {
+    position: absolute !important;
+    top: 58% !important;
+    left: 50% !important;
+    z-index: 15 !important;
+    width: min(500px, calc(100% - 100px)) !important;
+    transform: translateX(-50%) !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 3px !important;
+  }
+
+  body.empty-chat .suggestion-card {
+    width: 100% !important;
+    min-height: 39px !important;
+    padding: 7px 11px !important;
+    display: grid !important;
+    grid-template-columns: 28px minmax(0, 1fr) !important;
+    align-items: center !important;
+    border-radius: 10px !important;
+  }
+
+  body.empty-chat .suggestion-card strong {
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  body:not(.empty-chat) .messages {
+    padding: 28px clamp(34px, 7vw, 112px) 30px !important;
+  }
+
+  body:not(.empty-chat) .composer-zone {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    padding: 10px 22px 14px !important;
+    transform: none !important;
+  }
+
+  body:not(.empty-chat) .composer,
+  body:not(.empty-chat) .composer-meta {
+    width: min(820px, calc(100% - 20px)) !important;
+    margin-inline: auto !important;
+  }
+
+  /* Proper collapsed sidebar */
+  body.sidebar-collapsed .brand {
+    grid-template-columns: 42px !important;
+    justify-content: center !important;
+    padding-inline: 16px !important;
+  }
+
+  body.sidebar-collapsed .brand-copy,
+  body.sidebar-collapsed .sidebar-collapse-button,
+  body.sidebar-collapsed .sidebar-search,
+  body.sidebar-collapsed .sidebar-primary-nav b,
+  body.sidebar-collapsed .sidebar-label,
+  body.sidebar-collapsed .chat-history,
+  body.sidebar-collapsed .profile-user-copy,
+  body.sidebar-collapsed .profile-arrow,
+  body.sidebar-collapsed .sidebar-footer-actions {
+    display: none !important;
+  }
+
+  body.sidebar-collapsed .new-chat-button {
+    width: 44px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    margin: 9px auto !important;
+    padding: 0 !important;
+    grid-template-columns: 1fr !important;
+    place-items: center !important;
+  }
+
+  body.sidebar-collapsed .new-chat-button span:nth-child(2),
+  body.sidebar-collapsed .new-chat-button kbd {
+    display: none !important;
+  }
+
+  body.sidebar-collapsed .sidebar-primary-nav {
+    display: grid !important;
+    max-height: none !important;
+    padding: 5px 8px !important;
+  }
+
+  body.sidebar-collapsed .sidebar-primary-nav button {
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+    padding-inline: 0 !important;
+  }
+
+  body.sidebar-collapsed .profile-card {
+    width: 44px !important;
+    margin-inline: auto !important;
+    padding: 3px !important;
+  }
+}
+
+/* Laptop widths */
+@media (min-width: 861px) and (max-width: 1120px) {
+  :root {
+    --stable-sidebar: 226px;
+  }
+
+  .auth-signup-button {
+    display: none !important;
+  }
+
+  .model-picker {
+    min-width: 116px !important;
+    max-width: 138px !important;
+  }
+}
+
+@media (min-width: 861px) and (max-width: 960px) {
+  :root {
+    --stable-sidebar: 210px;
+  }
+
+  .model-picker span {
+    display: none !important;
+  }
+
+  .auth-login-button {
+    max-width: 82px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   MOBILE / TABLET PORTRAIT
+   -------------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  :root {
+    --stable-header: 66px;
+  }
+
+  .app-shell,
+  .workspace {
+    width: 100vw !important;
+    height: var(--app-height, 100dvh) !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .app-shell,
+  .app-shell.panel-open {
+    display: block !important;
+  }
+
+  .workspace {
+    display: grid !important;
+    grid-template-rows: var(--stable-header) minmax(0, 1fr) auto !important;
+  }
+
+  .topbar {
+    position: relative !important;
+    z-index: 100 !important;
+    width: 100% !important;
+    height: var(--stable-header) !important;
+    min-height: var(--stable-header) !important;
+    padding: 0 12px !important;
+    display: grid !important;
+    grid-template-columns: 46px minmax(0, 1fr) 46px !important;
+    align-items: center !important;
+    gap: 7px !important;
+    overflow: hidden !important;
+  }
+
+  .topbar-left {
+    display: contents !important;
+  }
+
+  #openSidebarButton {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    display: grid !important;
+    place-self: center start !important;
+  }
+
+  .conversation-heading {
+    display: none !important;
+  }
+
+  .topbar-actions {
+    display: contents !important;
+  }
+
+  .model-picker {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    width: min(100%, 184px) !important;
+    min-width: 0 !important;
+    max-width: 184px !important;
+    height: 42px !important;
+    place-self: center !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+
+  .model-picker span {
+    display: none !important;
+  }
+
+  .model-picker select {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 9px 29px 9px 10px !important;
+    text-align: center !important;
+    font-size: .91rem !important;
+    font-weight: 750 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+
+  .auth-actions {
+    position: static !important;
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+    place-self: center end !important;
+  }
+
+  .auth-login-button,
+  .auth-user-button {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .auth-login-button {
+    font-size: 0 !important;
+  }
+
+  .auth-login-button::after {
+    content: "👤";
+    font-size: .9rem;
+  }
+
+  .auth-user-button span:not(.auth-user-avatar) {
+    display: none !important;
+  }
+
+  .auth-signup-button,
+  #exportChatButton,
+  #themeButton,
+  #workspacePanelButton {
+    display: none !important;
+  }
+
+  .sidebar,
+  .sidebar:hover,
+  .sidebar:focus-within {
+    position: fixed !important;
+    inset: 0 auto 0 0 !important;
+    z-index: 1000 !important;
+    width: min(88vw, 340px) !important;
+    min-width: min(88vw, 340px) !important;
+    max-width: 340px !important;
+    height: var(--app-height, 100dvh) !important;
+    display: grid !important;
+    grid-template-rows: 70px auto auto minmax(0, auto) auto minmax(0, 1fr) auto !important;
+    overflow: hidden !important;
+    transform: translateX(-105%) !important;
+    transition: transform .2s ease !important;
+    box-shadow: 24px 0 70px rgba(0, 0, 0, .3) !important;
+  }
+
+  .sidebar.open {
+    transform: translateX(0) !important;
+  }
+
+  .brand {
+    min-height: 70px !important;
+    padding-inline: 12px !important;
+  }
+
+  .sidebar-primary-nav {
+    max-height: min(390px, 47vh) !important;
+    padding: 5px 12px 10px !important;
+    overflow-y: auto !important;
+  }
+
+  .sidebar-primary-nav button {
+    min-height: 43px !important;
+  }
+
+  .chat-history {
+    min-height: 70px !important;
+    overflow-y: auto !important;
+  }
+
+  .chat-stage {
+    position: relative !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .messages {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    padding: 18px 13px 24px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+  }
+
+  body.empty-chat .welcome-screen {
+    min-height: 100% !important;
+    padding: clamp(88px, 18vh, 150px) 18px 170px !important;
+    display: block !important;
+  }
+
+  body.empty-chat .welcome-screen > :not(h1) {
+    display: none !important;
+  }
+
+  body.empty-chat .welcome-screen h1 {
+    width: min(100%, 330px) !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    font-size: clamp(1.58rem, 7.4vw, 2.05rem) !important;
+    line-height: 1.16 !important;
+  }
+
+  .composer-zone,
+  body.empty-chat .composer-zone,
+  body:not(.empty-chat) .composer-zone {
+    position: relative !important;
+    inset: auto !important;
+    z-index: 90 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 8px 9px max(10px, env(safe-area-inset-bottom)) !important;
+    transform: none !important;
+    border: 0 !important;
+    background: linear-gradient(to top, var(--bg-elevated) 84%, transparent) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .attachment-tray {
+    max-height: 100px !important;
+    overflow-y: auto !important;
+  }
+
+  .composer,
+  body.empty-chat .composer,
+  body:not(.empty-chat) .composer {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 58px !important;
+    margin: 0 !important;
+    padding: 6px 7px !important;
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    border-radius: 26px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .14) !important;
+  }
+
+  #promptInput {
+    min-width: 0 !important;
+    min-height: 42px !important;
+    max-height: 128px !important;
+    padding: 9px 4px !important;
+    font-size: 1rem !important;
+  }
+
+  .composer-meta {
+    display: none !important;
+  }
+
+  .composer-toolbar,
+  .composer-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+  }
+
+  .composer-tool,
+  .send-button {
+    width: 41px !important;
+    height: 41px !important;
+    min-width: 41px !important;
+    border-radius: 50% !important;
+  }
+
+  .message {
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 8px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .message-avatar {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+  }
+
+  .message-column {
+    min-width: 0 !important;
+  }
+
+  .message-bubble {
+    max-width: 100% !important;
+    padding: 13px 14px !important;
+    border-radius: 17px !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .message.user .message-bubble {
+    max-width: 88% !important;
+  }
+
+  .message-actions {
+    width: min(100%, calc(100vw - 60px)) !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    padding-bottom: 4px !important;
+    scrollbar-width: none;
+  }
+
+  .message-actions::-webkit-scrollbar {
+    display: none;
+  }
+
+  .message-action {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+  }
+
+  .code-block,
+  pre {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+
+  .pro-shell,
+  .nexus-hub,
+  .modal {
+    max-width: 100vw !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .model-picker {
+    max-width: 142px !important;
+  }
+
+  .composer-zone {
+    padding-inline: 7px !important;
+  }
+
+  .composer-tool,
+  .send-button {
+    width: 39px !important;
+    height: 39px !important;
+    min-width: 39px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   LOGIN / SIGN-UP — independent of desktop/mobile app layout
+   -------------------------------------------------------------------------- */
+.auth-modal-backdrop.auth-startup-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 5000 !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 22px !important;
+  overflow: auto !important;
+  background: rgba(2, 5, 14, .82) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.auth-modal-backdrop.auth-startup-backdrop[hidden] {
+  display: none !important;
+}
+
+.auth-startup-modal {
+  position: relative !important;
+  width: min(980px, calc(100vw - 44px)) !important;
+  max-width: 980px !important;
+  max-height: min(760px, calc(100dvh - 44px)) !important;
+  margin: auto !important;
+  overflow: hidden auto !important;
+  border-radius: 25px !important;
+  transform: none !important;
+}
+
+.auth-startup-grid {
+  min-height: 610px !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.08fr) minmax(310px, .92fr) !important;
+}
+
+.auth-startup-main {
+  min-width: 0 !important;
+  padding: clamp(28px, 4vw, 52px) !important;
+  overflow-y: auto !important;
+}
+
+.auth-startup-side {
+  min-width: 0 !important;
+  padding: clamp(30px, 4vw, 54px) !important;
+  overflow: hidden !important;
+}
+
+.auth-modal-close {
+  z-index: 10 !important;
+}
+
+.auth-form,
+.auth-provider-stack,
+.auth-tabs {
+  width: 100% !important;
+  max-width: 460px !important;
+  margin-inline: auto !important;
+}
+
+.auth-field input {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+@media (max-width: 760px) {
+  .auth-modal-backdrop.auth-startup-backdrop {
+    align-items: end !important;
+    padding: 0 !important;
+  }
+
+  .auth-startup-modal {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    max-height: min(94dvh, 900px) !important;
+    margin: 0 !important;
+    border-radius: 24px 24px 0 0 !important;
+  }
+
+  .auth-startup-grid {
+    min-height: 0 !important;
+    display: block !important;
+  }
+
+  .auth-startup-side {
+    display: none !important;
+  }
+
+  .auth-startup-main {
+    width: 100% !important;
+    max-height: min(94dvh, 900px) !important;
+    padding: 30px 18px max(24px, env(safe-area-inset-bottom)) !important;
+  }
+
+  .auth-startup-brand img {
+    width: 56px !important;
+    height: 56px !important;
+  }
+
+  .auth-startup-brand h2 {
+    font-size: 1.65rem !important;
+  }
+}
+
+/* Non-blocking connection banner created by stable runtime. */
+.nexus-connection-banner {
+  position: fixed;
+  top: 8px;
+  left: 50%;
+  z-index: 8000;
+  max-width: min(92vw, 620px);
+  padding: 9px 14px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255, 190, 90, .35);
+  border-radius: 999px;
+  background: rgba(30, 22, 7, .94);
+  color: #ffe7b0;
+  font-size: .78rem;
+  text-align: center;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .26);
+}
+
+.nexus-connection-banner.online {
+  border-color: rgba(88, 220, 150, .35);
+  background: rgba(7, 28, 19, .94);
+  color: #c8ffe2;
+}

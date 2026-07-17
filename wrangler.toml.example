@@ -1,0 +1,55 @@
+name = "markzosuf-ai-nexus"
+compatibility_date = "2026-07-15"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "."
+
+[ai]
+binding = "AI"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "markzosuf-ai-nexus"
+database_id = "PASTE_D1_DATABASE_ID"
+
+[[r2_buckets]]
+binding = "FILES"
+bucket_name = "markzosuf-ai-nexus-files"
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "PASTE_KV_NAMESPACE_ID"
+
+[vars]
+# Start with REQUIRE_TURNSTILE=false. Enable it only after both site and secret keys are configured.
+ALLOW_GUEST_AI = "true"
+REQUIRE_SIGN_IN_FOR_AI = "false"
+ENABLE_MODERATION = "true"
+ENABLE_PAYMENTS = "false"
+REQUIRE_TURNSTILE = "false"
+REQUIRE_EMAIL_VERIFICATION = "false"
+PUBLIC_HOSTNAME = ""
+TURNSTILE_SITE_KEY = "PASTE_PUBLIC_SITE_KEY"
+GOOGLE_CLIENT_ID = ""
+STUDENT_PLAN_AMOUNT = "19900"
+DEVELOPER_PLAN_AMOUNT = "49900"
+
+# Set current model IDs supported by your provider account when enabling it:
+# GITHUB_MODEL = ""
+# OPENAI_MODEL = ""
+# ANTHROPIC_MODEL = ""
+# GEMINI_MODEL = ""
+# GROQ_MODEL = ""
+# Optional profile overrides: PROVIDER_MODEL_FAST / _SMART / _CODING
+# Optional Cloudflare overrides: CF_MODEL / CF_MODEL_FAST / CF_MODEL_SMART / CF_MODEL_CODING / CF_VISION_MODEL
+
+# Store private values as Cloudflare Pages secrets, never in this file:
+# TURNSTILE_SECRET_KEY, ADMIN_TOKEN
+# OPENAI_API_KEY, ANTHROPIC_API_KEY, GEMINI_API_KEY, GROQ_API_KEY, GITHUB_TOKEN
+# BRAVE_SEARCH_API_KEY, TAVILY_API_KEY, SERPER_API_KEY
+# RESEND_API_KEY, EMAIL_FROM
+# STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, STRIPE_STUDENT_PRICE_ID, STRIPE_DEVELOPER_PRICE_ID
+# RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET
+# GOOGLE_WORKSPACE_ACCESS_TOKEN, NOTION_API_KEY
+# SLACK_WEBHOOK_URL, DISCORD_WEBHOOK_URL, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+# MICROSOFT_GRAPH_ACCESS_TOKEN, MCP_GATEWAY_TOKEN
+# IMAGE_EDIT_API_URL, IMAGE_EDIT_API_KEY, VIDEO_API_URL, VIDEO_API_KEY, MUSIC_API_URL, MUSIC_API_KEY

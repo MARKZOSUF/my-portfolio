@@ -1,0 +1,25 @@
+{
+  "id": "/",
+  "name": "MARKZOSUF AI NEXUS V15.1.0",
+  "short_name": "AI NEXUS",
+  "description": "Advanced multimodal AI workspace with chat, web research, files, image generation, code studio, accounts and cloud sync.",
+  "start_url": "/",
+  "scope": "/",
+  "lang": "en",
+  "display": "standalone",
+  "background_color": "#171714",
+  "theme_color": "#171714",
+  "icons": [
+    {
+      "src": "/assets/logo-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": [
+    "productivity",
+    "education",
+    "developer"
+  ]
+}

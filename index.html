@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#070b16">
+  <meta name="description" content="MARKZOSUF AI NEXUS — an advanced multimodal AI workspace powered by Cloudflare Workers AI.">
+  <meta name="application-name" content="MARKZOSUF AI NEXUS">
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MARKZOSUF AI NEXUS V15.1.0">
+  <meta property="og:description" content="A production-ready multimodal AI workspace for chat, research, files, projects and automation.">
+  <meta property="og:image" content="/assets/logo-full.png?v=16.0.0">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>MARKZOSUF AI NEXUS V15.1.0</title>
+
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/assets/logo-icon.png?v=16.0.0" type="image/png">
+  <link rel="preload" href="/assets/logo-icon.png?v=16.0.0" as="image" type="image/png">
+  <link rel="stylesheet" href="/assets/vendor/highlight-github-dark-11.11.1.min.css?v=16.0.0">
+  <link rel="stylesheet" href="/assets/styles.css?v=16.0.0">
+  <link rel="stylesheet" href="/assets/advanced.css?v=16.0.0">
+  <link rel="stylesheet" href="/assets/create-suite.css?v=16.0.0">
+  <link rel="stylesheet" href="/assets/auth-ui.css?v=16.0.0">
+  <link rel="stylesheet" href="/assets/pro-suite.css?v=16.0.0">
+  <link rel="stylesheet" href="/assets/layout-fix-v9-1.css?v=16.0.0">
+  <link rel="stylesheet" href="/assets/auth-startup-v9-1-final.css?v=16.0.0">
+  <link rel="stylesheet" href="/assets/desktop-clean-v9-2.css?v=16.0.0">
+  <link rel="stylesheet" href="/assets/nexus-v10.css?v=16.0.0">
+
+  <script defer src="/assets/vendor/marked-15.0.7.min.js?v=16.0.0"></script>
+  <script defer src="/assets/vendor/dompurify-3.2.4.min.js?v=16.0.0"></script>
+  <script defer src="/assets/vendor/highlight-11.11.1.min.js?v=16.0.0"></script>
+  <script defer src="/assets/app.js?v=16.0.0"></script>
+  <script defer src="/assets/advanced.js?v=16.0.0"></script>
+  <script defer src="/assets/create-suite.js?v=16.0.0"></script>
+  <script defer src="/assets/auth-ui.js?v=16.0.0"></script>
+  <script defer src="/assets/pro-suite.js?v=16.0.0"></script>
+  <script defer src="/assets/layout-fix-v9-1.js?v=16.0.0"></script>
+  <script defer src="/assets/desktop-clean-v9-2.js?v=16.0.0"></script>
+  <script defer src="/assets/nexus-v10.js?v=16.0.0"></script>
+  <link rel="stylesheet" href="/assets/realtime-v11.css?v=16.0.0">
+  <link rel="stylesheet" href="/assets/stable-ui-v11-4.css?v=16.0.0">
+  <link rel="stylesheet" href="/assets/stability-v11-5.css?v=16.0.0">
+  <link rel="stylesheet" href="/assets/production-fix-v15-1-0.css?v=16.0.0">
+  <link rel="stylesheet" href="/assets/advanced-responsive-v16.css?v=16.0.0">
+</head>
+
+<body data-theme="dark">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Chat sidebar">
+      <div class="brand">
+        <div class="brand-mark"><img class="brand-logo-icon" src="/assets/logo-icon.png?v=16.0.0" width="512" height="512" decoding="async" alt="MARKZOSUF AI NEXUS logo"></div>
+        <div class="brand-copy">
+          <strong>AI NEXUS</strong>
+          <span>by MARK ZOSUF</span>
+        </div>
+        <button class="icon-button desktop-only sidebar-collapse-button" id="collapseSidebarButton" type="button" aria-label="Collapse sidebar">‹</button>
+        <button class="icon-button mobile-only" id="closeSidebarButton" type="button" aria-label="Close sidebar">✕</button>
+      </div>
+
+      <button class="new-chat-button" id="newChatButton" type="button">
+        <span>＋</span>
+        <span>New conversation</span>
+        <kbd>Ctrl N</kbd>
+      </button>
+
+      <div class="sidebar-search">
+        <span aria-hidden="true">⌕</span>
+        <input id="chatSearchInput" type="search" placeholder="Search conversations" autocomplete="off">
+      </div>
+
+      <nav class="sidebar-primary-nav" aria-label="Workspace shortcuts">
+        <button type="button" data-sidebar-action="search"><span>⌕</span><b>Search</b></button>
+        <button type="button" data-sidebar-action="projects"><span>▤</span><b>Projects</b></button>
+        <button type="button" data-sidebar-action="library"><span>▣</span><b>Library</b></button>
+        <button type="button" data-sidebar-action="documents"><span>PDF</span><b>Document AI</b></button>
+        <button type="button" data-sidebar-action="tasks"><span>◷</span><b>Scheduled</b></button>
+        <button type="button" data-sidebar-action="integrations"><span>⌁</span><b>Integrations</b></button>
+        <button type="button" data-sidebar-action="voice"><span>🎙</span><b>Voice</b></button>
+        <button type="button" data-sidebar-action="image"><span>▧</span><b>Image Lab</b></button>
+        <button type="button" data-sidebar-action="more"><span>•••</span><b>More</b></button>
+      </nav>
+
+      <div class="sidebar-label">
+        <span>Conversations</span>
+        <button class="text-button" id="clearAllButton" type="button">Clear</button>
+      </div>
+
+      <div class="chat-history" id="chatHistory"></div>
+
+      <div class="sidebar-footer">
+        <button class="profile-card" id="aboutButton" type="button">
+          <span class="avatar avatar-profile">MZ</span>
+          <span class="profile-user-copy">
+            <strong id="sidebarUserName">MARK ZOSUF</strong>
+            <span id="sidebarUserStatus">Guest · AI &amp; ML Developer</span>
+          </span>
+          <span class="profile-arrow">›</span>
+        </button>
+
+        <div class="creator-social-links" role="group" aria-label="Creator social profiles">
+          <a class="creator-social-link github-link"
+             href="https://github.com/MARKZOSUF"
+             target="_blank"
+             rel="noopener noreferrer"
+             title="GitHub @MARKZOSUF">
+            <span class="creator-social-icon">◉</span>
+            <span class="creator-social-copy">
+              <strong>GitHub</strong>
+              <small>@MARKZOSUF</small>
+            </span>
+          </a>
+
+          <a class="creator-social-link instagram-link"
+             href="https://instagram.com/markzosuf"
+             target="_blank"
+             rel="noopener noreferrer"
+             title="Instagram @markzosuf">
+            <span class="creator-social-icon">◎</span>
+            <span class="creator-social-copy">
+              <strong>Instagram</strong>
+              <small>@markzosuf</small>
+            </span>
+          </a>
+        </div>
+
+        <div class="sidebar-footer-actions sidebar-settings-only">
+          <button class="soft-button" id="settingsButton" type="button" title="Settings">⚙ Settings</button>
+        </div>
+
+        <button id="hiddenAccountLauncher" type="button" hidden aria-hidden="true"></button>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <div class="workspace-mode-switch" id="workspaceModeSwitch" role="group" aria-label="Workspace mode">
+        <button class="active" type="button" data-workspace-mode="chat">Chat</button>
+        <button type="button" data-workspace-mode="work">Work</button>
+      </div>
+
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button mobile-only" id="openSidebarButton" type="button" aria-label="Open sidebar">☰</button>
+          <div class="conversation-heading">
+            <input id="chatTitleInput" type="text" value="New conversation" maxlength="70" aria-label="Conversation title">
+            <div class="status-line">
+              <span class="online-dot"></span>
+              <span id="statusText">Ready</span>
+              <span class="divider-dot">•</span>
+              <span id="modelStatus">Auto routing</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+
+          <div class="auth-actions" id="authActions">
+            <button class="auth-login-button" id="openLoginButton" type="button">Log in</button>
+            <button class="auth-signup-button" id="openSignupButton" type="button">Sign up for free</button>
+            <button class="auth-user-button" id="openUserButton" type="button" hidden>
+              <span class="auth-user-avatar" id="authUserAvatar">MZ</span>
+              <span id="authUserName">Account</span>
+            </button>
+          </div>
+
+          <div class="top-creator-links" role="group" aria-label="Creator profiles">
+            <a href="https://github.com/MARKZOSUF" target="_blank" rel="noopener noreferrer" title="GitHub @MARKZOSUF">
+              <span>◉</span><b>@MARKZOSUF</b>
+            </a>
+            <a href="https://instagram.com/markzosuf" target="_blank" rel="noopener noreferrer" title="Instagram @markzosuf">
+              <span>◎</span><b>@markzosuf</b>
+            </a>
+          </div>
+          <label class="model-picker">
+            <span>Model</span>
+            <select id="modelSelect" aria-label="AI model mode">
+              <option value="auto">Nexus Auto</option>
+              <option value="fast">Nexus Flash-Lite</option>
+              <option value="smart">Nexus Smart</option>
+              <option value="coding">Nexus Code</option>
+            </select>
+          </label>
+
+          <button class="icon-button" id="exportChatButton" type="button" title="Export conversation">⇩</button>
+          <button class="icon-button" id="themeButton" type="button" title="Toggle theme">☾</button>
+          <button class="icon-button" id="workspacePanelButton" type="button" title="Workspace panel">◫</button>
+        </div>
+      </header>
+
+      <section class="chat-stage">
+        <div class="messages" id="messages" aria-live="polite">
+          <section class="welcome-screen" id="welcomeScreen">
+            <div class="hero-orb" aria-hidden="true">
+              <img class="hero-logo-icon" src="/assets/logo-icon.png?v=16.0.0" width="512" height="512" decoding="async" alt="">
+            </div>
+
+            <p class="eyebrow" id="adaptiveEyebrow">MULTIMODAL AI WORKSPACE</p>
+            <h1 id="adaptiveGreeting">What can we create today?</h1>
+            <p class="hero-text" id="adaptiveSubtitle">
+              Ask anything, debug code, analyze an image, study from a PDF, create projects,
+              write content, or plan your next skill.
+            </p>
+
+            <div class="suggestion-grid" id="suggestionGrid"></div>
+
+
+            <div class="hero-social-links" role="group" aria-label="MARK ZOSUF social links">
+              <a href="https://github.com/MARKZOSUF"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="hero-social-link hero-github">
+                <span>◉</span>
+                <span>GitHub <b>@MARKZOSUF</b></span>
+              </a>
+
+              <a href="https://instagram.com/markzosuf"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="hero-social-link hero-instagram">
+                <span>◎</span>
+                <span>Instagram <b>@markzosuf</b></span>
+              </a>
+            </div>
+
+            <div class="capability-strip">
+              <span>◈ Streaming answers</span>
+              <span>◈ Image analysis</span>
+              <span>◈ PDF and code files</span>
+              <span>◈ Voice input</span>
+            </div>
+          </section>
+        </div>
+
+        <button class="scroll-bottom-button" id="scrollBottomButton" type="button" aria-label="Scroll to latest message">↓</button>
+      </section>
+
+      <footer class="composer-zone">
+        <div class="attachment-tray" id="attachmentTray"></div>
+
+        <form class="composer" id="composerForm">
+          <div class="composer-toolbar">
+            <button class="composer-tool" id="createMenuButton" type="button" title="Photos, camera, images, video, music, canvas and learning">＋</button>
+            <input id="fileInput" type="file" hidden
+              accept="image/*,.pdf,.txt,.md,.json,.csv,.js,.ts,.jsx,.tsx,.py,.java,.c,.cpp,.h,.html,.css,.xml,.yaml,.yml,.sql">
+            <input id="cameraInput" type="file" hidden accept="image/*" capture="environment">
+            <input id="photoInput" type="file" hidden accept="image/*">
+            <input id="pdfInput" type="file" hidden accept=".pdf,application/pdf">
+            <input id="codeInput" type="file" hidden
+              accept=".js,.ts,.jsx,.tsx,.py,.java,.c,.cpp,.h,.html,.css,.json,.xml,.yaml,.yml,.sql,.md,.txt">
+
+            <button class="composer-tool" id="toolsButton" type="button" title="Choose AI tool">✦</button>
+          </div>
+
+          <textarea id="promptInput" rows="1" maxlength="100000"
+            placeholder="Ask AI NEXUS"
+            aria-label="Message"></textarea>
+
+          <div class="composer-actions">
+            <button class="composer-tool" id="voiceButton" type="button" title="Voice input">🎙</button>
+            <button class="send-button" id="sendButton" type="submit" title="Send message">
+              <span id="sendIcon">➤</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="composer-meta">
+          <span id="toolLabel">Ask Anything</span>
+          <span id="tokenEstimate">0 estimated tokens</span>
+          <span>Enter to send · Shift+Enter for new line</span>
+        </div>
+      </footer>
+    </main>
+
+    <aside class="workspace-panel" id="workspacePanel" aria-label="Workspace panel">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">WORKSPACE</p>
+          <h2>Session intelligence</h2>
+        </div>
+        <button class="icon-button" id="closeWorkspacePanelButton" type="button">✕</button>
+      </div>
+
+      <div class="panel-section">
+        <h3>Active tool</h3>
+        <div class="active-tool-card">
+          <span class="active-tool-icon" id="activeToolIcon">💬</span>
+          <div>
+            <strong id="activeToolName">Ask Anything</strong>
+            <p id="activeToolDescription">General questions, creative work, and everyday help.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h3>Session stats</h3>
+        <div class="stats-grid">
+          <div><strong id="statMessages">0</strong><span>Messages</span></div>
+          <div><strong id="statWords">0</strong><span>Words</span></div>
+          <div><strong id="statFiles">0</strong><span>Files</span></div>
+          <div><strong id="statChats">0</strong><span>Chats</span></div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h3>Attached knowledge</h3>
+        <div class="knowledge-list" id="knowledgeList">
+          <p class="muted">No file is attached.</p>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h3>Quick controls</h3>
+        <div class="stacked-buttons">
+          <button class="soft-button full-width" id="regenerateLastButton" type="button">↻ Regenerate last answer</button>
+          <button class="soft-button full-width" id="downloadLastButton" type="button">⇩ Download last answer</button>
+          <button class="soft-button full-width" id="readLastButton" type="button">🔊 Read last answer</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="modal-backdrop" id="toolsModal" hidden>
+    <section class="modal tools-modal" role="dialog" aria-modal="true" aria-labelledby="toolsModalTitle">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">AI TOOLKIT</p>
+          <h2 id="toolsModalTitle">Choose a specialist</h2>
+        </div>
+        <button class="icon-button modal-close" type="button" data-close-modal="toolsModal">✕</button>
+      </div>
+
+      <div class="modal-search">
+        <span>⌕</span>
+        <input id="toolSearchInput" type="search" placeholder="Search tools">
+      </div>
+
+      <div class="tool-grid" id="toolGrid"></div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="settingsModal" hidden>
+    <section class="modal settings-modal" role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">PERSONALIZATION</p>
+          <h2 id="settingsModalTitle">AI settings</h2>
+        </div>
+        <button class="icon-button modal-close" type="button" data-close-modal="settingsModal">✕</button>
+      </div>
+
+      <div class="settings-grid">
+        <label>
+          <span>Response language</span>
+          <select id="languageSelect">
+            <option value="auto">Same as my message</option>
+            <option value="hinglish">Simple Hinglish</option>
+            <option value="english">English</option>
+            <option value="hindi">Hindi</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Creativity <b id="temperatureValue">0.65</b></span>
+          <input id="temperatureInput" type="range" min="0" max="1.5" step="0.05" value="0.65">
+        </label>
+
+        <label>
+          <span>Maximum output</span>
+          <select id="maxTokensSelect">
+            <option value="800">Compact</option>
+            <option value="1600" selected>Balanced</option>
+            <option value="2600">Detailed</option>
+          </select>
+        </label>
+
+
+        <label>
+          <span>AI provider</span>
+          <select id="providerSelect">
+            <option value="auto">Auto fallback</option>
+            <option value="cloudflare">Cloudflare Workers AI</option>
+            <option value="github">GitHub Models</option>
+            <option value="openai">OpenAI</option>
+            <option value="anthropic">Anthropic Claude</option>
+            <option value="gemini">Google Gemini</option>
+            <option value="groq">Groq</option>
+          </select>
+        </label>
+
+        <label class="toggle-row">
+          <span><strong>Live web research</strong><small>Use current web sources and numbered citations.</small></span>
+          <input id="webSearchToggle" type="checkbox">
+        </label>
+
+        <label class="toggle-row">
+          <span><strong>Long-term memory</strong><small>Send memory notes saved in Nexus Hub.</small></span>
+          <input id="memoryToggle" type="checkbox" checked>
+        </label>
+        <label class="toggle-row">
+          <span>
+            <strong>Auto-title conversations</strong>
+            <small>Create a title from your first message.</small>
+          </span>
+          <input id="autoTitleToggle" type="checkbox" checked>
+        </label>
+
+        <label class="toggle-row">
+          <span>
+            <strong>Send recent conversation context</strong>
+            <small>Use previous messages for follow-up answers.</small>
+          </span>
+          <input id="historyToggle" type="checkbox" checked>
+        </label>
+
+        <label class="wide-setting">
+          <span>Custom instructions</span>
+          <textarea id="customInstructionsInput" rows="5" maxlength="2000"
+            placeholder="Example: Explain coding answers in simple Hinglish and include examples."></textarea>
+        </label>
+      </div>
+
+      <div class="modal-footer">
+        <button class="soft-button" id="resetSettingsButton" type="button">Reset</button>
+        <button class="primary-button" id="saveSettingsButton" type="button">Save settings</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="aboutModal" hidden>
+    <section class="modal about-modal" role="dialog" aria-modal="true" aria-labelledby="aboutModalTitle">
+      <button class="icon-button modal-close floating-close" type="button" data-close-modal="aboutModal">✕</button>
+
+      <div class="about-cover">
+        <div class="about-avatar"><img src="/assets/logo-icon.png?v=16.0.0" width="512" height="512" loading="lazy" decoding="async" alt="MARKZOSUF AI NEXUS logo"></div>
+      </div>
+
+      <div class="about-content"><img class="about-full-logo" src="/assets/logo-full.png?v=16.0.0" width="1275" height="405" loading="lazy" decoding="async" alt="MARKZOSUF AI NEXUS">
+        <p class="eyebrow">CREATOR PROFILE</p>
+        <h2 id="aboutModalTitle">MARK ZOSUF</h2>
+        <p class="about-role">AI &amp; Machine Learning student · Developer · Builder</p>
+        <p>
+          I build AI assistants, automation tools, intelligent web experiences, and practical
+          projects using Python, JavaScript, C++, and Cloudflare Workers AI.
+        </p>
+
+        <div class="about-tags">
+          <span>AI &amp; ML</span>
+          <span>Python</span>
+          <span>JavaScript</span>
+          <span>C++</span>
+          <span>Cloudflare</span>
+        </div>
+
+        <div class="social-buttons">
+          <a class="social-button github" href="https://github.com/MARKZOSUF" target="_blank" rel="noopener noreferrer">
+            <span>◉</span>
+            <div><strong>GitHub</strong><small>@MARKZOSUF</small></div>
+          </a>
+
+          <a class="social-button instagram" href="https://instagram.com/markzosuf" target="_blank" rel="noopener noreferrer">
+            <span>◎</span>
+            <div><strong>Instagram</strong><small>@markzosuf</small></div>
+          </a>
+        </div>
+        <button class="primary-button about-install-button" id="aboutInstallButton" type="button">Install AI NEXUS app</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="commandModal" hidden>
+    <section class="modal command-modal" role="dialog" aria-modal="true" aria-labelledby="commandModalTitle">
+      <div class="command-search">
+        <span>⌘</span>
+        <input id="commandSearchInput" type="search" placeholder="Type a command…" autocomplete="off">
+        <kbd>Esc</kbd>
+      </div>
+      <div class="command-results" id="commandResults"></div>
+    </section>
+  </div>
+
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <template id="messageTemplate">
+    <article class="message">
+      <div class="message-avatar"></div>
+      <div class="message-column">
+        <div class="message-meta">
+          <strong class="message-author"></strong>
+          <span class="message-time"></span>
+        </div>
+        <div class="message-bubble">
+          <div class="message-attachment"></div>
+          <div class="message-content"></div>
+        </div>
+        <div class="message-actions"></div>
+      </div>
+    </article>
+  </template>
+  <script defer src="/assets/realtime-v11.js?v=16.0.0"></script>
+  <script defer src="/assets/stable-ui-v11-4.js?v=16.0.0"></script>
+  <script defer src="/assets/stability-v11-5.js?v=16.0.0"></script>
+  <script defer src="/assets/production-fix-v15-1-0.js?v=16.0.0"></script>
+  <script defer src="/assets/advanced-responsive-v16.js?v=16.0.0"></script>
+</body>
+</html>

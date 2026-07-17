@@ -1,0 +1,18 @@
+{
+  "appId": "com.markzosuf.ainexus",
+  "appName": "AI NEXUS",
+  "webDir": "dist",
+  "server": {
+    "url": "https://markzosuf.pages.dev",
+    "cleartext": false,
+    "allowNavigation": [
+      "markzosuf.pages.dev"
+    ]
+  },
+  "android": {
+    "allowMixedContent": false
+  },
+  "ios": {
+    "contentInset": "automatic"
+  }
+}

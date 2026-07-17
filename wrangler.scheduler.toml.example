@@ -1,0 +1,13 @@
+name = "markzosuf-ai-nexus-scheduler"
+main = "scheduled-worker.js"
+compatibility_date = "2026-07-15"
+compatibility_flags = ["nodejs_compat"]
+[triggers]
+crons = ["*/15 * * * *"]
+[ai]
+binding = "AI"
+[[d1_databases]]
+binding = "DB"
+database_name = "markzosuf-ai-nexus"
+database_id = "PASTE_D1_DATABASE_ID"
+# Add the same email/webhook secrets used by the Pages project.

@@ -1,0 +1,334 @@
+/* AI NEXUS V15.1.0: final desktop/mobile production overrides. */
+:root {
+  --nexus-vh: 100dvh;
+  --nexus-safe-bottom: max(10px, env(safe-area-inset-bottom));
+}
+
+html,
+body,
+.app-shell,
+.workspace {
+  width: 100%;
+  max-width: 100vw;
+  height: var(--nexus-vh, 100dvh) !important;
+  min-height: 0;
+}
+
+html,
+body {
+  margin: 0;
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
+
+body {
+  position: relative;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+img,
+video,
+canvas,
+iframe,
+svg,
+table,
+pre {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  max-width: 100%;
+}
+
+button,
+[role="button"],
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.modal-backdrop[hidden],
+.nexus-hub-backdrop[hidden],
+.pro-backdrop[hidden],
+.v10-studio-backdrop[hidden],
+.v11-live-backdrop[hidden],
+.create-menu-backdrop[hidden] {
+  display: none !important;
+}
+
+.modal-backdrop,
+.nexus-hub-backdrop,
+.pro-backdrop,
+.v10-studio-backdrop,
+.v11-live-backdrop,
+.create-menu-backdrop {
+  width: 100vw;
+  height: var(--nexus-vh, 100dvh);
+  max-height: var(--nexus-vh, 100dvh);
+}
+
+.messages,
+.nexus-view,
+.pro-view,
+.v10-view,
+.v11-live-body,
+.auth-startup-main {
+  -webkit-overflow-scrolling: touch;
+}
+
+.message-content,
+.message-bubble,
+.attachment-info,
+.nexus-list-item,
+.pro-list-item,
+.v10-list-item {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.message-content pre,
+.message-content table,
+.v10-table-wrap,
+.message-actions,
+.v10-dock {
+  overscroll-behavior-inline: contain;
+}
+
+.sidebar-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 290;
+  display: none;
+  border: 0;
+  background: rgba(2, 6, 16, .58);
+  backdrop-filter: blur(4px);
+}
+
+.sidebar-scrim[hidden] {
+  display: none !important;
+}
+
+body.layout-mobile.sidebar-open .sidebar-scrim {
+  display: block;
+}
+
+@media (min-width: 861px) {
+  body.layout-desktop .app-shell,
+  body.layout-desktop .workspace,
+  body.layout-desktop .sidebar {
+    height: var(--nexus-vh, 100dvh) !important;
+  }
+
+  body.layout-desktop .topbar {
+    min-width: 0;
+  }
+
+  body.layout-desktop .topbar-actions {
+    max-width: min(64vw, 760px) !important;
+  }
+
+  body.layout-desktop .auth-actions,
+  body.layout-desktop .auth-user-button {
+    min-width: 0;
+  }
+
+  body.layout-desktop .auth-user-button span:last-child {
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  body.layout-desktop .composer-zone {
+    max-height: min(310px, 42vh);
+  }
+}
+
+@media (max-width: 860px) {
+  body.layout-mobile {
+    --nexus-topbar: 62px;
+  }
+
+  body.layout-mobile .app-shell,
+  body.layout-mobile .workspace,
+  body.layout-mobile .sidebar,
+  body.layout-mobile .pro-shell,
+  body.layout-mobile .nexus-hub,
+  body.layout-mobile .v10-studio {
+    height: var(--nexus-vh, 100dvh) !important;
+    max-height: var(--nexus-vh, 100dvh) !important;
+  }
+
+  body.layout-mobile .workspace {
+    grid-template-rows: var(--nexus-topbar) minmax(0, 1fr) auto !important;
+  }
+
+  body.layout-mobile .topbar {
+    height: var(--nexus-topbar) !important;
+    min-height: var(--nexus-topbar) !important;
+    padding-inline: max(8px, env(safe-area-inset-left)) max(8px, env(safe-area-inset-right)) !important;
+  }
+
+  body.layout-mobile .sidebar {
+    z-index: 300 !important;
+    width: min(88vw, 348px) !important;
+    max-width: calc(100vw - 34px) !important;
+    padding-left: env(safe-area-inset-left);
+    overscroll-behavior: contain;
+  }
+
+  body.layout-mobile .sidebar:not(.open) {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  body.layout-mobile .sidebar.open {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  body.layout-mobile .messages {
+    width: 100%;
+    padding-inline: clamp(10px, 3.5vw, 18px) !important;
+    scrollbar-gutter: auto;
+  }
+
+  body.layout-mobile .composer-zone {
+    width: 100%;
+    padding: 7px max(8px, env(safe-area-inset-right)) var(--nexus-safe-bottom) max(8px, env(safe-area-inset-left)) !important;
+  }
+
+  body.layout-mobile .composer {
+    min-width: 0;
+  }
+
+  body.layout-mobile #promptInput {
+    min-width: 0;
+    font-size: 16px !important;
+  }
+
+  body.layout-mobile .composer-toolbar,
+  body.layout-mobile .composer-actions {
+    min-width: max-content;
+  }
+
+  body.layout-mobile .v10-dock {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x proximity;
+  }
+
+  body.layout-mobile .v10-dock > * {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  body.layout-mobile .nexus-mobile-nav {
+    left: max(8px, env(safe-area-inset-left));
+    right: max(8px, env(safe-area-inset-right));
+    bottom: var(--nexus-safe-bottom);
+    z-index: 90;
+  }
+
+  body.layout-mobile.empty-chat .composer-zone {
+    bottom: calc(70px + env(safe-area-inset-bottom)) !important;
+  }
+
+  body.layout-mobile .modal,
+  body.layout-mobile .auth-startup-modal,
+  body.layout-mobile .v11-live-panel {
+    width: min(100%, 680px) !important;
+    max-width: 100vw !important;
+    max-height: calc(var(--nexus-vh, 100dvh) - 10px) !important;
+  }
+
+  body.layout-mobile .auth-startup-grid {
+    min-height: 0;
+  }
+
+  body.layout-mobile .attachment-card {
+    max-width: 100%;
+  }
+
+  body.layout-mobile .toast-container {
+    right: max(10px, env(safe-area-inset-right));
+    left: max(10px, env(safe-area-inset-left));
+    width: auto;
+  }
+
+  body.layout-mobile .toast {
+    width: min(100%, 430px);
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 420px) {
+  body.layout-mobile {
+    --nexus-topbar: 58px;
+  }
+
+  body.layout-mobile .model-picker {
+    max-width: 142px !important;
+  }
+
+  body.layout-mobile .composer-tool,
+  body.layout-mobile .send-button {
+    width: 40px !important;
+    min-width: 40px !important;
+    height: 40px !important;
+  }
+
+  body.layout-mobile .message-avatar {
+    width: 34px !important;
+    min-width: 34px !important;
+    height: 34px !important;
+  }
+
+  body.layout-mobile .message.user .message-bubble {
+    max-width: 90% !important;
+  }
+}
+
+@media (max-width: 860px) and (max-height: 540px) and (orientation: landscape) {
+  body.layout-mobile {
+    --nexus-topbar: 52px;
+  }
+
+  body.layout-mobile .composer-zone {
+    padding-block: 5px max(5px, env(safe-area-inset-bottom)) !important;
+  }
+
+  body.layout-mobile .v10-dock {
+    margin-bottom: 4px !important;
+  }
+
+  body.layout-mobile .nexus-mobile-nav {
+    display: none !important;
+  }
+
+  body.layout-mobile.empty-chat .composer-zone {
+    bottom: 0 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* V15.1 universal viewport safeguards */
+html,body{width:100%;max-width:100%;overflow-x:hidden}*{min-width:0;box-sizing:border-box}img,video,canvas,svg{max-width:100%;height:auto}button,input,textarea,select{font:inherit}textarea{max-width:100%;resize:vertical}.app-shell,.main-content,.chat-area,.messages,.composer-zone{max-width:100vw}.message-bubble,.markdown-body,pre,code{overflow-wrap:anywhere;word-break:break-word}pre{max-width:100%;overflow:auto;-webkit-overflow-scrolling:touch}@media(max-width:1024px){.sidebar{max-width:min(88vw,360px)}.modal,.dialog,[role="dialog"]{max-width:calc(100vw - 24px)!important;margin-inline:auto}}@media(max-width:600px){body{font-size:15px}.topbar{padding-inline:max(8px,env(safe-area-inset-left)) max(8px,env(safe-area-inset-right))}.messages{padding-inline:10px!important}.composer-zone{padding-left:max(8px,env(safe-area-inset-left))!important;padding-right:max(8px,env(safe-area-inset-right))!important}.message-bubble{max-width:94%!important}.modal,.dialog,[role="dialog"]{width:calc(100vw - 16px)!important;max-height:calc(100dvh - 16px)!important;overflow:auto!important}}@supports not(height:100dvh){.app-shell,.app{min-height:100vh}}

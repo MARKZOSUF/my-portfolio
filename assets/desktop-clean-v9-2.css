@@ -1,0 +1,535 @@
+
+/* AI NEXUS Quantum V9.2 — final desktop cleanup.
+   Loaded after every older stylesheet. Mobile V9.1 remains unchanged. */
+
+@media (min-width: 861px) {
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important;
+  }
+
+  body.layout-desktop {
+    --clean-sidebar: 260px;
+    --clean-header: 64px;
+  }
+
+  body.layout-desktop .app-shell,
+  body.layout-desktop .app-shell.panel-open {
+    width: 100vw !important;
+    height: 100dvh !important;
+    min-height: 0 !important;
+    display: grid !important;
+    grid-template-columns: var(--clean-sidebar) minmax(0, 1fr) 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Stable expanded sidebar */
+  body.layout-desktop .sidebar,
+  body.layout-desktop .sidebar:hover,
+  body.layout-desktop .sidebar:focus-within {
+    position: relative !important;
+    width: var(--clean-sidebar) !important;
+    min-width: var(--clean-sidebar) !important;
+    max-width: var(--clean-sidebar) !important;
+    height: 100dvh !important;
+    display: grid !important;
+    grid-template-rows: var(--clean-header) auto auto auto auto minmax(0, 1fr) auto !important;
+    overflow: hidden !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  body.layout-desktop .brand {
+    width: 100% !important;
+    height: var(--clean-header) !important;
+    min-height: var(--clean-header) !important;
+    display: grid !important;
+    grid-template-columns: 42px minmax(0, 1fr) 34px !important;
+    align-items: center !important;
+    gap: 9px !important;
+    padding: 0 10px 0 12px !important;
+    overflow: hidden !important;
+  }
+
+  body.layout-desktop .brand-mark {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+  }
+
+  body.layout-desktop .brand-copy {
+    min-width: 0 !important;
+    display: flex !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  body.layout-desktop .brand-copy strong,
+  body.layout-desktop .brand-copy span {
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  body.layout-desktop .brand-copy strong {
+    font-size: .82rem !important;
+    letter-spacing: .05em !important;
+  }
+
+  body.layout-desktop .brand-copy span {
+    margin-top: 3px !important;
+    font-size: .61rem !important;
+  }
+
+  body.layout-desktop .sidebar-collapse-button {
+    position: static !important;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+  }
+
+  body.layout-desktop .new-chat-button,
+  body.layout-desktop .sidebar:hover .new-chat-button,
+  body.layout-desktop .sidebar:focus-within .new-chat-button {
+    width: calc(100% - 20px) !important;
+    min-height: 46px !important;
+    height: auto !important;
+    margin: 10px !important;
+    padding: 10px 11px !important;
+    display: grid !important;
+    grid-template-columns: 24px minmax(0, 1fr) auto !important;
+    place-items: center start !important;
+    gap: 8px !important;
+    overflow: hidden !important;
+  }
+
+  body.layout-desktop .new-chat-button span:nth-child(2),
+  body.layout-desktop .new-chat-button kbd,
+  body.layout-desktop .sidebar:hover .new-chat-button span:nth-child(2),
+  body.layout-desktop .sidebar:hover .new-chat-button kbd,
+  body.layout-desktop .sidebar:focus-within .new-chat-button span:nth-child(2),
+  body.layout-desktop .sidebar:focus-within .new-chat-button kbd {
+    display: initial !important;
+  }
+
+  body.layout-desktop .new-chat-button span:nth-child(2) {
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    font-size: .82rem !important;
+  }
+
+  body.layout-desktop .new-chat-button kbd {
+    white-space: nowrap !important;
+    font-size: .55rem !important;
+  }
+
+  body.layout-desktop .sidebar-search {
+    width: calc(100% - 20px) !important;
+    margin: 0 10px 8px !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  body.layout-desktop .sidebar-primary-nav {
+    min-height: 0 !important;
+    max-height: 325px !important;
+    padding: 3px 10px 8px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    scrollbar-width: thin;
+  }
+
+  body.layout-desktop .sidebar-primary-nav button {
+    min-height: 35px !important;
+    grid-template-columns: 25px minmax(0, 1fr) !important;
+    padding: 6px 8px !important;
+  }
+
+  body.layout-desktop .sidebar-primary-nav b {
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    font-size: .68rem !important;
+  }
+
+  body.layout-desktop .sidebar-label {
+    min-height: 30px !important;
+    margin: 0 10px !important;
+    padding: 6px 4px !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  body.layout-desktop .chat-history {
+    min-height: 0 !important;
+    height: 100% !important;
+    padding: 0 9px 8px !important;
+    overflow-y: auto !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  body.layout-desktop .sidebar-footer {
+    position: relative !important;
+    max-height: none !important;
+    padding: 8px 10px !important;
+    overflow: hidden !important;
+  }
+
+  body.layout-desktop .profile-card,
+  body.layout-desktop .sidebar:hover .profile-card,
+  body.layout-desktop .sidebar:focus-within .profile-card {
+    width: 100% !important;
+    min-height: 48px !important;
+    padding: 7px 8px !important;
+  }
+
+  body.layout-desktop .profile-card > div:nth-child(2),
+  body.layout-desktop .profile-arrow,
+  body.layout-desktop .sidebar-footer-actions .soft-button {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  body.layout-desktop .creator-social-links {
+    display: none !important;
+  }
+
+  body.layout-desktop .sidebar-footer-actions {
+    margin-top: 5px !important;
+  }
+
+  body.layout-desktop .sidebar-footer-actions .soft-button {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 34px !important;
+  }
+
+  /* Remove the floating control that was mixing with Log in / Sign up. */
+  body.layout-desktop .workspace-mode-switch {
+    display: none !important;
+  }
+
+  body.layout-desktop .workspace {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 100dvh !important;
+    min-height: 0 !important;
+    display: grid !important;
+    grid-template-rows: var(--clean-header) minmax(0, 1fr) auto !important;
+    overflow: hidden !important;
+  }
+
+  body.layout-desktop .topbar {
+    position: relative !important;
+    inset: auto !important;
+    z-index: 80 !important;
+    width: 100% !important;
+    height: var(--clean-header) !important;
+    min-height: var(--clean-header) !important;
+    padding: 0 16px !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 16px !important;
+    overflow: hidden !important;
+  }
+
+  body.layout-desktop .topbar-left {
+    min-width: 0 !important;
+    max-width: 420px !important;
+    overflow: hidden !important;
+  }
+
+  body.layout-desktop.empty-chat .topbar-left {
+    visibility: hidden !important;
+  }
+
+  body.layout-desktop .conversation-heading,
+  body.layout-desktop #chatTitleInput {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  body.layout-desktop .topbar-actions {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    flex-wrap: nowrap !important;
+    gap: 7px !important;
+    overflow: hidden !important;
+  }
+
+  body.layout-desktop .topbar-actions > * {
+    flex: 0 0 auto !important;
+  }
+
+  body.layout-desktop .top-creator-links {
+    display: none !important;
+  }
+
+  body.layout-desktop .model-picker {
+    order: 1 !important;
+    min-width: 136px !important;
+    max-width: 170px !important;
+    height: 38px !important;
+    padding: 0 8px !important;
+    overflow: hidden !important;
+  }
+
+  body.layout-desktop .model-picker select {
+    min-width: 0 !important;
+    max-width: 128px !important;
+    white-space: nowrap !important;
+  }
+
+  body.layout-desktop #themeButton {
+    order: 2 !important;
+  }
+
+  body.layout-desktop #exportChatButton,
+  body.layout-desktop #workspacePanelButton {
+    display: none !important;
+  }
+
+  body.layout-desktop .auth-actions {
+    position: static !important;
+    order: 3 !important;
+    min-width: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    margin: 0 !important;
+  }
+
+  body.layout-desktop .auth-login-button,
+  body.layout-desktop .auth-signup-button,
+  body.layout-desktop .auth-user-button {
+    min-height: 36px !important;
+    max-width: 170px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  /* Clean empty chat alignment */
+  body.layout-desktop .chat-stage {
+    position: relative !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body.layout-desktop.empty-chat .welcome-screen {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    overflow: hidden !important;
+  }
+
+  body.layout-desktop.empty-chat .welcome-screen > :not(h1):not(.suggestion-grid) {
+    display: none !important;
+  }
+
+  body.layout-desktop.empty-chat .welcome-screen h1 {
+    position: absolute !important;
+    top: 27% !important;
+    left: 50% !important;
+    width: min(720px, calc(100% - 72px)) !important;
+    margin: 0 !important;
+    transform: translate(-50%, -50%) !important;
+    text-align: center !important;
+    font-size: clamp(1.75rem, 2.65vw, 2.5rem) !important;
+    line-height: 1.14 !important;
+    white-space: normal !important;
+  }
+
+  body.layout-desktop.empty-chat .composer-zone {
+    position: absolute !important;
+    top: 43% !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: 50% !important;
+    z-index: 35 !important;
+    width: min(760px, calc(100% - 80px)) !important;
+    max-width: 760px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: translateX(-50%) !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  body.layout-desktop.empty-chat .composer {
+    width: 100% !important;
+    min-height: 62px !important;
+    margin: 0 !important;
+    padding: 8px 10px !important;
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    border-radius: 29px !important;
+  }
+
+  body.layout-desktop.empty-chat #promptInput {
+    min-width: 0 !important;
+    min-height: 44px !important;
+    max-height: 150px !important;
+    padding: 10px 8px !important;
+  }
+
+  body.layout-desktop.empty-chat .composer-meta {
+    display: none !important;
+  }
+
+  body.layout-desktop.empty-chat .suggestion-grid {
+    position: absolute !important;
+    top: 58% !important;
+    left: 50% !important;
+    z-index: 10 !important;
+    width: min(500px, calc(100% - 100px)) !important;
+    transform: translateX(-50%) !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 3px !important;
+  }
+
+  body.layout-desktop.empty-chat .suggestion-card {
+    width: 100% !important;
+    min-height: 39px !important;
+    padding: 7px 11px !important;
+    display: grid !important;
+    grid-template-columns: 28px minmax(0, 1fr) !important;
+    align-items: center !important;
+  }
+
+  body.layout-desktop.empty-chat .suggestion-card strong {
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  body.layout-desktop:not(.empty-chat) .messages {
+    min-height: 0 !important;
+    padding: 28px clamp(34px, 7vw, 112px) 30px !important;
+    overflow-y: auto !important;
+  }
+
+  body.layout-desktop:not(.empty-chat) .composer-zone {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    padding: 10px 22px 14px !important;
+    transform: none !important;
+  }
+
+  body.layout-desktop:not(.empty-chat) .composer,
+  body.layout-desktop:not(.empty-chat) .composer-meta {
+    width: min(820px, calc(100% - 20px)) !important;
+    margin-inline: auto !important;
+  }
+
+  /* Real collapsed state */
+  body.layout-desktop.sidebar-collapsed {
+    --clean-sidebar: 72px;
+  }
+
+  body.layout-desktop.sidebar-collapsed .brand {
+    grid-template-columns: 42px !important;
+    justify-content: center !important;
+    padding-inline: 15px !important;
+  }
+
+  body.layout-desktop.sidebar-collapsed .brand-copy,
+  body.layout-desktop.sidebar-collapsed .sidebar-collapse-button,
+  body.layout-desktop.sidebar-collapsed .sidebar-search,
+  body.layout-desktop.sidebar-collapsed .sidebar-primary-nav b,
+  body.layout-desktop.sidebar-collapsed .sidebar-label,
+  body.layout-desktop.sidebar-collapsed .chat-history,
+  body.layout-desktop.sidebar-collapsed .profile-user-copy,
+  body.layout-desktop.sidebar-collapsed .profile-arrow,
+  body.layout-desktop.sidebar-collapsed .sidebar-footer-actions {
+    display: none !important;
+  }
+
+  body.layout-desktop.sidebar-collapsed .new-chat-button {
+    width: 44px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    margin: 9px auto !important;
+    grid-template-columns: 1fr !important;
+    place-items: center !important;
+    padding: 0 !important;
+  }
+
+  body.layout-desktop.sidebar-collapsed .new-chat-button span:nth-child(2),
+  body.layout-desktop.sidebar-collapsed .new-chat-button kbd {
+    display: none !important;
+  }
+
+  body.layout-desktop.sidebar-collapsed .sidebar-primary-nav {
+    display: grid !important;
+    max-height: none !important;
+    padding: 5px 8px !important;
+  }
+
+  body.layout-desktop.sidebar-collapsed .sidebar-primary-nav button {
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+    padding-inline: 0 !important;
+  }
+
+  body.layout-desktop.sidebar-collapsed .profile-card {
+    width: 44px !important;
+    margin-inline: auto !important;
+    padding: 3px !important;
+  }
+}
+
+@media (min-width: 861px) and (max-width: 1120px) {
+  body.layout-desktop {
+    --clean-sidebar: 228px;
+  }
+
+  body.layout-desktop .auth-signup-button {
+    display: none !important;
+  }
+
+  body.layout-desktop .model-picker {
+    min-width: 118px !important;
+    max-width: 138px !important;
+  }
+}
+
+@media (min-width: 861px) and (max-width: 960px) {
+  body.layout-desktop .auth-login-button {
+    width: 40px !important;
+    padding-inline: 0 !important;
+    color: transparent !important;
+  }
+
+  body.layout-desktop .auth-login-button::after {
+    content: "👤";
+    color: var(--text) !important;
+    font-size: .9rem;
+  }
+
+  body.layout-desktop .model-picker span {
+    display: none !important;
+  }
+}

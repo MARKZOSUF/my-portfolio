@@ -1,0 +1,21 @@
+{
+  "name": "markzosuf-ai-nexus",
+  "version": "16.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check:project": "node scripts/validate.mjs",
+    "check:html": "html-validate \"*.html\"",
+    "check:api": "node scripts/api-smoke.mjs",
+    "check:sw": "node scripts/service-worker-smoke.mjs",
+    "check:vendor": "node scripts/vendor-smoke.mjs",
+    "check:browser": "node scripts/browser-smoke.mjs",
+    "check": "npm run check:project && npm run check:html && npm run check:api && npm run check:sw && npm run check:vendor"
+  },
+  "devDependencies": {
+    "html-validate": "11.5.6"
+  },
+  "engines": {
+    "node": ">=22.16.0"
+  }
+}
