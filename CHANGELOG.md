@@ -1,3 +1,12 @@
+# V17.0.0 — Nexus Command Center
+
+- Added advanced Study OS, Coding Lab, Creator Studio, Agent Hub and Monetization modules.
+- Added 30 launchable AI missions connected to the existing chat composer.
+- Added local XP, AI credits, learning streak, mission tracking and daily rewards.
+- Added responsive command-center interface and keyboard shortcut Ctrl/⌘ + Shift + K.
+- Added monetization-ready native ad placeholder without enabling intrusive ads.
+- Preserved existing Cloudflare AI, authentication, payments, PWA and responsive features.
+
 # Changelog
 
 ## 15.1.0 - Desktop and mobile reliability release
