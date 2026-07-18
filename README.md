@@ -1,3 +1,3 @@
-# MARKZOSUF AI NEXUS V19.0 — CLEAN STABLE
+# MARKZOSUF AI NEXUS V20.0 — FINAL STABLE
 
-Clean runtime build that removes conflicting V9–V16 layout scripts while preserving core AI chat, authentication, creator/pro tools and the V17 Command Center.
+Final responsive rebuild for desktop and mobile. Fixes hero/composer overlap, auth modal overflow, mobile empty space, duplicate mobile dock, stale cache and message wrapping while preserving Cloudflare Functions and the Nexus Command Center.
