@@ -1,0 +1,57 @@
+/* MARKZOSUF AI NEXUS V18 — final responsive/layout stabilization */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body{min-height:100dvh}
+*,*::before,*::after{box-sizing:border-box}
+.workspace,.chat-stage,.messages,.composer-zone,.composer,.message,.message-column,.message-bubble,.message-content,.topbar,.topbar-left,.topbar-actions{min-width:0!important;max-width:100%!important}
+img,svg,video,canvas{max-width:100%;height:auto}
+.message-content,.message-content *,.message-bubble,.markdown-body{overflow-wrap:anywhere!important;word-break:normal!important}
+.message-content pre,.message-content code{max-width:100%!important;overflow:auto!important;white-space:pre-wrap!important;word-break:break-word!important}
+.message-content table{display:block;max-width:100%;overflow-x:auto}
+/* The legacy V10 dock caused the empty black strip on phones and overlap on desktop. */
+.v10-dock{display:none!important}
+/* Keep the chat area and composer in normal document flow. */
+.chat-stage{display:flex!important;flex-direction:column!important;overflow:hidden!important}
+.messages{flex:1 1 auto!important;overflow-y:auto!important;overflow-x:hidden!important;scrollbar-gutter:stable}
+.composer-zone{position:relative!important;inset:auto!important;transform:none!important;flex:0 0 auto!important;width:100%!important;z-index:60!important;background:var(--bg,#fff)!important}
+.composer{position:relative!important;inset:auto!important;transform:none!important;width:min(100%,980px)!important;margin-inline:auto!important;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;align-items:end!important;gap:8px!important}
+#promptInput{display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;max-height:180px!important;overflow-y:auto!important;line-height:1.45!important;white-space:pre-wrap!important}
+.composer-toolbar,.composer-actions{display:flex!important;align-items:center!important;gap:6px!important;flex:0 0 auto!important}
+.message{width:min(100%,980px)!important;margin-inline:auto!important;display:grid!important;grid-template-columns:auto minmax(0,1fr)!important}
+.message-column{width:100%!important}
+.message-bubble{width:fit-content!important;max-width:min(100%,820px)!important}
+.message.user .message-bubble{margin-left:auto!important}
+.message-actions{display:flex!important;gap:10px!important;flex-wrap:wrap!important}
+.topbar{display:flex!important;align-items:center!important;gap:10px!important;overflow:hidden!important}
+.topbar-left{flex:1 1 auto!important;overflow:hidden!important}
+.topbar-actions{flex:0 0 auto!important;display:flex!important;align-items:center!important;gap:6px!important}
+#chatTitleInput{min-width:0!important;max-width:100%!important;text-overflow:ellipsis!important;overflow:hidden!important;white-space:nowrap!important}
+/* Never let hidden overlays reserve space. */
+[hidden]{display:none!important}
+@media (max-width:860px){
+  body{font-size:15px!important}
+  .app-shell,.workspace,.chat-stage{height:100dvh!important;min-height:100dvh!important}
+  .topbar{min-height:58px!important;padding:8px 10px!important}
+  .topbar-actions>*:not(:last-child){display:none!important}
+  .messages{padding:14px 10px 18px!important}
+  .message{grid-template-columns:42px minmax(0,1fr)!important;gap:8px!important}
+  .message-avatar{width:42px!important;height:42px!important}
+  .message-bubble{max-width:100%!important;padding:14px!important;border-radius:20px!important;font-size:16px!important;line-height:1.55!important}
+  .message-actions{font-size:13px!important;gap:14px!important;padding:8px 4px 0!important}
+  .composer-zone{padding:8px max(8px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))!important;border-top:1px solid rgba(127,127,127,.14)!important}
+  .composer{grid-template-columns:42px minmax(0,1fr) 42px!important;gap:7px!important;padding:8px!important;border-radius:22px!important;min-height:58px!important}
+  .composer-tool,.send-button{width:42px!important;height:42px!important;min-width:42px!important}
+  #promptInput{font-size:16px!important;min-height:42px!important;max-height:132px!important;padding:9px 4px!important}
+  .composer-meta,.composer-toolbar .soft-button:not(.composer-tool){display:none!important}
+  .welcome-screen{padding-inline:12px!important}
+  .suggestion-grid{grid-template-columns:1fr!important;width:100%!important}
+  .sidebar{width:min(88vw,340px)!important;max-width:88vw!important}
+  .modal,[role="dialog"]{width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important;max-height:calc(100dvh - 16px)!important;overflow:auto!important}
+  .v17-launcher{right:10px!important;bottom:calc(84px + env(safe-area-inset-bottom))!important;max-width:48px!important;width:48px!important;height:48px!important;padding:0!important;border-radius:50%!important;overflow:hidden!important}
+  .v17-launcher span:last-child{display:none!important}
+}
+@media (min-width:861px){
+  .messages{padding-inline:clamp(22px,4vw,72px)!important}
+  .composer-zone{padding:12px clamp(22px,4vw,72px) 16px!important}
+  .message-content{font-size:15px!important;line-height:1.65!important}
+  .message-bubble{padding:18px 20px!important}
+}

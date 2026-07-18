@@ -40,7 +40,7 @@
   async function init() {
     injectLaunchers();
     createHub();
-    bindDraft();
+    clearLegacyDraft();
     setupInstallPrompt();
     await loadConfig();
     await loadAccount();
@@ -406,6 +406,13 @@
   function getActiveBot(){return [...DEFAULT_BOTS,...loadJSON(KEYS.bots,[])].find(b=>b.id===state.activeBotId)||null}
   function getActiveBotInstructions(){return getActiveBot()?.instructions||""}
   function onGenerationComplete(message){if("Notification" in window&&Notification.permission==="granted"&&document.hidden)new Notification("AI NEXUS response ready",{body:String(message?.content||"").replace(/[#*_`]/g,"").slice(0,120),icon:"/assets/logo-icon.png?v=15.1.0"});syncToCloud(false);resetTurnstile();window.NEXUS_AUTH_UI?.resetTurnstile?.()}
+
+
+  function clearLegacyDraft(){
+    try { localStorage.removeItem(KEYS.draft); } catch {}
+    const input=document.getElementById("promptInput");
+    if(input){ input.value=""; input.dispatchEvent(new Event("input",{bubbles:true})); }
+  }
 
   function bindDraft(){const input=document.getElementById("promptInput");if(!input)return;const draft=localStorage.getItem(KEYS.draft);if(draft&&!input.value){input.value=draft;input.dispatchEvent(new Event("input"))}input.addEventListener("input",debounce(()=>{if(input.value)localStorage.setItem(KEYS.draft,input.value);else localStorage.removeItem(KEYS.draft)},250))}
   function setupInstallPrompt(){window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();state.installPrompt=event})}

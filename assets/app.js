@@ -229,12 +229,9 @@
     renderToolGrid();
     bindEvents();
 
-    if (state.chats.length) {
-      state.activeChatId = state.chats[0].id;
-      state.selectedToolId = state.chats[0].toolId || "ask-anything";
-    } else {
-      createChat(false);
-    }
+    // V18: Always start with a clean conversation after a reload.
+    // Previous chats remain available in the sidebar history.
+    createChat(false);
 
     syncSettingsUI();
     renderAll();

@@ -1,4 +1,13 @@
-# V17.0.0 — Nexus Command Center
+# V18.0.0 — Stable Responsive Fix
+
+- Removed the empty black legacy toolbar on mobile.
+- Every reload now opens a clean new chat while preserving history.
+- Removed restored composer drafts that caused old prompts to return.
+- Fixed desktop text overlap, message widths, code wrapping and composer flow.
+- Rebuilt service-worker caching as network-first to prevent stale releases.
+- Added final mobile safe-area and viewport stabilization.
+
+# V18.0.0 — Nexus Command Center
 
 - Added advanced Study OS, Coding Lab, Creator Studio, Agent Hub and Monetization modules.
 - Added 30 launchable AI missions connected to the existing chat composer.

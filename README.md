@@ -1,8 +1,8 @@
-# MARKZOSUF AI NEXUS V17.0 — COMMAND CENTER
+# MARKZOSUF AI NEXUS V18.0 — COMMAND CENTER
 
 Open the floating **Nexus Command Center** button to access 30 advanced AI missions across Study, Coding, Creation, Agents and Monetization. Shortcut: `Ctrl + Shift + K`.
 
-# MARKZOSUF AI NEXUS v17.0.0
+# MARKZOSUF AI NEXUS v18.0.0
 
 Advanced responsive production build for mobile, tablet and desktop.
 
