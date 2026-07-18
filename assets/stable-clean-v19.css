@@ -1,0 +1,42 @@
+/* MARKZOSUF AI NEXUS V19 — clean stable layout */
+:root{--app-height:100dvh}
+html,body{margin:0;width:100%;max-width:100%;height:100%;overflow:hidden}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+.v10-dock,#v10Dock,.realtime-dock,.floating-search-dock{display:none!important}
+.app-shell{width:100%;height:var(--app-height);min-height:0;overflow:hidden}
+.workspace{height:var(--app-height);min-width:0;min-height:0;overflow:hidden}
+.chat-stage{height:100%;min-width:0;min-height:0;display:flex!important;flex-direction:column!important;overflow:hidden!important}
+.topbar{flex:0 0 auto;min-width:0;overflow:hidden}
+.messages{flex:1 1 auto!important;min-width:0!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;scrollbar-gutter:stable}
+.composer-zone{position:relative!important;inset:auto!important;transform:none!important;flex:0 0 auto!important;width:100%!important;z-index:30!important}
+.composer{position:relative!important;inset:auto!important;transform:none!important;width:min(100%,980px)!important;margin:0 auto!important;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;align-items:end!important;gap:8px!important}
+.workspace,.chat-stage,.messages,.composer-zone,.composer,.message,.message-column,.message-bubble,.message-content,.topbar,.topbar-left,.topbar-actions{min-width:0!important;max-width:100%!important}
+.message{width:min(100%,980px)!important;margin-inline:auto!important;display:grid!important;grid-template-columns:auto minmax(0,1fr)!important}
+.message-column{width:100%!important;min-width:0!important}
+.message-bubble{width:fit-content!important;max-width:min(100%,820px)!important;min-width:0!important}
+.message.user .message-bubble{margin-left:auto!important}
+.message-content,.message-content *{max-width:100%;overflow-wrap:anywhere!important;word-break:normal!important}
+.message-content pre{max-width:100%!important;overflow:auto!important;white-space:pre!important}
+.message-content code{white-space:pre-wrap!important;word-break:break-word!important}
+.message-content table{display:block;max-width:100%;overflow-x:auto}
+.message-actions{display:flex!important;flex-wrap:wrap!important;gap:10px!important}
+#promptInput{display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;max-height:160px!important;overflow-y:auto!important;white-space:pre-wrap!important;line-height:1.45!important}
+@media(max-width:860px){
+  .app-shell,.workspace,.chat-stage{height:var(--app-height)!important;min-height:0!important}
+  .topbar{min-height:58px!important;padding:8px 10px!important}
+  .topbar-actions>*:not(:last-child){display:none!important}
+  .messages{padding:12px 10px 14px!important}
+  .message{grid-template-columns:42px minmax(0,1fr)!important;gap:8px!important}
+  .message-avatar{width:42px!important;height:42px!important}
+  .message-bubble{max-width:100%!important;padding:14px!important;border-radius:18px!important;font-size:16px!important;line-height:1.55!important}
+  .composer-zone{padding:8px max(8px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))!important}
+  .composer{grid-template-columns:42px minmax(0,1fr) 42px!important;gap:7px!important;padding:8px!important;border-radius:22px!important;min-height:58px!important}
+  .composer-tool,.send-button{width:42px!important;height:42px!important;min-width:42px!important}
+  #promptInput{font-size:16px!important;min-height:42px!important;max-height:120px!important;padding:9px 4px!important}
+  .composer-meta,.composer-toolbar .soft-button:not(.composer-tool){display:none!important}
+  .sidebar{width:min(88vw,340px)!important;max-width:88vw!important}
+  .modal,[role="dialog"]{width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important;max-height:calc(var(--app-height) - 16px)!important;overflow:auto!important}
+  .v17-launcher{right:10px!important;bottom:calc(82px + env(safe-area-inset-bottom))!important;width:48px!important;height:48px!important;max-width:48px!important;padding:0!important;border-radius:50%!important;overflow:hidden!important}
+  .v17-launcher span:last-child{display:none!important}
+}
