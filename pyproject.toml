@@ -1,0 +1,26 @@
+[project]
+name = "studyresearch-ai"
+version = "2.0.0"
+description = "Evidence-grounded Flask study and research workspace"
+requires-python = ">=3.11"
+
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501"]
+
+[tool.coverage.run]
+source = ["."]
+omit = ["tests/*", "migrations/*", ".venv/*", "venv/*"]
+
+[tool.coverage.report]
+show_missing = true
+exclude_lines = ["pragma: no cover", "if __name__ == .__main__.:"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

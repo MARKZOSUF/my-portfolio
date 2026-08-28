@@ -1,0 +1,85 @@
+# Example production compose file.
+#
+# DEPLOY-READY. Set AI_API_KEY and POSTGRES_PASSWORD in .env before running.
+# Secrets are read from .env only - never hard-coded here, never committed.
+# The app refuses to boot with unsafe production settings.
+services:
+  web:
+    build: .
+    env_file: .env
+    environment:
+      FLASK_ENV: production
+      DATABASE_URL: postgresql+psycopg://studyresearch:${POSTGRES_PASSWORD}@db:5432/studyresearch
+      COOKIE_SECURE: "true"
+      JOB_BACKEND: rq
+      REDIS_URL: redis://redis:6379/0
+      RATELIMIT_STORAGE_URI: redis://redis:6379/1
+      MALWARE_SCANNER: clamav
+    ports: ["5000:5000"]
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes: ["uploads:/app/instance/uploads"]
+    # Migrations run before the web server accepts traffic.
+    command: ["sh", "-c", "flask db upgrade && gunicorn --config gunicorn.conf.py app:app"]
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/api/health/ready', timeout=4)\""]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 25s
+
+  worker:
+    build: .
+    env_file: .env
+    environment:
+      FLASK_ENV: production
+      DATABASE_URL: postgresql+psycopg://studyresearch:${POSTGRES_PASSWORD}@db:5432/studyresearch
+      COOKIE_SECURE: "true"
+      JOB_BACKEND: rq
+      REDIS_URL: redis://redis:6379/0
+      RATELIMIT_STORAGE_URI: redis://redis:6379/1
+      MALWARE_SCANNER: clamav
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes: ["uploads:/app/instance/uploads"]
+    # RQ worker with a hard per-job timeout; --with-scheduler not required.
+    command: ["rq", "worker", "--url", "redis://redis:6379/0", "research"]
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: studyresearch
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set in .env}
+      POSTGRES_DB: studyresearch
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U studyresearch -d studyresearch"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    volumes: ["postgres:/var/lib/postgresql/data"]
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    # appendonly gives queued/failed RQ jobs persistence across restarts.
+    command: ["redis-server", "--appendonly", "yes"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    volumes: ["redis:/data"]
+
+volumes:
+  postgres: {}
+  redis: {}
+  uploads: {}
