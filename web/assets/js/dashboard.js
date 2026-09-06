@@ -1,5 +1,5 @@
 /* Dashboard controller: composer, settings, lessons list, folders, backup. */
-import { getConfig, saveConfig, clearConfig, detectProvider, PROVIDERS, verifyKey, probeServer, serverReady } from './config.js';
+import { getConfig, saveConfig, clearConfig, detectProvider, PROVIDERS, verifyKey, probeServer, serverReady, SERVER_ONLY } from './config.js';
 import { listModels } from './ai.js';
 import { SECTIONS, SECTION_BY_ID } from './prompts.js';
 import { generateLesson, DEFAULT_SECTION_IDS, ALL_SECTION_IDS } from './generate.js';
@@ -156,9 +156,30 @@ $('#btnLoadModels').addEventListener('click', async (event) => {
   }
 });
 
+/**
+ * Owner-key mode: strip every trace of API-key setup from the UI so a visitor
+ * only ever types a topic. Called once on boot.
+ */
+function lockToOwnerKey() {
+  if (!SERVER_ONLY) return;
+  ['#keyField', '#baseUrlField', '#proxyCheck', '#btnClearKey', '#btnTestKey'].forEach((sel) => {
+    const el = $(sel);
+    if (el) el.hidden = true;
+  });
+  const sub = $('.modal-sub', $('#settingsModal'));
+  if (sub) sub.textContent = 'Notes are powered by this site. Nothing to set up — just pick your depth and language.';
+  const note = $('#providerNote');
+  if (note) note.textContent = 'Ready \u00b7 no key needed';
+  clearBanners('#banners');
+}
+
 function renderServerStatus() {
   const host = $('#serverStatus');
   if (!host) return;
+  if (SERVER_ONLY) {
+    host.textContent = 'This site provides the AI for you. Generate as many topics as you like \u2014 no API key, no sign-up.';
+    return;
+  }
   const cfg = getConfig();
   if (serverReady() && cfg.usingServer) {
     host.textContent =
@@ -691,6 +712,7 @@ $('#navTheme').addEventListener('click', () => toggleTheme());
   refreshProviderNote();
   renderKeyBanner();
   renderServerStatus();
+  lockToOwnerKey();
   await refreshFolderSelect();
   await renderLessons();
 })();

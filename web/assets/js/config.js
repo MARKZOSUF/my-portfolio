@@ -140,6 +140,18 @@ const SERVER_CACHE_KEY = 'studyforge.server.v1';
  * wins over the shared server key.
  * ------------------------------------------------------------------------- */
 
+/**
+ * SITE OWNER MODE (hard lock).
+ *
+ * true  = the site always uses the owner's key from the Cloudflare `AI_API_KEY`
+ *         environment variable. Visitors never see or need a key. Every API
+ *         request goes through /api/ai, so the key never reaches the browser.
+ * false = visitors bring their own key (the old behaviour).
+ *
+ * Keep this true for a public study site.
+ */
+export const SERVER_ONLY = true;
+
 let serverAvailable = null; // null = not probed yet
 let serverModel = '';
 
@@ -224,7 +236,8 @@ function readRaw() {
 export function getConfig() {
   const stored = { ...DEFAULTS, ...readRaw() };
   // Personal key wins. Otherwise fall back to the shared server key when one exists.
-  const usingServer = stored.useServerProxy || (!stored.apiKey && serverAvailable === true);
+  const usingServer =
+    SERVER_ONLY || stored.useServerProxy || (!stored.apiKey && serverAvailable === true);
   const providerName = usingServer
     ? 'server'
     : stored.provider || detectProvider(stored.apiKey) || 'custom';

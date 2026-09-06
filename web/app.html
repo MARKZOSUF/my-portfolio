@@ -93,7 +93,7 @@
     <p class="modal-sub">One API key runs everything. StudyForge detects the provider and default model from the key itself.</p>
     <p class="hint" id="serverStatus" style="margin:-8px 0 16px"></p>
 
-    <div class="field">
+    <div class="field" id="keyField">
       <label for="apiKey">API key</label>
       <input type="password" id="apiKey" placeholder="sk-... / AIza... / gsk_... / sk-or-... / sk-ant-..." autocomplete="off" spellcheck="false">
       <p class="hint">Works with OpenAI, Google Gemini, Anthropic Claude, Groq, OpenRouter, DeepSeek, xAI, Mistral, Cerebras, Together and Hugging Face. Stored only in this browser.</p>
@@ -125,12 +125,12 @@
         <button class="btn btn-ghost btn-sm" type="button" id="btnLoadModels" style="margin-top:8px">Load available models</button>
         <select id="modelPicker" style="margin-top:8px" hidden></select>
       </div>
-      <div class="field">
+      <div class="field" id="baseUrlField">
         <label for="baseUrlInput">API base URL override</label>
         <input type="text" id="baseUrlInput" placeholder="only for self-hosted gateways" autocomplete="off" spellcheck="false">
         <p class="hint">Needed only for self-hosted or unusual OpenAI-compatible gateways.</p>
       </div>
-      <div class="check">
+      <div class="check" id="proxyCheck">
         <input type="checkbox" id="useProxy">
         <label for="useProxy" style="font-weight:500">Use the server proxy instead (key stored as a Cloudflare environment variable)</label>
       </div>
