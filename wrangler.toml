@@ -1,0 +1,9 @@
+# Cloudflare Pages reads this file automatically, so the build output directory
+# no longer depends on getting the dashboard setting right.
+#
+# If you ever see "This <hash>.<project>.pages.dev page can't be found", it means
+# Pages served a folder with no index.html. This line fixes that permanently.
+
+name = "studyforge-ai"
+compatibility_date = "2024-11-01"
+pages_build_output_dir = "web"

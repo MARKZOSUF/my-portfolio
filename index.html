@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StudyForge AI</title>
+<!--
+  Safety net. This file only ever gets served if Cloudflare Pages was pointed at
+  the repository root instead of the `web` folder. It forwards to the real app so
+  the site can never show a 404 "page can't be found" screen.
+-->
+<meta http-equiv="refresh" content="0; url=./web/index.html">
+<link rel="canonical" href="./web/index.html">
+<style>
+  html,body{margin:0;height:100%;background:#f7f5ff;color:#2c2c2b;
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+  .box{height:100%;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:16px;text-align:center;padding:24px}
+  a{display:inline-block;background:#6d4aff;color:#fff;text-decoration:none;
+    padding:14px 24px;border-radius:12px;font-weight:600;min-height:44px}
+  p{color:#7d7a75;max-width:34rem;line-height:1.5;margin:0}
+</style>
+</head>
+<body>
+  <div class="box">
+    <h1>StudyForge AI</h1>
+    <p>Taking you to the app&hellip;</p>
+    <a href="./web/index.html">Open StudyForge AI</a>
+    <p><small>Seeing this page instead of the app? Set <b>Build output directory</b> to <b>web</b> in your Cloudflare Pages settings.</small></p>
+  </div>
+  <script>location.replace('./web/index.html');</script>
+</body>
+</html>
