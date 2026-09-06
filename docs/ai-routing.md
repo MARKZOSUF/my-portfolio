@@ -1,0 +1,2 @@
+# AI routing and cost
+`ModelRouter` selects per-task models from `AI_TASK_MODELS`, supports an ordered fallback provider, bounded timeouts, and server-side secrets. Development AI is explicit and is rejected by production configuration. `AIUsage` stores user/provider/model/feature/token/cost/request data, but complete interception/quota enforcement across every legacy generator remains a **production blocker**. Redis user-scoped response/embedding caching is recommended next; never share private cache keys across users.

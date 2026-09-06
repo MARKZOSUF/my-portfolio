@@ -1,0 +1,3 @@
+import { Pressable, StyleSheet } from 'react-native'; import { Text } from './Text'; import { useTheme } from '@/theme/useTheme';
+export function Chip({label,selected,onPress}:{label:string;selected?:boolean;onPress:()=>void}){const c=useTheme();return <Pressable accessibilityRole="button" accessibilityState={{selected}} onPress={onPress} style={[s.chip,{backgroundColor:selected?c.primarySoft:c.surface,borderColor:selected?c.primary:c.border}]}><Text variant="caption" style={{color:selected?c.primary:c.text,fontWeight:'700'}}>{label}</Text></Pressable>}
+const s=StyleSheet.create({chip:{minHeight:42,paddingHorizontal:14,borderRadius:999,borderWidth:1,justifyContent:'center'}});

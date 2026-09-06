@@ -1,0 +1,18 @@
+Noto Sans
+=========
+
+Files: NotoSans-Regular.ttf, NotoSans-Bold.ttf
+
+Copyright (c) The Noto Project Authors (https://github.com/notofonts/latin-greek-cyrillic)
+
+These two static instances were generated from the upstream Noto Sans variable
+font (NotoSans[wght].ttf) at weight 400 (Regular) and weight 700 (Bold) using
+fontTools.varLib.instancer. Instancing does not change the license.
+
+Licensed under the Apache License, Version 2.0 as distributed by the packaged
+upstream (google-noto-fonts-common). The full license text is in Apache-2.0.txt
+in this directory.
+
+Note: upstream Noto is also distributed under the SIL Open Font License 1.1 in
+some channels. The copy bundled here was taken from an Apache-2.0 licensed
+distribution, so Apache-2.0 is the license that applies to these files.

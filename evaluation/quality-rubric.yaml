@@ -1,0 +1,7 @@
+checks:
+  hallucination_risk: {required: true, action: warn_or_block}
+  citation_accuracy: {required_when_sources_present: true, action: block_invalid_mapping}
+  formula_consistency: {required_for: [formulas, derivations, numericals], action: regenerate_or_warn}
+  numerical_correctness: {required_for: [numericals], action: regenerate_or_block}
+  contradiction_scan: {required: true, action: warn}
+  missing_sections: {required_for: [study_everything], action: mark_not_applicable_or_regenerate}

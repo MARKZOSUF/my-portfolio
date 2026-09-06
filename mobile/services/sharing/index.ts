@@ -1,0 +1,2 @@
+import * as Sharing from 'expo-sharing'; import * as FileSystem from 'expo-file-system';
+export async function shareMarkdown(title:string,markdown:string){const dir=FileSystem.cacheDirectory;if(!dir)throw new Error('File cache is unavailable');const uri=`${dir}${title.replace(/[^a-z0-9]+/gi,'-').toLowerCase()}.md`;await FileSystem.writeAsStringAsync(uri,markdown);if(!(await Sharing.isAvailableAsync()))throw new Error('Native sharing is unavailable');await Sharing.shareAsync(uri,{mimeType:'text/markdown',dialogTitle:`Share ${title}`});}

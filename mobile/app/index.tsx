@@ -1,0 +1,2 @@
+import { Redirect } from 'expo-router'; import { ActivityIndicator,View } from 'react-native'; import { useAuth } from '@/features/auth/AuthProvider'; import { useTheme } from '@/theme/useTheme';
+export default function Index(){const {user,loading}=useAuth();const c=useTheme();if(loading)return <View style={{flex:1,alignItems:'center',justifyContent:'center',backgroundColor:c.canvas}}><ActivityIndicator color={c.primary}/></View>;return <Redirect href={user?'/(main)/dashboard':'/(auth)/login'}/>}

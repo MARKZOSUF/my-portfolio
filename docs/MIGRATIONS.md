@@ -1,0 +1,3 @@
+# Migrations
+
+Alembic is authoritative. Thirteen explicit revisions divide users/auth, notes/documents, RAG, research, learning, security, jobs, collaboration, analytics/notifications, AI usage, study artifacts, free-product cleanup (drops the legacy subscription tables) and federated sign-in identities. Revisions never call SQLAlchemy metadata creation. `scripts/test_migrations.sh` performs upgrade, schema verification, downgrade, re-upgrade, and a legacy-stamp upgrade against a disposable PostgreSQL/pgvector database. Adoption records prevent downgrade from dropping a table that predated its revision.

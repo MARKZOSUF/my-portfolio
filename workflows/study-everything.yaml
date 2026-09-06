@@ -1,0 +1,12 @@
+name: study-everything
+stages:
+  - validate_input
+  - resolve_context
+  - plan_sections
+  - retrieve_and_rerank
+  - generate_sections
+  - evaluate_consistency
+  - map_citations
+  - persist_package
+  - update_recommendations
+failure_policy: mark_stage_failed_and_preserve_completed_outputs

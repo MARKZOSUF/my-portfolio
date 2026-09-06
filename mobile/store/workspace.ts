@@ -1,0 +1,4 @@
+import { create } from 'zustand';
+import type { GenerationMode, StudyPackage } from '@/types';
+interface WorkspaceState { topic:string; mode:GenerationMode; active?:StudyPackage; progress:number; status:'idle'|'generating'|'complete'|'error'; setTopic:(v:string)=>void; setMode:(v:GenerationMode)=>void; start:()=>void; updateProgress:(v:number)=>void; complete:(v:StudyPackage)=>void; fail:()=>void; reset:()=>void; }
+export const useWorkspaceStore=create<WorkspaceState>(set=>({topic:'',mode:'study_everything',progress:0,status:'idle',setTopic:topic=>set({topic}),setMode:mode=>set({mode}),start:()=>set({status:'generating',progress:0}),updateProgress:progress=>set({progress}),complete:active=>set({active,status:'complete',progress:1}),fail:()=>set({status:'error'}),reset:()=>set({active:undefined,status:'idle',progress:0,topic:''})}));

@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+  <!-- Debug-only: local HTTP development servers. Never merged into release. -->
+  <application
+      android:usesCleartextTraffic="true"
+      android:networkSecurityConfig="@xml/network_security_config"
+      tools:replace="android:usesCleartextTraffic,android:networkSecurityConfig"
+      tools:targetApi="28" />
+</manifest>

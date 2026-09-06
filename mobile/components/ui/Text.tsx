@@ -1,0 +1,3 @@
+import type { TextProps } from 'react-native'; import { Text as RNText, StyleSheet } from 'react-native'; import { useTheme } from '@/theme/useTheme';
+export function Text({variant='body',muted=false,style,...props}:TextProps&{variant?:'caption'|'body'|'subtitle'|'title'|'display';muted?:boolean}){const c=useTheme();return <RNText maxFontSizeMultiplier={1.6} style={[s[variant],{color:muted?c.muted:c.text},style]} {...props}/>}
+const s=StyleSheet.create({caption:{fontSize:13,lineHeight:18},body:{fontSize:16,lineHeight:24},subtitle:{fontSize:18,lineHeight:24,fontWeight:'600'},title:{fontSize:24,lineHeight:31,fontWeight:'700'},display:{fontSize:32,lineHeight:38,fontWeight:'800',letterSpacing:-.7}});

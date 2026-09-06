@@ -1,0 +1,29 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env: {POSTGRES_USER: studyforge, POSTGRES_PASSWORD: studyforge, POSTGRES_DB: studyforge}
+        ports: ['5432:5432']
+        options: --health-cmd "pg_isready -U studyforge" --health-interval 5s --health-timeout 5s --health-retries 20
+      redis:
+        image: redis:7-alpine
+        ports: ['6379:6379']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - uses: actions/setup-node@v4
+        with: {node-version: '20', cache: npm, cache-dependency-path: mobile/package-lock.json}
+      - run: pip install -r backend/requirements.txt
+      - run: python -m compileall -q backend/app database/migrations
+      - run: pytest backend/tests --cov=backend/app --cov-fail-under=70
+      - run: DATABASE_URL=postgresql+asyncpg://studyforge:studyforge@localhost:5432/studyforge scripts/test_migrations.sh
+      - run: npm ci
+        working-directory: mobile
+      - run: npm run typecheck && npm run lint && npm test -- --runInBand
+        working-directory: mobile
+      - run: docker compose config

@@ -1,0 +1,3 @@
+from celery import Celery
+from app.config.settings import get_settings
+s=get_settings();celery=Celery('studyforge',broker=s.broker_url,backend=s.result_backend,include=['app.workers.tasks','app.workers.research_tasks']);celery.conf.update(task_serializer='json',result_serializer='json',accept_content=['json'],task_track_started=True,task_time_limit=3600,task_soft_time_limit=3300,worker_prefetch_multiplier=1,task_acks_late=True,task_reject_on_worker_lost=True,broker_transport_options={'visibility_timeout':3900},task_always_eager=s.worker_eager,task_routes={'documents.*':{'queue':'ingestion'},'youtube.*':{'queue':'ingestion'},'research.*':{'queue':'research'}})

@@ -1,0 +1,2 @@
+import { View, StyleSheet } from 'react-native'; import { useTheme } from '@/theme/useTheme';
+export function Progress({value}:{value:number}){const c=useTheme();return <View accessibilityRole="progressbar" accessibilityValue={{min:0,max:100,now:Math.round(value*100)}} style={[s.track,{backgroundColor:c.border}]}><View style={[s.fill,{backgroundColor:c.primary,width:`${Math.max(0,Math.min(100,value*100))}%`}]}/></View>};const s=StyleSheet.create({track:{height:8,borderRadius:8,overflow:'hidden'},fill:{height:'100%',borderRadius:8}});

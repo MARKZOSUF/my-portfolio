@@ -1,0 +1,1 @@
+const safe=/^\/(notes|quiz|research)\/[0-9a-f-]{8,}$/i; describe('deep links',()=>{it('accepts known routes',()=>expect(safe.test('/notes/12345678-abcd')).toBe(true));it('rejects unknown routes',()=>expect(safe.test('/admin/root')).toBe(false))});

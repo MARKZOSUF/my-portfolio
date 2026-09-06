@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard - StudyForge AI</title>
+<meta name="theme-color" content="#131215">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236d4aff'/%3E%3Cpath d='M9 22l3-11 4 7 3-4 4 8z' fill='white'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./assets/css/app.css">
+</head>
+<body>
+<div class="app">
+
+  <nav class="side">
+    <a class="brand" href="./">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#6d4aff"/><path d="M9 22l3-11 4 7 3-4 4 8z" fill="#fff"/></svg>
+      StudyForge
+    </a>
+    <div class="side-label">Study</div>
+    <a class="side-link active" href="./app.html">&#10024; New lesson</a>
+    <button class="side-link" id="navLessons" type="button">&#128218; My lessons</button>
+    <button class="side-link" id="navDue" type="button">&#127279; Review due</button>
+    <div class="side-label">Workspace</div>
+    <button class="side-link" id="navFolder" type="button">&#128193; New folder</button>
+    <button class="side-link" id="navExport" type="button">&#11015; Backup notes</button>
+    <button class="side-link" id="navImport" type="button">&#11014; Restore backup</button>
+    <div class="side-foot">
+      <button class="side-link" id="navTheme" type="button">&#127769; Theme</button>
+      <button class="side-link" id="navSettings" type="button">&#9881; Settings</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div id="banners"></div>
+
+    <section class="composer-wrap" id="composerSection">
+      <div class="mascot" aria-hidden="true">&#128218;</div>
+      <h1>What do you want to learn?</h1>
+
+      <form class="composer" id="composerForm">
+        <label class="sr-only" for="topic">Topic, syllabus text or YouTube link</label>
+        <textarea id="topic" rows="2" placeholder="Tip: type a topic like &quot;Quantum Mechanics - Unit 4&quot;, paste your syllabus, or drop a YouTube link"></textarea>
+
+        <div id="sourcePill"></div>
+
+        <div class="composer-row">
+          <button class="mode-chip" type="button" id="btnRecord">&#127908; Record</button>
+          <button class="mode-chip" type="button" id="btnUpload">&#128196; Upload</button>
+          <button class="mode-chip" type="button" id="btnYouTube">&#9654; YouTube</button>
+          <button class="mode-chip" type="button" id="btnResearch" aria-pressed="false">&#128270; Deep research</button>
+          <button class="mode-chip" type="button" id="btnSections">&#129513; Sections</button>
+          <span class="spacer"></span>
+          <button class="send" type="submit" id="btnGenerate" aria-label="Generate notes">&rarr;</button>
+        </div>
+
+        <input type="file" id="fileInput" accept=".pdf,.docx,.txt,.md,.markdown,.csv,.tex,.srt,.vtt" hidden>
+      </form>
+
+      <div class="composer-meta">
+        <label for="quality" class="sr-only">Depth</label>
+        <select id="quality" title="Generation depth">
+          <option value="fast">Fast</option>
+          <option value="deep" selected>Deep</option>
+          <option value="ultra">Ultra</option>
+        </select>
+        <label for="language" class="sr-only">Language</label>
+        <select id="language" title="Notes language">
+          <option value="en" selected>English</option>
+          <option value="hinglish">Hinglish</option>
+          <option value="hi">Hindi</option>
+        </select>
+        <label for="folderSelect" class="sr-only">Folder</label>
+        <select id="folderSelect" title="Save to folder"><option value="">No folder</option></select>
+        <span id="providerNote"></span>
+      </div>
+
+      <div id="progress"></div>
+    </section>
+
+    <section id="lessonsSection">
+      <div class="list-head">
+        <h2>Lessons</h2>
+        <button class="btn btn-ghost btn-sm" id="btnNewFolder" type="button">+ New folder</button>
+      </div>
+      <div id="lessonsList"></div>
+    </section>
+  </main>
+</div>
+
+<div class="modal-backdrop" id="settingsModal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <h2 id="settingsTitle">Settings</h2>
+    <p class="modal-sub">One API key runs everything. StudyForge detects the provider and default model from the key itself.</p>
+    <p class="hint" id="serverStatus" style="margin:-8px 0 16px"></p>
+
+    <div class="field">
+      <label for="apiKey">API key</label>
+      <input type="password" id="apiKey" placeholder="sk-... / AIza... / gsk_... / sk-or-... / sk-ant-..." autocomplete="off" spellcheck="false">
+      <p class="hint">Works with OpenAI, Google Gemini, Anthropic Claude, Groq, OpenRouter, DeepSeek, xAI, Mistral, Cerebras, Together and Hugging Face. Stored only in this browser.</p>
+      <p class="hint" id="detectedNote"></p>
+    </div>
+
+    <div class="field">
+      <label>Default depth</label>
+      <div class="seg" id="segQuality">
+        <button type="button" data-v="fast">Fast</button>
+        <button type="button" data-v="deep" class="active">Deep</button>
+        <button type="button" data-v="ultra">Ultra</button>
+      </div>
+      <p class="hint">Fast uses the provider's small model. Deep and Ultra use its stronger model with bigger section budgets.</p>
+    </div>
+
+    <div class="field">
+      <label for="examBoard">Exam / board (optional)</label>
+      <input type="text" id="examBoard" placeholder="e.g. AKTU B.Tech 1st Year, JEE Advanced, CBSE Class 12">
+      <p class="hint">Used to match paper pattern, marks weightage and question style.</p>
+    </div>
+
+    <details class="field">
+      <summary style="cursor:pointer;font-size:13.5px;font-weight:600;margin-bottom:10px">Advanced (optional)</summary>
+      <div class="field">
+        <label for="modelInput">Model override</label>
+        <input type="text" id="modelInput" placeholder="leave empty to use the auto default" autocomplete="off">
+        <p class="hint" id="modelNote"></p>
+        <button class="btn btn-ghost btn-sm" type="button" id="btnLoadModels" style="margin-top:8px">Load available models</button>
+        <select id="modelPicker" style="margin-top:8px" hidden></select>
+      </div>
+      <div class="field">
+        <label for="baseUrlInput">API base URL override</label>
+        <input type="text" id="baseUrlInput" placeholder="only for self-hosted gateways" autocomplete="off" spellcheck="false">
+        <p class="hint">Needed only for self-hosted or unusual OpenAI-compatible gateways.</p>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="useProxy">
+        <label for="useProxy" style="font-weight:500">Use the server proxy instead (key stored as a Cloudflare environment variable)</label>
+      </div>
+    </details>
+
+    <div class="modal-foot">
+      <button class="btn btn-quiet" type="button" id="btnClearKey">Remove key</button>
+      <button class="btn btn-ghost" type="button" id="btnTestKey">Test key</button>
+      <button class="btn" type="button" id="btnSaveSettings">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="sectionsModal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="sectionsTitle">
+    <h2 id="sectionsTitle">Sections to generate</h2>
+    <p class="modal-sub">Each section is a separate AI request, so nothing gets cut off. More sections means a longer wait.</p>
+    <div id="sectionChecks" class="check-grid"></div>
+    <div class="modal-foot">
+      <button class="btn btn-quiet" type="button" id="btnSectionsCore">Core only</button>
+      <button class="btn btn-ghost" type="button" id="btnSectionsAll">Select all</button>
+      <button class="btn" type="button" id="btnSectionsDone">Done</button>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts"></div>
+<input type="file" id="importInput" accept=".json" hidden>
+
+<script type="module" src="./assets/js/dashboard.js"></script>
+</body>
+</html>

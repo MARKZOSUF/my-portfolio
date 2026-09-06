@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson — StudyForge AI</title>
+<meta name="theme-color" content="#131215">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236d4aff'/%3E%3Cpath d='M9 22l3-11 4 7 3-4 4 8z' fill='white'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./assets/css/app.css">
+</head>
+<body>
+<div class="app">
+
+  <nav class="side">
+    <a class="brand" href="./app.html">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#6d4aff"/><path d="M9 22l3-11 4 7 3-4 4 8z" fill="#fff"/></svg>
+      StudyForge
+    </a>
+    <a class="side-link" href="./app.html">&larr; All lessons</a>
+    <div class="side-label">This lesson</div>
+    <div id="sideTabs"></div>
+    <div class="side-label">Actions</div>
+    <button class="side-link" id="btnAddSection" type="button">➕ Add a section</button>
+    <button class="side-link" id="btnExportMd" type="button">⬇️ Export Markdown</button>
+    <button class="side-link" id="btnPrint" type="button">🖨️ Save as PDF</button>
+    <div class="side-foot">
+      <button class="side-link" id="navTheme" type="button">🌙 Theme</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div id="banners"></div>
+
+    <div class="page-head">
+      <div>
+        <h1 id="lessonTitle">Loading…</h1>
+        <p id="lessonMeta"></p>
+      </div>
+    </div>
+
+    <div class="tabs" id="tabs" role="tablist"></div>
+
+    <div class="reader">
+      <aside class="outline">
+        <div class="outline-label">On this page</div>
+        <div id="outline"></div>
+      </aside>
+      <div id="pane"><div class="doc"><p>Loading…</p></div></div>
+    </div>
+  </main>
+</div>
+
+<!-- Add section modal -->
+<div class="modal-backdrop" id="addModal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="addTitle">
+    <h2 id="addTitle">Add a section</h2>
+    <p class="modal-sub">Generate an extra section for this lesson using the same plan and sources.</p>
+    <div id="addChecks" class="check-grid"></div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" type="button" id="btnAddCancel">Cancel</button>
+      <button class="btn" type="button" id="btnAddGo">Generate</button>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<script type="module" src="./assets/js/lesson.js"></script>
+</body>
+</html>

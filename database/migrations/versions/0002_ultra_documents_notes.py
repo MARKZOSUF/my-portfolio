@@ -1,0 +1,10 @@
+from alembic import op
+from database.migrations.helpers import create,drop
+revision='0002_ultra';down_revision='0001_initial';branch_labels=None;depends_on=None
+R=revision
+TABLES=[('notes', 'CREATE TABLE IF NOT EXISTS notes(id uuid PRIMARY KEY DEFAULT gen_random_uuid(),owner_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,title varchar(240) NOT NULL,content text NOT NULL,subject varchar(180),topic varchar(220),source_package_id varchar(100),is_archived boolean NOT NULL DEFAULT false,version integer NOT NULL DEFAULT 1,created_at timestamptz NOT NULL DEFAULT now(),updated_at timestamptz NOT NULL DEFAULT now())'), ('documents', "CREATE TABLE IF NOT EXISTS documents(id uuid PRIMARY KEY DEFAULT gen_random_uuid(),owner_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,name varchar(255) NOT NULL,mime_type varchar(160) NOT NULL,size_bytes bigint NOT NULL,storage_key varchar(500) NOT NULL UNIQUE,sha256 varchar(64) NOT NULL,status varchar(32) NOT NULL DEFAULT 'queued',page_count integer,error_code varchar(80),attempt integer NOT NULL DEFAULT 0,max_attempts integer NOT NULL DEFAULT 3,last_error text,started_at timestamptz,finished_at timestamptz,retry_at timestamptz,created_at timestamptz NOT NULL DEFAULT now(),updated_at timestamptz NOT NULL DEFAULT now())"), ('sources', "CREATE TABLE IF NOT EXISTS sources(id uuid PRIMARY KEY DEFAULT gen_random_uuid(),owner_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,document_id uuid REFERENCES documents(id) ON DELETE CASCADE,kind varchar(40) NOT NULL,title varchar(255) NOT NULL,uri text,content_hash varchar(64) NOT NULL,metadata jsonb NOT NULL DEFAULT '{}',expires_at timestamptz,created_at timestamptz NOT NULL DEFAULT now(),updated_at timestamptz NOT NULL DEFAULT now(),UNIQUE(owner_id,kind,content_hash))")]
+def upgrade():
+ op.execute('CREATE EXTENSION IF NOT EXISTS pgcrypto');op.execute('CREATE EXTENSION IF NOT EXISTS vector')
+ for name,ddl in TABLES:create(R,name,ddl)
+def downgrade():
+ for name,_ in reversed(TABLES):drop(R,name)

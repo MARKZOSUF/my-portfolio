@@ -1,0 +1,2572 @@
+{
+  "project": "AI-NOTES-MAKER",
+  "generated_from_existing_files": 313,
+  "file_count_excluding_manifest": 513,
+  "files": [
+    {
+      "path": ".env.example",
+      "size": 1170,
+      "sha256": "a1e81aca98c2de0c34158d8f1156c61d27c8bae108099b12f9970c0f8175e7a1"
+    },
+    {
+      "path": ".github/SECRETS.example.md",
+      "size": 1555,
+      "sha256": "ecceb44cd02d16ae269f2780877cbbb451415b7fb16030b3bfe2d56822665ac3"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "size": 1230,
+      "sha256": "4aa4dfbadd02309423df56fc230b5857815cf3c48fe71a508656487de1e7f952"
+    },
+    {
+      "path": ".gitignore",
+      "size": 1279,
+      "sha256": "afb8f1ee6ca6da1bec50142fe3dcc84fcd2bc447f6b9ecba2ab0e6186a52bcae"
+    },
+    {
+      "path": "AI-PROVIDER-CONFIGURATION.md",
+      "size": 2309,
+      "sha256": "be8aaa372e95d06570efa89b9e71c1f6a1095cb8ced34889435f3653ee01f2fd"
+    },
+    {
+      "path": "ANDROID-RELEASE-BUILD.md",
+      "size": 2449,
+      "sha256": "41e3b9c42e277c20e12bc331947fd1ebb9cfda647e38580f43cb903d70595fb8"
+    },
+    {
+      "path": "BACKEND-DEPLOYMENT.md",
+      "size": 1189,
+      "sha256": "d94ae62c6a1137e1803437f923e41ed4ebbacd02c9b97847db2f9786483816ca"
+    },
+    {
+      "path": "CHANGELOG-FINAL-FIX.md",
+      "size": 7487,
+      "sha256": "b03d02e1761efb36f40f0eed07643737a609c49fe33082c2dafd2a4a8d2712db"
+    },
+    {
+      "path": "CHANGELOG-FIXES.md",
+      "size": 12724,
+      "sha256": "be2881660e4bdb5db12ea272729e33f4e451c4220915d2699622b585ca0871fc"
+    },
+    {
+      "path": "CHANGELOG-TURBO-AI.md",
+      "size": 3323,
+      "sha256": "b1e5f90ad68e8490e37cb5f1111b69ec3e8543aa7cd5f67f5f9cde665f805b7d"
+    },
+    {
+      "path": "CONFIGURATION-SETUP.md",
+      "size": 8553,
+      "sha256": "3a3d8fd6b3bd8057a6c0503d4a0ac90ce36a22805d6c4d4fd98fd3da8a948101"
+    },
+    {
+      "path": "FINAL_IMPLEMENTATION_REPORT.md",
+      "size": 7988,
+      "sha256": "3a2ea6695e64907a623b27269ea68a08ad22845ee18c3575d0b713bd01fdf29e"
+    },
+    {
+      "path": "GOOGLE-APPLE-AUTH-SETUP.md",
+      "size": 5408,
+      "sha256": "f40a52d9912bd48f50f046c4c575bc06bca7c431902c3c217500da9853c87c31"
+    },
+    {
+      "path": "IMPLEMENTATION-PLAN.md",
+      "size": 3710,
+      "sha256": "362221665528b00077e7d896cfabd3bceb13a1f577ca03007f346076ae59a72e"
+    },
+    {
+      "path": "KNOWN-GAPS.md",
+      "size": 7123,
+      "sha256": "4643a49b19cc240d2adaed3822f204669cf43e9dc62245254aa194941d9aa0a8"
+    },
+    {
+      "path": "LICENSE",
+      "size": 1083,
+      "sha256": "e038687fa5d9b1366d013eba885ae9de25202146018bb2af5e63d595f3459f4a"
+    },
+    {
+      "path": "PRIVACY-AND-RETENTION.md",
+      "size": 1508,
+      "sha256": "fc8dbb73c4884056bec893a6d4dd9c7d49bd08d9995cbcaa08fd15e0a678964f"
+    },
+    {
+      "path": "QUICKSTART-WINDOWS.md",
+      "size": 1472,
+      "sha256": "7db3b1df2b17bf501ca7e481596e2483912997acd6f35a7ac4f02cb40923db47"
+    },
+    {
+      "path": "RAILWAY-DEPLOYMENT.md",
+      "size": 1075,
+      "sha256": "216bc566399d3a3a69f6d57bf3931c7c550a4984b3082225760b330a9316cb5a"
+    },
+    {
+      "path": "README.md",
+      "size": 3514,
+      "sha256": "898276a906482b6477242c19a6f0152f00e9ba45b316bd6766530bd4ed68f96b"
+    },
+    {
+      "path": "RESEARCH-AND-CITATION-SYSTEM.md",
+      "size": 4214,
+      "sha256": "4102b2dd613c3b34f31bbdabdeb809d0d32c8d544bec61e57ea99a316273a91d"
+    },
+    {
+      "path": "SECURITY.md",
+      "size": 2573,
+      "sha256": "ac3c0fde4b3b0b057bf0b19489d00443fe01efddb7a4ea8ba6760598f68e0e92"
+    },
+    {
+      "path": "TEST-REPORT.md",
+      "size": 5722,
+      "sha256": "6b4a1f7657bba97b4f60c93089e569dd07fdaa0c50cd626b285ad87ea4805174"
+    },
+    {
+      "path": "TOPIC-TO-PDF-ARCHITECTURE.md",
+      "size": 2982,
+      "sha256": "9d44f2c03b5de09281aebd588af21acb5647fc6e0efae97504717214b25d6b86"
+    },
+    {
+      "path": "alembic.ini",
+      "size": 1266,
+      "sha256": "5604e7e1d7b5d03364ca70f62c983e6db71a348fee4a32ddbb43a5b3195de323"
+    },
+    {
+      "path": "backend/.env.example",
+      "size": 5902,
+      "sha256": "307e04dae223cc3d2e213165c17f15107257cfa5229620f5b3287f751f1c3d3c"
+    },
+    {
+      "path": "backend/Dockerfile",
+      "size": 695,
+      "sha256": "1d8914be0a4157a1de0c59c836af393aaad010d09c6fc2fbe171f8067ce47048"
+    },
+    {
+      "path": "backend/app/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/ai/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/ai/agents/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/ai/agents/registry.py",
+      "size": 2365,
+      "sha256": "ecc46bed8f9d2260eb166cd8dc6f1f19a44a254e02b13e97de1588f55b421e84"
+    },
+    {
+      "path": "backend/app/ai/caching/__init__.py",
+      "size": 212,
+      "sha256": "f77b93254f314d12d8139df46cdc7a7ab6eecbb94244f9ef119dea3047841969"
+    },
+    {
+      "path": "backend/app/ai/caching/cache.py",
+      "size": 2724,
+      "sha256": "2ba785254764271bb78bd84b139a89572a4edfd5a19dc675d97cf80620d4a448"
+    },
+    {
+      "path": "backend/app/ai/evaluation/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/ai/evaluation/validators.py",
+      "size": 1078,
+      "sha256": "2c17b66cad25df75d5e7a168756438dbab8722690368b35adbdf0d703df72c35"
+    },
+    {
+      "path": "backend/app/ai/generation/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/ai/generation/assessment.py",
+      "size": 1785,
+      "sha256": "275bbf40e437f2f2340592b523f1305d7330aa68ef052da1a456eb1efad57538"
+    },
+    {
+      "path": "backend/app/ai/generation/features.py",
+      "size": 2824,
+      "sha256": "a2294840cd609a1d9f7046a9c5a89eebe432dffad21d2274cb95b045f0a4de6a"
+    },
+    {
+      "path": "backend/app/ai/guardrails/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/ai/guardrails/input.py",
+      "size": 241,
+      "sha256": "30157bffbe9020ed519d38f545bfd1a706692499e6fa0f1de4999568c047dad5"
+    },
+    {
+      "path": "backend/app/ai/memory/__init__.py",
+      "size": 216,
+      "sha256": "930c3443398f7709729b4b79b7c30fb4fe238e67c81a2611c2416b1684cca16a"
+    },
+    {
+      "path": "backend/app/ai/memory/conversation.py",
+      "size": 3178,
+      "sha256": "c2a4514c9351cd8183c07ee16204e748d99faa16ea12281d77e658fa4a8217dc"
+    },
+    {
+      "path": "backend/app/ai/models/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/ai/models/base.py",
+      "size": 565,
+      "sha256": "e192fe4cacc77aaee021a49cd0db8213e8a0f21c206e6755b0a885252d4b9de6"
+    },
+    {
+      "path": "backend/app/ai/models/development.py",
+      "size": 1473,
+      "sha256": "b688b7b9bb26b27ada23cf07478ca6e2dd6de66d7970be1251e51c1023404a35"
+    },
+    {
+      "path": "backend/app/ai/models/openai_compatible.py",
+      "size": 6010,
+      "sha256": "c5953cf903fc848f8c480e8116167566a54be752b72b4b80d17841bf74cf3765"
+    },
+    {
+      "path": "backend/app/ai/models/router.py",
+      "size": 7368,
+      "sha256": "0b57dc976e55fdcc6a03d0a0a491aaea7a4d87f8eb9bb739293830fb27eba9dc"
+    },
+    {
+      "path": "backend/app/ai/orchestrator/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/ai/orchestrator/sections.py",
+      "size": 2604,
+      "sha256": "d26ba1c8f95706dfdf6d38b69837a915160ae28b6bac0d835222ad3cff11296f"
+    },
+    {
+      "path": "backend/app/ai/orchestrator/service.py",
+      "size": 1519,
+      "sha256": "c5348fae0d67b1ae3bcda41bdb5fdec2dc19608f817b27d0595ab998b3cf13b2"
+    },
+    {
+      "path": "backend/app/ai/usage/__init__.py",
+      "size": 57,
+      "sha256": "e40a2ff845d989288afa0a4e09c47841a48178125cd6f4ce69a856baf6f75882"
+    },
+    {
+      "path": "backend/app/ai/usage/service.py",
+      "size": 4125,
+      "sha256": "0b5b5f22f5f54c2948707a5e4ab0e059104eab24e1067a34584a8e5b34e32c48"
+    },
+    {
+      "path": "backend/app/ai/vision/__init__.py",
+      "size": 80,
+      "sha256": "e51fbe46bf3808e2f9043fcfaab56672288e2dd42dbc5b08012aa70de3fde0fc"
+    },
+    {
+      "path": "backend/app/ai/vision/service.py",
+      "size": 2551,
+      "sha256": "b8fc688237f8b427163e6401da07ec3ae2ea936d093368a5934faf222fe6d1de"
+    },
+    {
+      "path": "backend/app/api/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/deps.py",
+      "size": 974,
+      "sha256": "b9e718c340d31733e82d87becbe694ddefa9d4e23fe8916c250ef864ef1107d3"
+    },
+    {
+      "path": "backend/app/api/v1/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/analytics/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/analytics/routes.py",
+      "size": 2532,
+      "sha256": "1f1783ba1665c6f9e80466c82e070425438a020a5cd45c2404b2304067031663"
+    },
+    {
+      "path": "backend/app/api/v1/auth/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/auth/routes.py",
+      "size": 11269,
+      "sha256": "0fa4cb0f1b51a31ffffcfd666a11f0ab7d45ea4045bea0ce5f90a1271e0a1dca"
+    },
+    {
+      "path": "backend/app/api/v1/collaboration/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/collaboration/routes.py",
+      "size": 4369,
+      "sha256": "e1aad38eb9d1006a1adeeafbb993627d26347ac0d3b8b2925f853b379b838caa"
+    },
+    {
+      "path": "backend/app/api/v1/definitions/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/definitions/routes.py",
+      "size": 209,
+      "sha256": "2fdb141238b6a5edb7c917741d22fa7a4bc54eabef45338a9833e352cf02f355"
+    },
+    {
+      "path": "backend/app/api/v1/derivations/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/derivations/routes.py",
+      "size": 231,
+      "sha256": "58bcf6b050411d8033a5f74f45c74c6a1e62304592b7ca95b277ea6870601d61"
+    },
+    {
+      "path": "backend/app/api/v1/documents/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/documents/routes.py",
+      "size": 2929,
+      "sha256": "0fbe2b3b208ed772611623ebbc5dc72fdb5b5d52020c68fc363ac0cc848f41e8"
+    },
+    {
+      "path": "backend/app/api/v1/exams/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/exams/routes.py",
+      "size": 1655,
+      "sha256": "d91c5fd24e5fcf29a488b63d9acae691d56ede7fb90130ace472cf70c4abac99"
+    },
+    {
+      "path": "backend/app/api/v1/export/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/export/routes.py",
+      "size": 1969,
+      "sha256": "afd0b92ba3a45d27d4972e36a2121894c62bc74e2e3fa5f65316d491eeb18393"
+    },
+    {
+      "path": "backend/app/api/v1/flashcards/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/flashcards/routes.py",
+      "size": 1883,
+      "sha256": "00f74d87afbf880743bc1849cb842228532f9df9cc70ef09d45ff8d877a6e546"
+    },
+    {
+      "path": "backend/app/api/v1/formulas/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/formulas/routes.py",
+      "size": 189,
+      "sha256": "41d4f1c9e79cdb28dc72415ea42009b20f6482dcfa077d92a9c88f612e001afc"
+    },
+    {
+      "path": "backend/app/api/v1/generate/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/generate/routes.py",
+      "size": 737,
+      "sha256": "69bb4ab8abc98d6175e7bd3f22252fc4e6e3ef4bc3431f5901acdcb2101cd8be"
+    },
+    {
+      "path": "backend/app/api/v1/learning/__init__.py",
+      "size": 81,
+      "sha256": "c1c2f7cd37b4b5f9d40d7e88437b5590a3afe00bac6621a21ca54703a79b6cad"
+    },
+    {
+      "path": "backend/app/api/v1/learning/routes.py",
+      "size": 5675,
+      "sha256": "4278106e2145f4f7ce03159efa5bd7724aaee365eb4f1ead873017e7cdc92723"
+    },
+    {
+      "path": "backend/app/api/v1/notes/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/notes/routes.py",
+      "size": 3153,
+      "sha256": "883df7c23067008434c95712cd24125262aa063b768ace414a8b42a35dac3fd7"
+    },
+    {
+      "path": "backend/app/api/v1/numericals/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/numericals/routes.py",
+      "size": 232,
+      "sha256": "3fa5395f3803ce8ec06a6597a14183bf717ad3ff89071d441d6998d42ad6f222"
+    },
+    {
+      "path": "backend/app/api/v1/privacy/__init__.py",
+      "size": 71,
+      "sha256": "ec7bc9257b59bc8965d5e7568b3d4793a0a956ae0fc9e1c253e495e7a37c47f3"
+    },
+    {
+      "path": "backend/app/api/v1/privacy/routes.py",
+      "size": 1854,
+      "sha256": "fd2902b46b4775e3c81d1ac69c095d844cdb275086195c51dd7251dd796854c4"
+    },
+    {
+      "path": "backend/app/api/v1/pyq/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/pyq/routes.py",
+      "size": 3258,
+      "sha256": "8e9b64a6ab5c828107c14791aa1fdb99c79217a6ed1378a0d3d8bafddf0912d6"
+    },
+    {
+      "path": "backend/app/api/v1/questions/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/questions/routes.py",
+      "size": 2996,
+      "sha256": "6d471c1159b45fd3c61a2703942d88492ec82bb87a2814b24c020114081807a2"
+    },
+    {
+      "path": "backend/app/api/v1/quiz/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/quiz/routes.py",
+      "size": 980,
+      "sha256": "d8e43eb4fd77f184216311037b25ff936cdec448e3b1f891e0def07fbb7f1622"
+    },
+    {
+      "path": "backend/app/api/v1/research/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/research/routes.py",
+      "size": 3087,
+      "sha256": "06034856e5ff1bd332d806a2c467508fed7807833cd43681d120481abfd5c11e"
+    },
+    {
+      "path": "backend/app/api/v1/revision/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/revision/routes.py",
+      "size": 3083,
+      "sha256": "f0497075739f49b64a86cc448be39e2ff4d4117752d05d854ddd343fc0d179e5"
+    },
+    {
+      "path": "backend/app/api/v1/router.py",
+      "size": 1921,
+      "sha256": "2cf67e74b0c36a1ec24d3b1ab33875f08c62aacd180ee6b3fc7e7fb5ab635c92"
+    },
+    {
+      "path": "backend/app/api/v1/search/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/search/routes.py",
+      "size": 1371,
+      "sha256": "2b30350f7bdf071baee09eec89c9787d5ffd6f5bcc56ef94d7c4ef387c881b0c"
+    },
+    {
+      "path": "backend/app/api/v1/study_plan/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/study_plan/routes.py",
+      "size": 5039,
+      "sha256": "306cc47a52c64cb7b932677334d5773f56a4a5abea7fef28f80d82cbc7d1b589"
+    },
+    {
+      "path": "backend/app/api/v1/studypack/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/studypack/routes.py",
+      "size": 10383,
+      "sha256": "29d192d7a8c99aa8540a94e706f71a7579102d27fb0e4c26f47a7bb112263055"
+    },
+    {
+      "path": "backend/app/api/v1/tasks/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/tasks/routes.py",
+      "size": 1595,
+      "sha256": "3c7c8679d8ac2153783229657dc6f7a80daadf6e31abd1c996b8e9bf2494bc62"
+    },
+    {
+      "path": "backend/app/api/v1/tutor/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/tutor/routes.py",
+      "size": 789,
+      "sha256": "7dbbe349dc6830d538b92777247f5a5f04119b50b30e411e696840979bfbd53f"
+    },
+    {
+      "path": "backend/app/api/v1/users/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/users/routes.py",
+      "size": 793,
+      "sha256": "8642e85b8ac7eba3daa559747d2a03abf0fb6ce4f80b9c13e214e8844ba25976"
+    },
+    {
+      "path": "backend/app/api/v1/voice/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/voice/routes.py",
+      "size": 1235,
+      "sha256": "e64f07ba03444757c6a388d08b461d311dc6d01dec325cd45bf47a91138eb626"
+    },
+    {
+      "path": "backend/app/api/v1/youtube/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/api/v1/youtube/routes.py",
+      "size": 957,
+      "sha256": "ec9e9017bc1d5e49087481983bc6d89d95116142bf3828ce3ed6e516d8e12a93"
+    },
+    {
+      "path": "backend/app/collaboration/__init__.py",
+      "size": 265,
+      "sha256": "d29de598ed9b54d921d975475bd9152c85294a4c632b5573d32872ee6ff18c33"
+    },
+    {
+      "path": "backend/app/collaboration/sharing.py",
+      "size": 2188,
+      "sha256": "8e00b139fb9dae2d834004ea63997bbb36f6ec489390b2cbe920d256bd0ac00c"
+    },
+    {
+      "path": "backend/app/config/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/config/logging.py",
+      "size": 396,
+      "sha256": "5be967c91c567dee98fd7c83604ab216f526082d3d11c12f1bfd62e91a88f7b4"
+    },
+    {
+      "path": "backend/app/config/settings.py",
+      "size": 8099,
+      "sha256": "86cd3c7c1e2b97a88fe805d90575472a33016b192d8d1a4a347e5423adc72a77"
+    },
+    {
+      "path": "backend/app/database/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/database/base.py",
+      "size": 76,
+      "sha256": "95a8c216feff6aae8c4ee54cb4ab27aab5111b4b7ece1cdc42c2070c9667238d"
+    },
+    {
+      "path": "backend/app/database/models.py",
+      "size": 27087,
+      "sha256": "2d56450ce6382d385c7a184f705ce8adbfa641f5e9b6f68e97124738e849d5f7"
+    },
+    {
+      "path": "backend/app/database/session.py",
+      "size": 682,
+      "sha256": "97f97aaed8bb6ef24b5eb9e374ea5b245b1976c1d1727c2f853fc54b3b4a463f"
+    },
+    {
+      "path": "backend/app/documents/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/documents/extractors.py",
+      "size": 5154,
+      "sha256": "51ff01158a2025e95a2dc30b9bda3c55b207889b1a642625fde3a5061993556b"
+    },
+    {
+      "path": "backend/app/documents/security.py",
+      "size": 1664,
+      "sha256": "c72096199d75b194959bb50fa127b73b1eec7247c4329a0c8ec15a67d07c9376"
+    },
+    {
+      "path": "backend/app/exam_intelligence/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/exam_intelligence/analyzer.py",
+      "size": 714,
+      "sha256": "dce0cb3b9089186321d6a0e09e10920e832ef2d01cee2457ebdd2f77eba27ce1"
+    },
+    {
+      "path": "backend/app/jobs/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/jobs/service.py",
+      "size": 1654,
+      "sha256": "f2de97bb858a0ff177d790caf11e34583248828b6597b93ae8eba7dc8228182c"
+    },
+    {
+      "path": "backend/app/knowledge/__init__.py",
+      "size": 81,
+      "sha256": "9556db786ed386af2cf53c3b87a6c8c3aec96e5ac29d7ca4315706418a95a26f"
+    },
+    {
+      "path": "backend/app/knowledge/artifacts.py",
+      "size": 4830,
+      "sha256": "953f9a5369a35d9c86b132415bb9ca3d948dd267fd1bb3bfa87e74f3b30695ba"
+    },
+    {
+      "path": "backend/app/knowledge/pipeline.py",
+      "size": 2066,
+      "sha256": "4a1837a138813df6cc7997c201ff22b6f7a8050884616705d9eea64efaaff51c"
+    },
+    {
+      "path": "backend/app/learning/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/learning/progress.py",
+      "size": 1189,
+      "sha256": "557e0a2b369e9f4bba28fa50e0c9d3987fcd20fc8b43b57465ccef8bfc1a077e"
+    },
+    {
+      "path": "backend/app/learning/spaced_repetition.py",
+      "size": 687,
+      "sha256": "600b65c25a04cc1c1b90d908f6f8345b0d15748731653050dd023640cd69a46c"
+    },
+    {
+      "path": "backend/app/learning/study_plan.py",
+      "size": 879,
+      "sha256": "13bf374264db7a8735c373c0e99e7a51bb3caf363bbf1fe4594f588ac00cb51a"
+    },
+    {
+      "path": "backend/app/main.py",
+      "size": 4814,
+      "sha256": "a2abeb7ebcf59833944367980ca2e521dd7112502cd812a570f3434cac12dd2f"
+    },
+    {
+      "path": "backend/app/memory_engine/__init__.py",
+      "size": 271,
+      "sha256": "f54cfe9e9fd7127fef85339e3d0e0656ca2b133085922ba66b114b087b2999b0"
+    },
+    {
+      "path": "backend/app/memory_engine/mnemonics.py",
+      "size": 4364,
+      "sha256": "c3d846502d1d2103a157599f587eab7ce40123c140c9e77047cdcae5f3915cbf"
+    },
+    {
+      "path": "backend/app/notes/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/notes/structure.py",
+      "size": 14541,
+      "sha256": "050800ccd72920c21d1342c9283419c4047109700797bec04549bcdeaed3b6b2"
+    },
+    {
+      "path": "backend/app/pdf/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/pdf/artifacts.py",
+      "size": 3119,
+      "sha256": "e7914998fe11b3a3202fc92224f9942dd0e895487172e72b4ca6396ab36c2700"
+    },
+    {
+      "path": "backend/app/pdf/fonts/DroidSansDevanagari-Regular.ttf",
+      "size": 123372,
+      "sha256": "0270f4d3705e207788584190fd0155c43b0421ddd7041a9bb3a406ff5dfa2a95"
+    },
+    {
+      "path": "backend/app/pdf/fonts/LICENSES/Apache-2.0.txt",
+      "size": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "backend/app/pdf/fonts/LICENSES/DroidSans-NOTICE.txt",
+      "size": 10695,
+      "sha256": "38751245389e1e23f73e6f5384b5cbe7fa972cc4410c5adc9c04b082a0b9561a"
+    },
+    {
+      "path": "backend/app/pdf/fonts/LICENSES/NotoSans-NOTICE.txt",
+      "size": 791,
+      "sha256": "466a642558d78c2fc4022edeb7060a25e5fdc24011c9021514e4af9d5f05116b"
+    },
+    {
+      "path": "backend/app/pdf/fonts/LICENSES/README.md",
+      "size": 851,
+      "sha256": "527346ef7cbabcaa7ffdd9b5a9ea0c3d1fca19b66c3562e034cca36fb4b81d03"
+    },
+    {
+      "path": "backend/app/pdf/fonts/NotoSans-Bold.ttf",
+      "size": 394948,
+      "sha256": "d1b3c916fb8f5b2251d5a1ad85ad4c5e494bf0b4f3760caa067547f9cc23f61a"
+    },
+    {
+      "path": "backend/app/pdf/fonts/NotoSans-Regular.ttf",
+      "size": 395204,
+      "sha256": "556de2b4d444ba433fb67fb51f29718ed02fb80cc0a1d5294d01434e2120ce8c"
+    },
+    {
+      "path": "backend/app/pdf/fonts/README.md",
+      "size": 1685,
+      "sha256": "ab2732cb67e94566be4835431c714a75cdd1bda2b6050154699e4d30d5f0a8ca"
+    },
+    {
+      "path": "backend/app/pdf/renderer.py",
+      "size": 19923,
+      "sha256": "59c8fea3d0379d847765dec3fb96ae593b3a69d8a8ca8ea38389df769d21ad92"
+    },
+    {
+      "path": "backend/app/research/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/research/conflicts.py",
+      "size": 804,
+      "sha256": "5dae91d27506d7bc9c971d109f153286713c5154e838da25db965baeb059b7ec"
+    },
+    {
+      "path": "backend/app/research/engine.py",
+      "size": 12999,
+      "sha256": "d16c26cd78cc591c4fc21a998320f1813ffe7c494cc0b6b5f4ab3d7bc7df2095"
+    },
+    {
+      "path": "backend/app/research/pipeline.py",
+      "size": 854,
+      "sha256": "1058b8b16d58ac69d21b1751880b4e3516b0de0dc2b027c66554e1eb5fd3076a"
+    },
+    {
+      "path": "backend/app/research/providers.py",
+      "size": 13708,
+      "sha256": "64a5dd9ab35ecae63571d762a2c4dba82fd819bbe6994412b40b76df36f6d317"
+    },
+    {
+      "path": "backend/app/schemas/__init__.py",
+      "size": 87,
+      "sha256": "c1827e8473522453846a6d740cb451bd6532f5f784004a6e3bc27c2e283b0994"
+    },
+    {
+      "path": "backend/app/schemas/auth.py",
+      "size": 1248,
+      "sha256": "6185d86248dcdf749b3c48f52bd0adcf35aaee864e17651fe1122274955fa37b"
+    },
+    {
+      "path": "backend/app/schemas/common.py",
+      "size": 554,
+      "sha256": "3d4290082623a7f473cc3d9e4a7d2b95b423a0d484399a4487a837e50292c4bb"
+    },
+    {
+      "path": "backend/app/schemas/learning.py",
+      "size": 1586,
+      "sha256": "15997b38e9c75a7e98f2e7b8eec2c755ef71f8b676abb40c16ef108edd8cec18"
+    },
+    {
+      "path": "backend/app/schemas/notes.py",
+      "size": 1247,
+      "sha256": "e6a6b9d4811bba5f0a124db7d5433c2e5fef6f2aa1aabf341004839d61d84835"
+    },
+    {
+      "path": "backend/app/schemas/research.py",
+      "size": 314,
+      "sha256": "3f9d3c7c1e6d4dad98973db502b21193daba1fff07e07896dbb07559f08bb187"
+    },
+    {
+      "path": "backend/app/search/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/search/chunker.py",
+      "size": 743,
+      "sha256": "38ea5938cf75bac7c7ab1706666c36308ef7fbc7285db161ec4709196555c0a4"
+    },
+    {
+      "path": "backend/app/search/embedding_provider.py",
+      "size": 2089,
+      "sha256": "902c77cd92872693851bad673a4b8fda7786c8a63881edfe34342cc52fbc7768"
+    },
+    {
+      "path": "backend/app/search/hierarchical.py",
+      "size": 789,
+      "sha256": "e7416d40278e7d2f4fc00335cfec40fc30f92af37941bd55d6f7051c184c1233"
+    },
+    {
+      "path": "backend/app/search/rag.py",
+      "size": 3888,
+      "sha256": "072db112c7a48f15978a228db071e8c4bb92ce4181d7fd817635438599bd5c2c"
+    },
+    {
+      "path": "backend/app/services/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/services/audit.py",
+      "size": 607,
+      "sha256": "41da20bbe2d90d87800586d434740970a86f71692b0b6f4f0a6e36643467154d"
+    },
+    {
+      "path": "backend/app/services/auth_tokens.py",
+      "size": 918,
+      "sha256": "386e386773f45f8c01884f247b809c448f005339fd9a1e35f9f31d067606dfb6"
+    },
+    {
+      "path": "backend/app/services/google_identity.py",
+      "size": 6051,
+      "sha256": "405cde94c0b2d5415c2b04421acf1bee88a0ab9fa8ba6e627d73aeb67b45a2bc"
+    },
+    {
+      "path": "backend/app/services/rate_limit.py",
+      "size": 1675,
+      "sha256": "87d0a6d748bd15cabc4d78c51ae892d343df7aefec124f54f3eace756b540382"
+    },
+    {
+      "path": "backend/app/services/security.py",
+      "size": 1295,
+      "sha256": "daf12131d57a7d9dda7a08509e7e2dff6ce1c9a7b695dc45639fc8c2f7cc8dd1"
+    },
+    {
+      "path": "backend/app/services/storage.py",
+      "size": 2330,
+      "sha256": "9cb60e96de81ee0699d7aa3226b970f672f879226798c9040ef0b5edecb9d730"
+    },
+    {
+      "path": "backend/app/studypack/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/studypack/builder.py",
+      "size": 20642,
+      "sha256": "5bad35f5d83f634e3e4d446df29b3009db24a79f3716fffb78394baa917e6cbd"
+    },
+    {
+      "path": "backend/app/studypack/pipeline.py",
+      "size": 11176,
+      "sha256": "8f32b9d2be7f086653efccbab174f118a19371e6f7e3d3610a866aa7933b40f9"
+    },
+    {
+      "path": "backend/app/topics/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/topics/classifier.py",
+      "size": 13321,
+      "sha256": "971cec84fe0250f8923cfa6ee0239c8610f342ed25477f28d933c8f753f68d94"
+    },
+    {
+      "path": "backend/app/translation/__init__.py",
+      "size": 309,
+      "sha256": "cc2b40e348155ec98b59290c4212189497da45f6c2d9b8358827d3ad83e2bac9"
+    },
+    {
+      "path": "backend/app/translation/service.py",
+      "size": 3157,
+      "sha256": "435fce9e6175740909e00310721b16294e59917b65c8d5243d11286927b6ca38"
+    },
+    {
+      "path": "backend/app/validation/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/validation/math_validator.py",
+      "size": 19338,
+      "sha256": "eb4c92b5b79ebb4a64c027748e33b27e4617ed6158856b5f64aef908c0acabcd"
+    },
+    {
+      "path": "backend/app/voice/__init__.py",
+      "size": 263,
+      "sha256": "7bbbf9f014ec45f8f79c4a01f7100f020104be98d4b7a683675384a315d366ab"
+    },
+    {
+      "path": "backend/app/voice/speech.py",
+      "size": 3357,
+      "sha256": "109793ed476e403cd64adaa2b913a8756e98ddd28d5b5c89f6b9b36291c44c66"
+    },
+    {
+      "path": "backend/app/workers/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/workers/celery_app.py",
+      "size": 668,
+      "sha256": "99e06cec3c17069c35bb8627e8adea49cb39adb83f7a950ad9805cc4c7c31034"
+    },
+    {
+      "path": "backend/app/workers/research_tasks.py",
+      "size": 883,
+      "sha256": "f441941105da1ec2d6a3e0c45771ee1851ac220fa3464622daa6a24171867d4c"
+    },
+    {
+      "path": "backend/app/workers/studypack_tasks.py",
+      "size": 1548,
+      "sha256": "5533551893fcffcf8f46bceb5245aef917e8e277b03d9b8b9a3fd038d59ee9c8"
+    },
+    {
+      "path": "backend/app/workers/tasks.py",
+      "size": 4771,
+      "sha256": "c1c536e30431e36363515d6c7689f4524d95fe9210aea0949bb2f48a30db865c"
+    },
+    {
+      "path": "backend/app/youtube/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/app/youtube/transcript.py",
+      "size": 656,
+      "sha256": "7e097598713307b8e4170dff99feedc0f06cd4d847dcc917bd9f0a907dcb8edc"
+    },
+    {
+      "path": "backend/pyproject.toml",
+      "size": 274,
+      "sha256": "b65f760d42ce0eb2176b87a8584857cea980775276e35213c8ce65590fcf344f"
+    },
+    {
+      "path": "backend/requirements.txt",
+      "size": 777,
+      "sha256": "d4116bed0194b90a2e829d9f67f6c09551f739a913958a691c194e4275a82d5f"
+    },
+    {
+      "path": "backend/scripts/validate_environment.py",
+      "size": 8771,
+      "sha256": "6934642811f10261d84f06da08e62ff2cffdb12a9befc6a29b74990e91788720"
+    },
+    {
+      "path": "backend/tests/__init__.py",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "backend/tests/run_tests.py",
+      "size": 3341,
+      "sha256": "4c26c192f815e73cd9b11a5d01c96fdcbc1c4d4414222fe163395eb5a51dfc09"
+    },
+    {
+      "path": "backend/tests/test_core_unit.py",
+      "size": 1006,
+      "sha256": "f51b8044ae59274eb02c2359a7c5eac43f2918e53f2f2221b81053d3bd002ef5"
+    },
+    {
+      "path": "backend/tests/test_development_model.py",
+      "size": 358,
+      "sha256": "372cd538a2dda641205e0f50a6eeacf85742f411f7ee160707f0cbdc379a2ce0"
+    },
+    {
+      "path": "backend/tests/test_env_parity.py",
+      "size": 7196,
+      "sha256": "eba66ac92755a6faaafb960e9824dcbd64aafb362b74cee019b5eec65362073b"
+    },
+    {
+      "path": "backend/tests/test_google_auth.py",
+      "size": 4084,
+      "sha256": "a379650e58630dd8f37892b675efdef405091b50df904fd1383dcb688af4594c"
+    },
+    {
+      "path": "backend/tests/test_no_billing_docs.py",
+      "size": 3286,
+      "sha256": "d5737cba9d176a9cf304f01f8049a82c012117f1df58cdfdb2d0e5c9c97cfee1"
+    },
+    {
+      "path": "backend/tests/test_pdf_fonts.py",
+      "size": 4770,
+      "sha256": "8befbc95218d551878f82e8a8ae23ad684a5af4ed0020cfd9708b51eb80647fb"
+    },
+    {
+      "path": "backend/tests/test_production_contracts.py",
+      "size": 1595,
+      "sha256": "55058951714b99064b843fe58fe714a26ec74ea2390e78bbc501bfe112dcc54e"
+    },
+    {
+      "path": "backend/tests/test_turbo_ai.py",
+      "size": 15497,
+      "sha256": "fecef82b3ef080b0941181db20b220fcdb2a6f806b26eec719774ca82618f128"
+    },
+    {
+      "path": "backend/tests/test_ultra_core.py",
+      "size": 1464,
+      "sha256": "d85339de328311d143afdb3c330a6520aac65180fe26fde6d00d78d945151a5e"
+    },
+    {
+      "path": "config/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "config/feature-flags.yaml",
+      "size": 224,
+      "sha256": "3559a6e9b8e711d2c19d483e53edabdd57f630ca3fb412385a31caf83ee3140a"
+    },
+    {
+      "path": "database/migrations/env.py",
+      "size": 3288,
+      "sha256": "71c04bbe2f06b2310216c3c13fad552fe68f3c2aee8dda7578fa653e83290436"
+    },
+    {
+      "path": "database/migrations/helpers.py",
+      "size": 1077,
+      "sha256": "588a3604ae37e4c929a9c755205c7bddd2cf32f85626d294980511bfec3e74e6"
+    },
+    {
+      "path": "database/migrations/script.py.mako",
+      "size": 432,
+      "sha256": "0ef15cd35be5a8765cadc27c4317e07d27c16e48e53a8f87f2cb856f49b71af0"
+    },
+    {
+      "path": "database/migrations/versions/0001_initial_initial_users_auth.py",
+      "size": 1864,
+      "sha256": "d36efdda9a76beae0c8a60d8fc27876774cc7af16be41cf46795630e3e88184a"
+    },
+    {
+      "path": "database/migrations/versions/0002_ultra_documents_notes.py",
+      "size": 2015,
+      "sha256": "761f3ab517ad809bd529ff56701d5799a301116b3228a8f3a7c3a13045483dbb"
+    },
+    {
+      "path": "database/migrations/versions/0003_embeddings_embeddings_rag.py",
+      "size": 1559,
+      "sha256": "a4459df1054016a30575ce54ae2874304033865c3cd5d96c66160949820b6043"
+    },
+    {
+      "path": "database/migrations/versions/0004_research_research.py",
+      "size": 3202,
+      "sha256": "3c5ab801623c4b05e01db81a041493fd48179092865fc4faf1c495d0cc213512"
+    },
+    {
+      "path": "database/migrations/versions/0005_learning_learning.py",
+      "size": 5403,
+      "sha256": "dc1f97f2867ac0788e02e40663a562ec1c9c7f882ccc1bc2f17faf2a0fac6c27"
+    },
+    {
+      "path": "database/migrations/versions/0006_security_security.py",
+      "size": 2551,
+      "sha256": "2c55370eacc074e4bbeffcc7f7896dfd127f51eaa7e527ea4396bef27b2d1fe3"
+    },
+    {
+      "path": "database/migrations/versions/0007_jobs_jobs.py",
+      "size": 1889,
+      "sha256": "ffb601a431359cca9f8f8b6b31e35fa57930ae3b74eb7b1e318063d11ae853c8"
+    },
+    {
+      "path": "database/migrations/versions/0008_collaboration_collaboration.py",
+      "size": 1338,
+      "sha256": "51d039d3c20b9aa2e91431c7af1419546bd8bab4dfee904731d7f07ea2fd413c"
+    },
+    {
+      "path": "database/migrations/versions/0009_analytics_analytics_notifications.py",
+      "size": 1816,
+      "sha256": "16e853ca8d0e2b951466de49fb1dd7d0cf3844d8626de309d14e455b63113338"
+    },
+    {
+      "path": "database/migrations/versions/0010_ai_usage_ai_usage_billing.py",
+      "size": 2997,
+      "sha256": "96d779e59125514700160f8c88503cfd5d630e09eec72913505d28893c5e7435"
+    },
+    {
+      "path": "database/migrations/versions/0011_study_artifacts_study_artifacts.py",
+      "size": 1276,
+      "sha256": "e8c28aa3b1509adfe7b1a74240e78ee454e72e23bb80b6a828429ea8039db262"
+    },
+    {
+      "path": "database/migrations/versions/0012_free_product_free_product.py",
+      "size": 3525,
+      "sha256": "04ce8db84377aad5a0061eb1aa65d185b12cca2e575c820cbdeea373d55bac90"
+    },
+    {
+      "path": "database/migrations/versions/0013_google_identity_user_identities.py",
+      "size": 1878,
+      "sha256": "ecaaf3d6e888ad966ac3147ca852537324f2ae1cdc16ddeefd59097ac14ef06a"
+    },
+    {
+      "path": "database/schemas/README.md",
+      "size": 259,
+      "sha256": "3cf30b173d88d0213f01bd332f63c68cbb6a2c4d36b61fb318014a4dd1027a90"
+    },
+    {
+      "path": "database/seeds/development.py",
+      "size": 829,
+      "sha256": "459570fd5e36e3707aceeed8abd03ee9386e344a51c9ba6c4bd5a9a96bd62100"
+    },
+    {
+      "path": "docker-compose.yml",
+      "size": 2458,
+      "sha256": "c9f8a28b2f30e19d7134999ddcff14afeab18cca5fde41f1f75eedf89ce640f2"
+    },
+    {
+      "path": "docs/ADMIN.md",
+      "size": 345,
+      "sha256": "f9ccec706bcdf6225c2a0f3bababe6eb3bd5ef3a0817dab823a800612cf4d712"
+    },
+    {
+      "path": "docs/BACKUP_RESTORE.md",
+      "size": 599,
+      "sha256": "1f6619923a7af2c458a7a01010f15376cd338f2fe32db19bbc3a04af0a539908"
+    },
+    {
+      "path": "docs/COMPLETE_AUDIT.md",
+      "size": 6299,
+      "sha256": "2bede00fdfab5822e82f8debaa03d3197adf133529cdd5b8281a6676117df69f"
+    },
+    {
+      "path": "docs/DATABASE.md",
+      "size": 419,
+      "sha256": "0d38620d8b9f8e2c87f7e726371a6eada790a7d107fc96700f8183bc08ad1ad1"
+    },
+    {
+      "path": "docs/ENVIRONMENT.md",
+      "size": 264,
+      "sha256": "2d60e4095d151110224d85826f18e13fa7e8ac7a3e3e7b1a3ab6408eadda703a"
+    },
+    {
+      "path": "docs/MIGRATIONS.md",
+      "size": 611,
+      "sha256": "a0020abd7a413993912f87bac1357a27e7b2567b5a0500b0a83bfa7afeb0bacb"
+    },
+    {
+      "path": "docs/MOBILE_BUILD.md",
+      "size": 336,
+      "sha256": "754cb5c93f7d7dea5b3f6d4c1cdbd49748e58fbf95f9efed07e4e622c56b9342"
+    },
+    {
+      "path": "docs/NOTIFICATIONS.md",
+      "size": 270,
+      "sha256": "2fc0384e83d8194fe9bf7fe2472d381ac07a3658196c0afc3986ee7aab2e7dc9"
+    },
+    {
+      "path": "docs/PRODUCTION_READINESS.md",
+      "size": 2137,
+      "sha256": "f82984f16e8780f5d6c1161fe1b2dc8931bca0bf18b30de8d4988e9a62c9b350"
+    },
+    {
+      "path": "docs/RAILWAY-VARIABLES.example.env",
+      "size": 1500,
+      "sha256": "14142c9e98b964e4050b0a623fa07b2bcad4ed0ce06c9711488a37acb123cf72"
+    },
+    {
+      "path": "docs/admin-operations.md",
+      "size": 298,
+      "sha256": "3a31377b1ff76f543d8d369b8f16c875070c6bfadd2918d0bfb24c82504c35ce"
+    },
+    {
+      "path": "docs/ai-routing.md",
+      "size": 526,
+      "sha256": "513f18a539dadd58b775ab81f795f453ae2abeec14c5b01dfb2109d16bbc559a"
+    },
+    {
+      "path": "docs/api.md",
+      "size": 258,
+      "sha256": "b7f31e9281eaf56af0823b1c18d01251d61ffa03a616ecd9a03fcabfd5dfd9d6"
+    },
+    {
+      "path": "docs/architecture.md",
+      "size": 241,
+      "sha256": "d4a620f30130b1eaafec9ef211f109467d1e00f84b40581d77a12ab67f562342"
+    },
+    {
+      "path": "docs/data-flow.md",
+      "size": 396,
+      "sha256": "90b42ca6a5081402ca2fde5bd7281ba7ab8a62d13ad82644141b7b377dcd2baf"
+    },
+    {
+      "path": "docs/deep-research.md",
+      "size": 1075,
+      "sha256": "01d3d65a75071eb99b4ef1a9d79eb418c80203b7a1bc398709786079ee624fdc"
+    },
+    {
+      "path": "docs/deployment.md",
+      "size": 328,
+      "sha256": "093204c7ebf96990673be7009854eb92feef1bea0f3a7ee61e2f8b2715743b89"
+    },
+    {
+      "path": "docs/disaster-recovery.md",
+      "size": 585,
+      "sha256": "2dbb73a47c70d0fe96780e857eeab0e0247945cde33a78d3f412f9ea1d37bc7e"
+    },
+    {
+      "path": "docs/mobile-ux.md",
+      "size": 284,
+      "sha256": "7b2cff247fd91714669382245cde39a248369ab8a20b8bb0d17d7c49ce2f8aff"
+    },
+    {
+      "path": "docs/privacy-data-flow.md",
+      "size": 658,
+      "sha256": "6edbcd2dfae8aeccade036e49649f67ba35abd3f3e65732a75967a02715fda62"
+    },
+    {
+      "path": "docs/production-readiness.md",
+      "size": 2137,
+      "sha256": "f82984f16e8780f5d6c1161fe1b2dc8931bca0bf18b30de8d4988e9a62c9b350"
+    },
+    {
+      "path": "docs/rag.md",
+      "size": 714,
+      "sha256": "1d7d398f4fd4b18b953146b30f7b8465e79faaae73de6e6a1a098644942f3c96"
+    },
+    {
+      "path": "docs/security.md",
+      "size": 360,
+      "sha256": "feb0d602e9cc3bd8395d47fb5772a6013d6e4371cd981af4dabe670b26e875e7"
+    },
+    {
+      "path": "docs/testing.md",
+      "size": 310,
+      "sha256": "c01344cda8f9237c0320403c845f7ed0eeafbee9d3c7a70a7c96a2d26416f61e"
+    },
+    {
+      "path": "docs/validation-report.md",
+      "size": 2717,
+      "sha256": "d353001921cf52799c4d127868f8444bf4ea8b90a6ee96646afb2d259e66df8c"
+    },
+    {
+      "path": "evaluation/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evaluation/datasets/research_cases.json",
+      "size": 727,
+      "sha256": "7679dc239e58932db494cb06d5f4e9a47723d041c3f172798f655fc32bc11d63"
+    },
+    {
+      "path": "evaluation/quality-rubric.yaml",
+      "size": 497,
+      "sha256": "fe9456e6803ef62a9c6b96882d1acf269d4734d6c827d5f6e3c716a9b46d59a9"
+    },
+    {
+      "path": "knowledge-base/README.md",
+      "size": 208,
+      "sha256": "45ace83261da6c04ab64e11ab7fe1db092b3fdc39a708ccd2bfde7aa2ed61b8d"
+    },
+    {
+      "path": "knowledge-base/chunking/chunker.py",
+      "size": 743,
+      "sha256": "38ea5938cf75bac7c7ab1706666c36308ef7fbc7285db161ec4709196555c0a4"
+    },
+    {
+      "path": "knowledge-base/embeddings/provider.py",
+      "size": 720,
+      "sha256": "8d90f85cf86fa05c66ff1598fb9a2bde5639aeb065546309d40bede420d2ccb4"
+    },
+    {
+      "path": "knowledge-base/ingestion/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "knowledge-base/knowledge-graph/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "knowledge-base/preprocessing/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "knowledge-base/pyqs/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "knowledge-base/reference-material/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "knowledge-base/reranking/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "knowledge-base/retrieval/reranker.py",
+      "size": 459,
+      "sha256": "c26e5acc63d444a91cd4ff93262446085caaa82799445fae0bac0422731f938c"
+    },
+    {
+      "path": "knowledge-base/syllabus/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "knowledge-base/textbooks/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "knowledge-base/user-documents/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "knowledge-base/youtube/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "mobile/.env.example",
+      "size": 1158,
+      "sha256": "41c12f0348687ba17a83d31b377154356bae4e87b5ebdbd39bbacc4062c0aa1a"
+    },
+    {
+      "path": "mobile/.env.production.example",
+      "size": 704,
+      "sha256": "f21fa0cc4557cc2d56036a3da0a73e4ac98dbd1a17c373444e6cc346ba30b142"
+    },
+    {
+      "path": "mobile/.gitignore",
+      "size": 151,
+      "sha256": "89cb1589918dcb0a07ec523196caf7386bf02eaef8e68858f8a5235d11f5fec3"
+    },
+    {
+      "path": "mobile/__tests__/android-release.test.ts",
+      "size": 3614,
+      "sha256": "0933418b24bcec8d082d030d14ab121f58db159f7fde4287fcc98ca8e55d0f8c"
+    },
+    {
+      "path": "mobile/__tests__/androidResources.test.ts",
+      "size": 3553,
+      "sha256": "85fa3d46e6eb5b00dc1b322a3b5c5b3be0da5756b9554f8b12f917c8981e823b"
+    },
+    {
+      "path": "mobile/__tests__/config.test.ts",
+      "size": 1901,
+      "sha256": "94add6c732bb8007e8339f3a005b8c025821c04f10781b2f6e006dde0d2ceac8"
+    },
+    {
+      "path": "mobile/__tests__/googleSignIn.test.ts",
+      "size": 3925,
+      "sha256": "f03996e88607834ca394b55693db40da1caceabd0345d07cd64316e49adb4c6c"
+    },
+    {
+      "path": "mobile/__tests__/navigation.test.ts",
+      "size": 2713,
+      "sha256": "d30b4b1c0f1178c160b454b4583d9f7a8774c23f17f5b09eb70aad165b1675be"
+    },
+    {
+      "path": "mobile/android/.gitignore",
+      "size": 129,
+      "sha256": "03263c9a1436e264a87c6e0547007488dc980efb2326724b5a85c0835bac34a7"
+    },
+    {
+      "path": "mobile/android/app/build.gradle",
+      "size": 12452,
+      "sha256": "363a69266c8e8b5f78a079cd1502fce4e9fec768f4b92e17d178f1e468e7fad4"
+    },
+    {
+      "path": "mobile/android/app/debug.keystore",
+      "size": 2666,
+      "sha256": "3f4e33d8705f712afb744fd1b144e489c39ad98ded06f95ce4d118a9df152efb"
+    },
+    {
+      "path": "mobile/android/app/proguard-rules.pro",
+      "size": 562,
+      "sha256": "8bd4d7b69a1d78e8322b459b5e8d48234adce7481df04da34c0140d52ffb367a"
+    },
+    {
+      "path": "mobile/android/app/src/debug/AndroidManifest.xml",
+      "size": 446,
+      "sha256": "c681ada922112dd136548399074c93d4bc695ed13c1cd7ea873cee6c0d173985"
+    },
+    {
+      "path": "mobile/android/app/src/debug/res/xml/network_security_config.xml",
+      "size": 652,
+      "sha256": "09ad7c92edefc8e2b82ccf2193ed8687eda93f91f4debc17a734cd58eb6f380f"
+    },
+    {
+      "path": "mobile/android/app/src/debugOptimized/AndroidManifest.xml",
+      "size": 374,
+      "sha256": "fb1795032c764d975376e1612ab7022058eca2268a45efbe731a47a5d3ac0f60"
+    },
+    {
+      "path": "mobile/android/app/src/main/AndroidManifest.xml",
+      "size": 3423,
+      "sha256": "739510eb95bd88bf53f605c05306feafe68a66e1037a405376f478a69b6a1f28"
+    },
+    {
+      "path": "mobile/android/app/src/main/java/com/studyforge/ainotes/MainActivity.kt",
+      "size": 2192,
+      "sha256": "c015e783fdb3712dbc7741927b22eb7ef49666518dc8dbbb24e521ab3b4a438c"
+    },
+    {
+      "path": "mobile/android/app/src/main/java/com/studyforge/ainotes/MainApplication.kt",
+      "size": 2035,
+      "sha256": "b983237e42e4d38a61be13be5e02a630bab716c65a0c403349c072adb56ab351"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/drawable/ic_launcher_background.xml",
+      "size": 245,
+      "sha256": "51fca95679d075ddbe2b9fe7ad2efb5ef545c5770a9ad6cafe8bf610c18c67be"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/drawable/rn_edit_text_material.xml",
+      "size": 1917,
+      "sha256": "738e3aaad53180caba1419a6d5db8465a0742662fe59a4bbaf05f1061cbc3390"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/drawable-hdpi/notification_icon.png",
+      "size": 355,
+      "sha256": "20dae6b4d239999d3367c14cb5a7768a170bda520202e6de4476b4a9c238722b"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/drawable-hdpi/splashscreen_logo.png",
+      "size": 2411,
+      "sha256": "904d901be83808ca7105a9851add8cc7b642f08d840b9473c065d2cf4565c558"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/drawable-mdpi/notification_icon.png",
+      "size": 246,
+      "sha256": "768cee03bf89a69d6058883ac12521e9b6eef794d03a5e4ebf5c6c9a77268e20"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/drawable-mdpi/splashscreen_logo.png",
+      "size": 1519,
+      "sha256": "74b9191cc8f4031b55aa9e9f0afcb1876e5ab91fa8fa9420b2f14257292a6419"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/drawable-xhdpi/notification_icon.png",
+      "size": 297,
+      "sha256": "19b334c7b495fb1e50a69c7e4831df0906aa7eedc332021c43ba5602e6f88aee"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/drawable-xhdpi/splashscreen_logo.png",
+      "size": 3407,
+      "sha256": "3bb5d91c998f68a68f08d3ae852a3e05e0798894c7e8275db6d56511c67244de"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/drawable-xxhdpi/notification_icon.png",
+      "size": 472,
+      "sha256": "86d16aa475aa16ee71258a281752fdfcb10b99fb5bde40d3f5b5e67e51081f7a"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/drawable-xxhdpi/splashscreen_logo.png",
+      "size": 5836,
+      "sha256": "c5d0d86814c5ab2c479c293d3cb34001ed21ca4a97b290eb012cd10a4612b1c8"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/drawable-xxxhdpi/notification_icon.png",
+      "size": 345,
+      "sha256": "e0c00e55c0c0a8132b1175c6f936a86b079fd942147991f18c1c2c7fc8e49210"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/drawable-xxxhdpi/splashscreen_logo.png",
+      "size": 8897,
+      "sha256": "a8b6aa796e155d9f64005b844924dc6eefe092aff88f1469db8e3a298064fa70"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+      "size": 257,
+      "sha256": "03d70962a0beea2bb6ab1a838b015d90da6c33adb045ff85f7b198aca70df08d"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml",
+      "size": 257,
+      "sha256": "03d70962a0beea2bb6ab1a838b015d90da6c33adb045ff85f7b198aca70df08d"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-hdpi/ic_launcher.webp",
+      "size": 1198,
+      "sha256": "594927647e7f8e0a1f6789fb92536157288d40d08daf16a227491997985327c8"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.webp",
+      "size": 1951,
+      "sha256": "3cbe92216a08e68a2e253c1483c4a50d279a74ee7b6900077835cf82c50daee7"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp",
+      "size": 1871,
+      "sha256": "3e405cc9e9c9c0121faa940c365698d17d7f198741360f8d54392cef1ab297d6"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-mdpi/ic_launcher.webp",
+      "size": 870,
+      "sha256": "29cf9c0b3c31ce1e89f5346d59275635c83900f08b9bc0c1110a0d69c8ec6648"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.webp",
+      "size": 1319,
+      "sha256": "cedf680b4a1bf17dbf2cd1eda53714fdb81ce5c7c959116730e5105f4572edc3"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp",
+      "size": 1358,
+      "sha256": "822f53878e97bfcd27f96056c4e73421184501b37de1d0a22ef4e892fe15670d"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-xhdpi/ic_launcher.webp",
+      "size": 1500,
+      "sha256": "2060dc9c745212d1981f053cde94469d42e02da7e9c9e310c2a11cf99ef5180d"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.webp",
+      "size": 2542,
+      "sha256": "48c4a9e9cf8e70adcef0910524bc8d4e973abad79463b0a1da57f1129774528b"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp",
+      "size": 2446,
+      "sha256": "63a4cbd218c4d2869a9e9e116c5ee09aab6572cc46880f2a50a0909397a7d817"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp",
+      "size": 2129,
+      "sha256": "6c0aded3b59d25211b82d449e95d3033485c4efcfc38482cdfc888acfd06a0b2"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.webp",
+      "size": 3739,
+      "sha256": "3e6455e380763eff2096d994a8bed125455f0c353ef308cf9fc738d8f2b86ce2"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp",
+      "size": 3593,
+      "sha256": "a76e9de5cf0861fb3568e2527dbd87a938075039eaa2301f9ce6e0c7b3346ce2"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp",
+      "size": 2797,
+      "sha256": "a613228ad40b88897d80caaa86fa1add0a9d9c4256911ee83544eda25c890fc7"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.webp",
+      "size": 5134,
+      "sha256": "a189c0440260aed2006b48d668dbc21fd0ec930d89bbefaf5ebbbee6ddeef032"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp",
+      "size": 4769,
+      "sha256": "056167227ef95b661c4245048a9a1815d48a30526a203de4eff974d6ae51cc99"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/values/colors.xml",
+      "size": 277,
+      "sha256": "d5d8496a38a5a9c44462713e13cb8372949eea20f1161cbaff58cd261cf96c47"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/values/strings.xml",
+      "size": 254,
+      "sha256": "41821a82c7917d9285aa911905d350bc9c1f1eac1cbd039b373fa199e7f3279a"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/values/styles.xml",
+      "size": 587,
+      "sha256": "d88cd9494503ab0d66d8c333a56c5eaaaf670af2e0d343271a43424b5d1f51e0"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/values-night/colors.xml",
+      "size": 12,
+      "sha256": "c30a9f37e6b34372e1db8c812d64a18719acf7c52c11ff2f7e5e5ed5e05c2072"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/xml/network_security_config.xml",
+      "size": 313,
+      "sha256": "84236413c2afa436dcdeb60ded473b275c87522594f57e692957dcb9a7d039b0"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/xml/secure_store_backup_rules.xml",
+      "size": 526,
+      "sha256": "87089c9a01436573c9bf244231d167b4e607357f6719bb35e20fc76f896061fa"
+    },
+    {
+      "path": "mobile/android/app/src/main/res/xml/secure_store_data_extraction_rules.xml",
+      "size": 446,
+      "sha256": "86df2898059f3a80142a976423be8bab65d73deaefee76384002807c1ba31aa7"
+    },
+    {
+      "path": "mobile/android/build.gradle",
+      "size": 556,
+      "sha256": "bdb916d3fe7085c9e9f3bb45bd5eacb97f5d2c5a2b2af965642f7d904739ca68"
+    },
+    {
+      "path": "mobile/android/gradle/wrapper/gradle-wrapper.jar",
+      "size": 43764,
+      "sha256": "7d3a4ac4de1c32b59bc6a4eb8ecb8e612ccd0cf1ae1e99f66902da64df296172"
+    },
+    {
+      "path": "mobile/android/gradle/wrapper/gradle-wrapper.properties",
+      "size": 253,
+      "sha256": "7e0821d895908883350587c74476b717016ab416320c44dc82a10def916c6fb5"
+    },
+    {
+      "path": "mobile/android/gradle.properties",
+      "size": 3071,
+      "sha256": "13f1cf807592845a2b18a945268bc567251f54d13e02783e5429c9e138ae2c6c"
+    },
+    {
+      "path": "mobile/android/gradlew",
+      "size": 8744,
+      "sha256": "ee038d6f6b21501d34c5eac442aad930fd6b82191f9bb00f1780cc101ca14a68"
+    },
+    {
+      "path": "mobile/android/gradlew.bat",
+      "size": 2937,
+      "sha256": "1d297e00bd21de3ace22b4d7f2de1f9dfa858883d66bbf7c1ccbecccec8f4f3b"
+    },
+    {
+      "path": "mobile/android/keystore.properties.example",
+      "size": 632,
+      "sha256": "06673a08ed73be22a265e7539e0905ea703926db936c0572a141443a8957e7fd"
+    },
+    {
+      "path": "mobile/android/local.properties.example",
+      "size": 378,
+      "sha256": "d7627a1ff8a1321d893ea34653d832a7982873b055182701e373d17748ae0072"
+    },
+    {
+      "path": "mobile/android/settings.gradle",
+      "size": 1266,
+      "sha256": "06b60cd34debdd8a23e9975b148cf6fd55e2e5c136d0647872ac3becfb8a26ba"
+    },
+    {
+      "path": "mobile/app/(auth)/_layout.tsx",
+      "size": 123,
+      "sha256": "2d3364cd1eb4002f1efaf11c5fa63a6aec7ff4ccde86a3684848c01c65353c23"
+    },
+    {
+      "path": "mobile/app/(auth)/forgot-password/index.tsx",
+      "size": 1131,
+      "sha256": "02294d164f509d2342854e124f92c5867ebb1215faba5e94eac0d0666f5ba87c"
+    },
+    {
+      "path": "mobile/app/(auth)/login/index.tsx",
+      "size": 1933,
+      "sha256": "bc09a1c847082cd995e9c29e47b244460cc71e5933a1aaf13f4bb64cbccc8d22"
+    },
+    {
+      "path": "mobile/app/(auth)/onboarding/index.tsx",
+      "size": 1591,
+      "sha256": "eda1ae5b26c350e8ae343dd6dbd31a014019a0721f2c197484df0afdf09c4d81"
+    },
+    {
+      "path": "mobile/app/(auth)/reset-password/index.tsx",
+      "size": 1603,
+      "sha256": "00484fe960e4f3cbc4b8e137987888fc438c489eb123f9bfc15955f4618101da"
+    },
+    {
+      "path": "mobile/app/(auth)/signup/index.tsx",
+      "size": 1771,
+      "sha256": "84b5846a41bf5d0de8840109246cbe7dffbce551f08af6e13b54d89f0cec719c"
+    },
+    {
+      "path": "mobile/app/(auth)/verify-email/index.tsx",
+      "size": 892,
+      "sha256": "7b663512d3b07c7e3ab2812ffbad58a113961b574ac78651ffa9f69c2f4a19cc"
+    },
+    {
+      "path": "mobile/app/(main)/_layout.tsx",
+      "size": 1558,
+      "sha256": "fbd4f9c849f028b637d3f3578fa12f5cbe5780b8560f8e1706b8fd9a159a140c"
+    },
+    {
+      "path": "mobile/app/(main)/ai-tutor/index.tsx",
+      "size": 2096,
+      "sha256": "2af1adcc0c7989a41cfc9fd5c4f9113cfbcd77ec22814d7e00aa1b5eca9687c0"
+    },
+    {
+      "path": "mobile/app/(main)/collaboration/index.tsx",
+      "size": 291,
+      "sha256": "ab0f78eeab7eec07973bc640c3281594932f55286aa55d1fe5526b81704712cb"
+    },
+    {
+      "path": "mobile/app/(main)/dashboard/index.tsx",
+      "size": 3934,
+      "sha256": "43416bd0a386a0edff922f8f4642a57014b81e563826766e1e356ea7387588ef"
+    },
+    {
+      "path": "mobile/app/(main)/definitions/index.tsx",
+      "size": 262,
+      "sha256": "a1aca5a26e3b9d34833bbed098d58b71cd58a8ddb2377b7709d55d8661a7338e"
+    },
+    {
+      "path": "mobile/app/(main)/derivations/index.tsx",
+      "size": 292,
+      "sha256": "a6618dd52c00a3a1564dd9af16475cf6cc3d931c9678678734a2968ffacf8654"
+    },
+    {
+      "path": "mobile/app/(main)/documents/index.tsx",
+      "size": 2015,
+      "sha256": "2d0baa6e0bfbf23192f3f61df1a923314881b90912c460eee386c3f1470e1887"
+    },
+    {
+      "path": "mobile/app/(main)/exam-analysis/index.tsx",
+      "size": 273,
+      "sha256": "5973f2463f3869ff66dd634d8c9a3878fd07c125895bf346518a6c9cf5193676"
+    },
+    {
+      "path": "mobile/app/(main)/exam-prediction/index.tsx",
+      "size": 291,
+      "sha256": "26b8edaefaebdddb9ebbdf7bb5e4f76e91260f490cb8690c6afdbf65c1e94b78"
+    },
+    {
+      "path": "mobile/app/(main)/flashcards/index.tsx",
+      "size": 2127,
+      "sha256": "672de5b7c339bc9e7ca78c091aa85ae3335ca68265fa78cd5f26100b80425fcf"
+    },
+    {
+      "path": "mobile/app/(main)/formulas/index.tsx",
+      "size": 264,
+      "sha256": "2d99209aff2410d56c8dbca9c401df6e39d878422c7fc8569dfeb0ae27964e99"
+    },
+    {
+      "path": "mobile/app/(main)/library/index.tsx",
+      "size": 1318,
+      "sha256": "d09adc1ba768dd71c3f779d8c5333665e429f4c1230ca0168bd56d3c1dce0d59"
+    },
+    {
+      "path": "mobile/app/(main)/memory-tricks/index.tsx",
+      "size": 242,
+      "sha256": "dd146d1893dad303ca68dc3b1de5d5275e22bc4be2bf2a9ffc049b38896c0056"
+    },
+    {
+      "path": "mobile/app/(main)/mindmaps/index.tsx",
+      "size": 235,
+      "sha256": "a6c1d53d49bf08b37c1a0f8a252a77a7aa8768cc6150879e7cfec0a4a9e90b3f"
+    },
+    {
+      "path": "mobile/app/(main)/notes/[id].tsx",
+      "size": 2057,
+      "sha256": "5d088a98171200f4084e9c325bb7a5f8d204d771ea15f155a822e28c636e46ad"
+    },
+    {
+      "path": "mobile/app/(main)/notes/index.tsx",
+      "size": 1144,
+      "sha256": "9722e44d00378634355ce2697fbb6cf1292c2fc9700cec66438c37adb221e1ce"
+    },
+    {
+      "path": "mobile/app/(main)/numericals/index.tsx",
+      "size": 291,
+      "sha256": "4dc7b38f67148a01dfe5f60bb627baecf75cc66d4fc650a473ead8be8090a684"
+    },
+    {
+      "path": "mobile/app/(main)/progress/index.tsx",
+      "size": 270,
+      "sha256": "5addaad1a7901760cc26d1f32aafd991bc34589d416cf4c42b1da9e25499a572"
+    },
+    {
+      "path": "mobile/app/(main)/pyq/index.tsx",
+      "size": 285,
+      "sha256": "f14e465fde6038d56d481e7c45946503ee83f57092d11d7f1d506e91dc803b8b"
+    },
+    {
+      "path": "mobile/app/(main)/question-paper/index.tsx",
+      "size": 284,
+      "sha256": "4439b5d5af141f2e5d3889f55d80a95f9503e821499590a3614af6f478c64c0a"
+    },
+    {
+      "path": "mobile/app/(main)/questions/index.tsx",
+      "size": 263,
+      "sha256": "afca2a40835b4fd3185b5cd000cb12eb5e7d57bd133737288906b3feff0812f7"
+    },
+    {
+      "path": "mobile/app/(main)/quiz/index.tsx",
+      "size": 2561,
+      "sha256": "d9dc0daa4f200fd6297a4b058f69c3cef0cea4bbd5fce0607a17c235eba8b0a4"
+    },
+    {
+      "path": "mobile/app/(main)/research/index.tsx",
+      "size": 3188,
+      "sha256": "746456d4f72675696bf567ef4fbfd9d8bd62b13aacead061c6569bbbf00d3c30"
+    },
+    {
+      "path": "mobile/app/(main)/revision/index.tsx",
+      "size": 265,
+      "sha256": "6a018374c80f3f2f897915a531fe22a5b42f80ee8e23dd871a440fca12930825"
+    },
+    {
+      "path": "mobile/app/(main)/search/index.tsx",
+      "size": 1630,
+      "sha256": "79a03a96c03f1faa5a56009a15b26040679b520100ec91bca47209fec2bdc21c"
+    },
+    {
+      "path": "mobile/app/(main)/settings/index.tsx",
+      "size": 2052,
+      "sha256": "895f20ebe8771cb8876efdcc74208bb731c888766fb2d4c812c9f67787298aea"
+    },
+    {
+      "path": "mobile/app/(main)/study-plan/index.tsx",
+      "size": 2082,
+      "sha256": "8ff33a357e2df15271558f6e6f3a2b920c30d353130eb986de753bf7c785e9ec"
+    },
+    {
+      "path": "mobile/app/(main)/studypack/index.tsx",
+      "size": 9559,
+      "sha256": "b1acf91adf9b95026e5c4f1d8c64bd4cfd3843dbed54968eb0c3980eeac6ea7a"
+    },
+    {
+      "path": "mobile/app/(main)/voice-tutor/index.tsx",
+      "size": 1589,
+      "sha256": "99598466b789690edc5ec10281972ff425da962b1e283d72f9b68f339274ff16"
+    },
+    {
+      "path": "mobile/app/(main)/workspace/index.tsx",
+      "size": 870,
+      "sha256": "35b42189f38fa64413af229b212a45a6ef8be25ad051974a9bd2265c6f65605c"
+    },
+    {
+      "path": "mobile/app/(main)/youtube/index.tsx",
+      "size": 1314,
+      "sha256": "3f462d90eea07dadff49f635aba33215541985abf5c21543709c5308e03ef5a2"
+    },
+    {
+      "path": "mobile/app/_layout.tsx",
+      "size": 1023,
+      "sha256": "f55c76681ec5cf22bfce2926ca3ad745992ffeb4d54aeeafe3372b9a5295fddd"
+    },
+    {
+      "path": "mobile/app/create-modal.tsx",
+      "size": 1673,
+      "sha256": "a507b45c76a5e392ccad7603e8848e3fb9d4f946c4d4b20e1e7918152f03386d"
+    },
+    {
+      "path": "mobile/app/index.tsx",
+      "size": 502,
+      "sha256": "d40e8d93c342e6e3409a58abdfbffdebeb7355da6ae5c355d73e0b6be76b4779"
+    },
+    {
+      "path": "mobile/app.config.ts",
+      "size": 673,
+      "sha256": "34902997a9f988463ff04aa28aae57c19df579fdb584837c21cfdeed36880f10"
+    },
+    {
+      "path": "mobile/app.json",
+      "size": 2863,
+      "sha256": "a46166b75e1d92fdd284c6f76e293b16a864fdf421123e50fa14414b427e54e6"
+    },
+    {
+      "path": "mobile/assets/adaptive-icon.png",
+      "size": 7605,
+      "sha256": "e166c6f3f53e18f635854d37b73209fbfc5b509d2ce49217f8316632fd8f1ad1"
+    },
+    {
+      "path": "mobile/assets/icon.png",
+      "size": 8470,
+      "sha256": "38787ef0bb98f6c7c25d7b5a0652f5228ff9b0d53c99a2bac8282caf1a16e60b"
+    },
+    {
+      "path": "mobile/assets/notification-icon.png",
+      "size": 370,
+      "sha256": "0672b62c8bb1f4dd3d226bdca771821d0c39b9f4f003f614f8aa129cf2dd44f1"
+    },
+    {
+      "path": "mobile/assets/splash.png",
+      "size": 21070,
+      "sha256": "4bb1dd4a9c371937a72c269c03b8557ad82f5ef570f0deba4e41bc35df7cb84a"
+    },
+    {
+      "path": "mobile/babel.config.js",
+      "size": 770,
+      "sha256": "1fc70cfda63af4017d222481a8478b27d9861b65ceccd88d806cafbea54c8a29"
+    },
+    {
+      "path": "mobile/components/cards/StatCard.tsx",
+      "size": 356,
+      "sha256": "ea72b6dc8369030bdbc46094d9c57f6e2b15078de6b87c1a7c79daf69f9fb865"
+    },
+    {
+      "path": "mobile/components/charts/BarChart.tsx",
+      "size": 1654,
+      "sha256": "26cf6038ad2167a79e7da70a1b62db1fcfd388a0fa6febba131a7773bbe18e1e"
+    },
+    {
+      "path": "mobile/components/charts/SparkLine.tsx",
+      "size": 904,
+      "sha256": "ac139b71a0f47417dfd3eb20e38f0e9d267487620ba637d0ac68e7dcafa9c593"
+    },
+    {
+      "path": "mobile/components/charts/index.ts",
+      "size": 124,
+      "sha256": "8887df9309aebe5da5a47b8ee985f34b764ca1b476ceaf164d37c0325c5f3d8c"
+    },
+    {
+      "path": "mobile/components/documents/DocumentListItem.tsx",
+      "size": 1740,
+      "sha256": "b23f3f91d8532b8c010ba38c756c5f11c5c99a2ea8cdb0ed89f1255c94e19560"
+    },
+    {
+      "path": "mobile/components/documents/index.ts",
+      "size": 130,
+      "sha256": "b2de655dc124ddefa27d612a5178760abe58e5234a0a66a8e363bc62d5467003"
+    },
+    {
+      "path": "mobile/components/flashcards/FlashcardTile.tsx",
+      "size": 2159,
+      "sha256": "3b9d8b207012eebcb97025c918803c141a5ef2050fde415bb85bb199561d48bc"
+    },
+    {
+      "path": "mobile/components/flashcards/index.ts",
+      "size": 64,
+      "sha256": "048259a3208513e40f5cb37b7f182e3e1694969ee68a074f1f79a92691364668"
+    },
+    {
+      "path": "mobile/components/formulas/FormulaCard.tsx",
+      "size": 1706,
+      "sha256": "e8679911a43817ed5cb03da234b8ffa059b40f6f8c05227bdc52d9699371e2b2"
+    },
+    {
+      "path": "mobile/components/formulas/index.ts",
+      "size": 112,
+      "sha256": "89135443b937ab7eb301879232acfb58489eacff6aa7c6e424bbea6fd17ad1b9"
+    },
+    {
+      "path": "mobile/components/navigation/EmptyState.tsx",
+      "size": 776,
+      "sha256": "f730bacb4232ca124c699eff135c2ff5cb3228967d9119c68a92ef36e3e3cc96"
+    },
+    {
+      "path": "mobile/components/navigation/HeaderBar.tsx",
+      "size": 1292,
+      "sha256": "65ce4126932f5ff89db3d5e532242115828ac411e9b1d70a93c5f2ffbed0e68f"
+    },
+    {
+      "path": "mobile/components/navigation/index.ts",
+      "size": 84,
+      "sha256": "f65f0287fc165a7ad8f5f955f36919687e299226affb2251a1d8b7810442f645"
+    },
+    {
+      "path": "mobile/components/notes/StructuredNoteViewer.tsx",
+      "size": 10948,
+      "sha256": "077e6ae354897a7ee8b0bab3838dfec5db7c5fa861e684eda241c68cd65c392b"
+    },
+    {
+      "path": "mobile/components/notes/StudyPackageView.tsx",
+      "size": 1284,
+      "sha256": "4b11184c06ac6b6929b56f03809af54d68c16b79d8d220311ca1e1bd7d7d493d"
+    },
+    {
+      "path": "mobile/components/quiz/QuestionCard.tsx",
+      "size": 2218,
+      "sha256": "d5fbda3305fa02f6df22cc1e98a369d497417afb4570e303874c17d605e2efa4"
+    },
+    {
+      "path": "mobile/components/quiz/index.ts",
+      "size": 47,
+      "sha256": "44e681ad0929b2c3350a93efb02d3f3e8c98b088717a19e0fff1eb100bde6254"
+    },
+    {
+      "path": "mobile/components/research/EvidenceList.tsx",
+      "size": 1672,
+      "sha256": "149c434bc8b9a852ca32b74a5b169bab8f00ac84a2f61921e110f9ae81653dfd"
+    },
+    {
+      "path": "mobile/components/research/index.ts",
+      "size": 100,
+      "sha256": "bc32f007a348e8b808ef78e4bc59b8a9880d9e9e90fedca9e011d62593d5194a"
+    },
+    {
+      "path": "mobile/components/tutor/ChatBubble.tsx",
+      "size": 1370,
+      "sha256": "f52d62f42ee918471df7d42da30c329256306ea45a9301f3e5520ddca096dad2"
+    },
+    {
+      "path": "mobile/components/tutor/index.ts",
+      "size": 102,
+      "sha256": "d5781803294667b3346ac84711c3183cd1790000de7723dc6174d718eea940c8"
+    },
+    {
+      "path": "mobile/components/ui/Button.tsx",
+      "size": 1307,
+      "sha256": "08e5f822054557b5c1fcafe910b538c9d4c5147f3384859c63cd578011246bc0"
+    },
+    {
+      "path": "mobile/components/ui/Card.tsx",
+      "size": 447,
+      "sha256": "0b6f1d6acd0b0f9a1a2990fb237e376a963eb2e4c4bac88e82623d7d66fc7f44"
+    },
+    {
+      "path": "mobile/components/ui/Chip.tsx",
+      "size": 686,
+      "sha256": "9550b6b73804d7f36b7f653d54645255c9b00e50f9e19313da11eb03d04bae88"
+    },
+    {
+      "path": "mobile/components/ui/Field.tsx",
+      "size": 847,
+      "sha256": "ddf785395bcc044d41d83a3e8e8033d8aa5cdc98a2f2775f02429abb18101619"
+    },
+    {
+      "path": "mobile/components/ui/OfflineBanner.tsx",
+      "size": 999,
+      "sha256": "8b63864ec937aca7acfc60faacaf95790910c1c682299f35d3885fdd1ce00c58"
+    },
+    {
+      "path": "mobile/components/ui/Progress.tsx",
+      "size": 540,
+      "sha256": "64f5e7fe01a72f473804eca41b306c44c19060477e2c0dfec08b184e99bf08c8"
+    },
+    {
+      "path": "mobile/components/ui/Screen.tsx",
+      "size": 896,
+      "sha256": "d4203cd4e8d4e6732408fe3bc9d771ab9a851d3b0ba8e43735cc5b591d39280b"
+    },
+    {
+      "path": "mobile/components/ui/Text.tsx",
+      "size": 706,
+      "sha256": "c74100478f360687d881b8a118ef988a14a67a653e0a5a53abb388279e421e60"
+    },
+    {
+      "path": "mobile/constants/config.ts",
+      "size": 10285,
+      "sha256": "f13d10cd0be8d4ad00f5ab943f071758a1a18d2e1e023c8941d8e2d4da5acfbf"
+    },
+    {
+      "path": "mobile/constants/index.ts",
+      "size": 243,
+      "sha256": "7e11e0f47b486741080eb57e93f0b41ea18abc24e7ccafc9fdea7c2328102c88"
+    },
+    {
+      "path": "mobile/constants/routes.ts",
+      "size": 2571,
+      "sha256": "1c894d109ca35bbcf10f73face810a9fc39684847b01b5eb10ecff2b79be6188"
+    },
+    {
+      "path": "mobile/eas.json",
+      "size": 564,
+      "sha256": "625d39c56c011e208d1e1a68faedbdcef80ffac292cd2a67bca6315c00e75305"
+    },
+    {
+      "path": "mobile/eslint.config.js",
+      "size": 371,
+      "sha256": "60fcdf1cae43b6b9cb820695bdc8404ee6337aef370dfb6648a5ad8e5a9574a0"
+    },
+    {
+      "path": "mobile/expo-env.d.ts",
+      "size": 206,
+      "sha256": "451f574e85a69b1f0d7c6e9dd50c9971157298a540aec285070b221c14ac4fbe"
+    },
+    {
+      "path": "mobile/features/auth/AuthProvider.tsx",
+      "size": 3600,
+      "sha256": "c4b9fdeabd84eef55826ca6049c24ec69ec66b27ebacca8abf84f6f9022b6fd6"
+    },
+    {
+      "path": "mobile/features/auth/GoogleSignInButton.tsx",
+      "size": 1960,
+      "sha256": "623199eb1d182a40dfb2eddc03a067ee9b020c541e5be729b9845b2abd2e7e9a"
+    },
+    {
+      "path": "mobile/features/dashboard/useDashboard.ts",
+      "size": 794,
+      "sha256": "ab0605626500a87eb17407ba0f838b0cd6b4d5b4d27dd0d9aeece4924665954c"
+    },
+    {
+      "path": "mobile/features/documents/useDocuments.ts",
+      "size": 1563,
+      "sha256": "f5db49af0dd68e2789e5293c0687ad053d8889c7379246779048acdb8145935f"
+    },
+    {
+      "path": "mobile/features/exam/useExams.ts",
+      "size": 1578,
+      "sha256": "27c13c2c7f9cdbd1fb03b079debe819c4933b326e8d5160a4aaf1b5a21fa3ca5"
+    },
+    {
+      "path": "mobile/features/feature/FeatureScreen.tsx",
+      "size": 2370,
+      "sha256": "604c32691c5dccf87806b21a109a6eea3e26f6d4ebb4c00a15541ebdb97f87ed"
+    },
+    {
+      "path": "mobile/features/flashcards/useFlashcards.ts",
+      "size": 1816,
+      "sha256": "bb519cb5bfb822beb76f6d7de6ce77c39b03cc8f98a68a96ebb01e3be634e7b0"
+    },
+    {
+      "path": "mobile/features/memory/useMemoryTricks.ts",
+      "size": 723,
+      "sha256": "32f7b7c5d195f0564f9a738e515a14f64e1618682e6571e58ecde74cb5e9fe3a"
+    },
+    {
+      "path": "mobile/features/notes/useNotes.ts",
+      "size": 1364,
+      "sha256": "8e6111dd09953d40ccc8136aeb8d77664b05bc27bdec675dea279cd1fc0f810f"
+    },
+    {
+      "path": "mobile/features/progress/useProgress.ts",
+      "size": 1009,
+      "sha256": "f7b038dde7b9a12e83e5c13253f38706b04fe57a922efae7136fd658ce7c9e33"
+    },
+    {
+      "path": "mobile/features/quiz/useQuiz.ts",
+      "size": 2145,
+      "sha256": "19269444e02b4200a5febe09bd7107027c56de9c8007ab625243ac391b80493f"
+    },
+    {
+      "path": "mobile/features/research/useResearch.ts",
+      "size": 1620,
+      "sha256": "37cace5a3f9fc1f64417e1b625162349530e909a17b0724a74acbeab6acce488"
+    },
+    {
+      "path": "mobile/features/revision/useRevision.ts",
+      "size": 823,
+      "sha256": "3a2c164abefcd4f7d9aab0dc8e6aded873925566e3e07f88a274ee9bec1a530b"
+    },
+    {
+      "path": "mobile/features/search/useSearch.ts",
+      "size": 824,
+      "sha256": "1085678862df4c09a4ea73b1731fb7eebede430eef48828f5ca8f66c79514ddc"
+    },
+    {
+      "path": "mobile/features/settings/useSettings.ts",
+      "size": 1761,
+      "sha256": "fc6f0dfeda8dd70ebe86961596e253cca8e31efdd0344d21deefa93532b32d70"
+    },
+    {
+      "path": "mobile/features/study-plan/useStudyPlan.ts",
+      "size": 2509,
+      "sha256": "d26c73a3329b4c723c84f83b03104e2ed747d8ce02cb2c36a764ef878213f7bc"
+    },
+    {
+      "path": "mobile/features/studypack/useStudyPack.ts",
+      "size": 5099,
+      "sha256": "8e0e8c0947e71f8d1f44a98bb8e9eb33d8d8a671c56f6481013badd80d106a0e"
+    },
+    {
+      "path": "mobile/features/tutor/useTutor.ts",
+      "size": 1689,
+      "sha256": "02ef2e43a300b649b4e85901a34bb9fdfa68ea5a45397ee8d67e34588578eb45"
+    },
+    {
+      "path": "mobile/features/workspace/LegacyWorkspaceScreen.tsx",
+      "size": 3521,
+      "sha256": "d31e1d17a1d401565304d4b7bbc694b7491f65546608601af76c253216e73b5d"
+    },
+    {
+      "path": "mobile/features/workspace/useGenerate.ts",
+      "size": 725,
+      "sha256": "b801d58fc92157d5d971a70713c6b2a10a17993d7a01b8ca5ad4698b94d14a5b"
+    },
+    {
+      "path": "mobile/features/youtube/useYoutube.ts",
+      "size": 906,
+      "sha256": "508eefb20496fda2d800c65d9649ab70f08ffa6b730be5cfd728228b05d1c41b"
+    },
+    {
+      "path": "mobile/hooks/index.ts",
+      "size": 403,
+      "sha256": "f8c8cf7d90597f73e67d4fcb24f80a3660d8c2c1ccd7fe5b60d58c8967f196d2"
+    },
+    {
+      "path": "mobile/hooks/useAsync.ts",
+      "size": 1758,
+      "sha256": "5e94ca6ce0b4a00ad81f444c3afb680ddffce4d30cc6a7e54aa0f057e0664761"
+    },
+    {
+      "path": "mobile/hooks/useDebounce.ts",
+      "size": 1063,
+      "sha256": "4731cb3ea439610074d7967def2b110efa08fed0a325ac83008d951517f54e7e"
+    },
+    {
+      "path": "mobile/hooks/useNetworkStatus.ts",
+      "size": 1296,
+      "sha256": "59f08ba05c7321195cc09ceceff25f8201b3ff629e92c4d5880964a2556bd1e9"
+    },
+    {
+      "path": "mobile/hooks/useNotifications.ts",
+      "size": 1507,
+      "sha256": "4354b96897b0d87bd80ca80208a0ecc447083c58ba0e1f78058676f8cf1574f9"
+    },
+    {
+      "path": "mobile/metro.config.js",
+      "size": 769,
+      "sha256": "75010b15ee5ab3a9387b4232ada4241d7ee9bb11ff2496d93891adfcef8d8897"
+    },
+    {
+      "path": "mobile/package-lock.json",
+      "size": 563958,
+      "sha256": "869af1c4dcbafa4916856d9a55e9af2bb4984ec0969f41034f3017981c7393ee"
+    },
+    {
+      "path": "mobile/package.json",
+      "size": 2741,
+      "sha256": "e01df13b1aaa45c776723f980e391a9abecb53b5420fc3fa276a92f78aecbfc3"
+    },
+    {
+      "path": "mobile/scripts/config-check.js",
+      "size": 2587,
+      "sha256": "96a5e4799e0da151b6ca63c162ffeb50c0ada2715fb096f1bea5ba518bc38b9c"
+    },
+    {
+      "path": "mobile/services/api/client.ts",
+      "size": 3674,
+      "sha256": "04c98f2fa9179b636ba0b552192466465b7592316d252bdc988eda93d6853bd5"
+    },
+    {
+      "path": "mobile/services/audio/voice.ts",
+      "size": 451,
+      "sha256": "15b6fdd282339fac4c52e4820524c55c36b45574ff68507cfe48fe53968abd3f"
+    },
+    {
+      "path": "mobile/services/auth/googleSignIn.ts",
+      "size": 4366,
+      "sha256": "edb50d715e6e209b7842619df7103b9caa291b57bf2a270fad2b640724fb0fbd"
+    },
+    {
+      "path": "mobile/services/auth/tokenStore.ts",
+      "size": 519,
+      "sha256": "9b732f9266e02fd5a1da5fc4320f39e9a3add14d95c42dcc40dc97303a3d4389"
+    },
+    {
+      "path": "mobile/services/camera/scanner.ts",
+      "size": 589,
+      "sha256": "a10477bd74eb657bfa6dc10a831207bd2ac6273f1d7daac5f66531e920e57d47"
+    },
+    {
+      "path": "mobile/services/files/index.ts",
+      "size": 703,
+      "sha256": "7693670babd668057d103c828ad4a2c8f36176f17318b91efe22b47037d9b056"
+    },
+    {
+      "path": "mobile/services/notifications/index.ts",
+      "size": 706,
+      "sha256": "e32ae92473e5f7e5e3e7229f5c2909c91205627aa7202034e9a4fd43be66ab68"
+    },
+    {
+      "path": "mobile/services/sharing/index.ts",
+      "size": 542,
+      "sha256": "5791ed4b5314894e73174d2ce298760de49abf2127e9e653f37d578b69c07e6d"
+    },
+    {
+      "path": "mobile/services/storage/offlineDb.ts",
+      "size": 2003,
+      "sha256": "d585140529cf4b5fea56b1d079f738a92bd72dbd6ffb36ae9b38f758fdeef875"
+    },
+    {
+      "path": "mobile/store/preferences.ts",
+      "size": 507,
+      "sha256": "3b7c5171e59a783d3bf3830b92668b9f1889e242c32eb8ad9ccf4bdb1fd80dde"
+    },
+    {
+      "path": "mobile/store/workspace.ts",
+      "size": 845,
+      "sha256": "b5c1a06442f3fd7b73906a0dfab50b51585e551f964d02e56bba673490355e59"
+    },
+    {
+      "path": "mobile/tests/deeplinks.test.ts",
+      "size": 248,
+      "sha256": "a526aba2030d3673fa39b3f3ae8e6ce66f114fa5df340e9386a31aa57ce73bdc"
+    },
+    {
+      "path": "mobile/tests/feature-screen-contract.test.ts",
+      "size": 244,
+      "sha256": "9edb8193bc5b4258add7697161975aa692ce8569662974741a3fb8a06b508c59"
+    },
+    {
+      "path": "mobile/tests/setup.ts",
+      "size": 112,
+      "sha256": "81b93fc2b62a2f8bce3998c15088566fb948502260c9d7bb9e2b6598ad5a1c13"
+    },
+    {
+      "path": "mobile/tests/theme.test.ts",
+      "size": 241,
+      "sha256": "c4dfa3e214698b3332535628b444b18cd7ec7b250b2121c817e4ba4f04fc18ad"
+    },
+    {
+      "path": "mobile/tests/workspace.test.ts",
+      "size": 437,
+      "sha256": "1327a5f147762c40071ead7fd1a5531ddd0115d82b143c80ab1b18dc26bb31a9"
+    },
+    {
+      "path": "mobile/theme/tokens.ts",
+      "size": 888,
+      "sha256": "b161d0596e0e877cc28eda359f672ad4a0681ea5249f3af977a6427d8a1cb8b6"
+    },
+    {
+      "path": "mobile/theme/useTheme.ts",
+      "size": 342,
+      "sha256": "a188031874e05257f0c0df1b3ef5bab0299ba4914800df52cea84d016549eb08"
+    },
+    {
+      "path": "mobile/tsconfig.json",
+      "size": 335,
+      "sha256": "4c42f2610ca51e33bc49d12aa43f80b88ce3235a2a32e1e2cae0e702ba226011"
+    },
+    {
+      "path": "mobile/types/index.ts",
+      "size": 1274,
+      "sha256": "23d698b6610865ce4d0d8a5825c78282c1585a59eb1cbabb56c4706e2b9007ac"
+    },
+    {
+      "path": "mobile/utils/dates.ts",
+      "size": 2707,
+      "sha256": "cc667847da593f0dd607089c5371c0344ade929a5216acf374680fade981a831"
+    },
+    {
+      "path": "mobile/utils/errors.ts",
+      "size": 2162,
+      "sha256": "596f1192237350b5e357aa516abe7e15406724a93e307df07bb6296a58a07423"
+    },
+    {
+      "path": "mobile/utils/format.ts",
+      "size": 1932,
+      "sha256": "c9ca7af5ef77934b04ad798018db28d6ba047b6665d3a86a2ff0984f2db85ea9"
+    },
+    {
+      "path": "mobile/utils/index.ts",
+      "size": 107,
+      "sha256": "39f1debf8d4a2d3b40d8966a219676866f9f5a2f2fe3f96cf9a8fcb9056b607d"
+    },
+    {
+      "path": "mobile/utils/validation.ts",
+      "size": 2894,
+      "sha256": "443ab7463dc4fc8357e71cc71049a46c269bd7f65e408cf5513af351836ab8c7"
+    },
+    {
+      "path": "prompts/concepts/explain.md",
+      "size": 105,
+      "sha256": "22cc7272e9aa26c9a84d42d07d975ccd8e736bb56ea70c4832c0b1a96642dda1"
+    },
+    {
+      "path": "prompts/definitions/extract.md",
+      "size": 84,
+      "sha256": "d637e3db2694d7ab533bea0391cb464f324c947e1d7f16a06a8196c212bc634d"
+    },
+    {
+      "path": "prompts/derivations/stepwise.md",
+      "size": 129,
+      "sha256": "5eb8b1661a77ba6a46574db6157f713950580192dc7456a58b9c8722dee805c1"
+    },
+    {
+      "path": "prompts/exam/analyze.md",
+      "size": 114,
+      "sha256": "c63c1bfab1d8a7224287cfdd6f5c2f335621f430e433e838d4b4182164335e26"
+    },
+    {
+      "path": "prompts/formulas/verify.md",
+      "size": 120,
+      "sha256": "4206ac03d2fbbef08a2817623a874801737346ff177c0e815e28f88516ec554d"
+    },
+    {
+      "path": "prompts/memory/create.md",
+      "size": 108,
+      "sha256": "81ca26b4a6af14f551b0273d7fb5ef39bd35c4ceef082249adae6e5a1e5df0cf"
+    },
+    {
+      "path": "prompts/notes/generate.md",
+      "size": 161,
+      "sha256": "5d1d3b4f317420c5245854c9cd358c5be816b35d6e436f3523a9d7ab1db41b64"
+    },
+    {
+      "path": "prompts/numericals/solve.md",
+      "size": 140,
+      "sha256": "a488384c2a5a5da548c55db03bb64f323a3cec9a0ba2e14d2417e5fd5371e657"
+    },
+    {
+      "path": "prompts/prediction/prioritize.md",
+      "size": 118,
+      "sha256": "f5d98a74e156678909d9b461eefe560e15463b556d53144da3e17855a375528d"
+    },
+    {
+      "path": "prompts/pyq/analyze.md",
+      "size": 122,
+      "sha256": "dde7eb072534524f6c819e55ab435b43c7a0f62908935e1c1e3f9a9fd1df86c3"
+    },
+    {
+      "path": "prompts/questions/generate.md",
+      "size": 112,
+      "sha256": "49743bdce1ec8efa1b770e9a9519ef33a2f029a77f4f5e8251cf27d7a06f9012"
+    },
+    {
+      "path": "prompts/research/deep.md",
+      "size": 164,
+      "sha256": "d5ecf89f080bf4e94fabd47c080682e4a717568f9647919921c3f0b0b6c6518e"
+    },
+    {
+      "path": "prompts/revision/recommend.md",
+      "size": 109,
+      "sha256": "8f91faec056cac152a6a4f3aaf39f746971fd07962f2bf3e1bfff09d957fffac"
+    },
+    {
+      "path": "prompts/system/core.md",
+      "size": 234,
+      "sha256": "26e8e93e6f231280de365ec97a08055c833b7b3292805a2782e4c3f5c9055b13"
+    },
+    {
+      "path": "prompts/tutor/respond.md",
+      "size": 130,
+      "sha256": "8d83e78fcd12984df8be13176c318f8a9667772fb00e977e11163709515aece7"
+    },
+    {
+      "path": "prompts/youtube/process.md",
+      "size": 130,
+      "sha256": "3275f31daa281771180c92a86d7b284285a68e97c13b82c760bc4bb7d2e7387e"
+    },
+    {
+      "path": "scripts/android-debug-sha1.sh",
+      "size": 720,
+      "sha256": "2e663912c1ce99b544f7a95743f0c199c710fbc0209b22e5aeb52ad82cac18d2"
+    },
+    {
+      "path": "scripts/backup_postgres.sh",
+      "size": 439,
+      "sha256": "e1d8ba6b1a82edc88d46cb6179c351db7754d3d8fc181262ecf3df84e3e14825"
+    },
+    {
+      "path": "scripts/bootstrap-debug-keystore.sh",
+      "size": 1116,
+      "sha256": "18e7e8398d63371a9d29f7d22e39525b0a5e225cbd823998a0858ae0121e5348"
+    },
+    {
+      "path": "scripts/check.sh",
+      "size": 259,
+      "sha256": "f96e4a27d28071f517ec758dafd9ba62062edb4457323624c8d35666b39fc3e9"
+    },
+    {
+      "path": "scripts/dev.sh",
+      "size": 136,
+      "sha256": "e371bae6efce2d789cfefa614f487946ee9fd27d5e9cda37ed84e93e455cb051"
+    },
+    {
+      "path": "scripts/restore_postgres.sh",
+      "size": 265,
+      "sha256": "a28a1d00fcdc327bc14ef47decfe1954dbc23a980432279193c6c0676756ca82"
+    },
+    {
+      "path": "scripts/test_migrations.sh",
+      "size": 385,
+      "sha256": "c30d2b0c5c9ef5c3c193fe872a27fddd32ae4eac1fc64b67fdc382f339838a88"
+    },
+    {
+      "path": "scripts/validate_environment.py",
+      "size": 9613,
+      "sha256": "3d9370be49cfe99bd64a97d90996642be1494dfae0992e8dc5bc07664db1065a"
+    },
+    {
+      "path": "scripts/validate_project.py",
+      "size": 4353,
+      "sha256": "1043f1c934623328446aeca17774c71e8ad7fab07f9494ab61227542633d76aa"
+    },
+    {
+      "path": "scripts/verify_schema.py",
+      "size": 1199,
+      "sha256": "dfd83518aa9695e29e65bc17fce8f88b471ab02825a6cfee4ac14f38cced7af6"
+    },
+    {
+      "path": "scripts/windows-android-doctor.ps1",
+      "size": 2367,
+      "sha256": "26c02278b2220d1f8379b22163786219b52a2944fac2ff1ee6adfc6121ccea93"
+    },
+    {
+      "path": "storage/audio/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "storage/documents/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "storage/generated/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "storage/images/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "storage/uploads/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/test_core_stdlib.py",
+      "size": 874,
+      "sha256": "db410f87fd23f3074b250cb91a4b7cc0f9b5c1907d4dfcc44374d90a407ff743"
+    },
+    {
+      "path": "tools/generate-android-assets.sh",
+      "size": 3891,
+      "sha256": "e806946dfb5843b3476017235fb4d6c1dc0e9b2157932a76b6ec679e4d5dc6e1"
+    },
+    {
+      "path": "vector-db/README.md",
+      "size": 344,
+      "sha256": "46b6cb071b24b89ffa69972727be4d3dc5ba679af0aa8bf5a5496c5ccc4963e1"
+    },
+    {
+      "path": "vector-db/collections/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "vector-db/embeddings/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "vector-db/indexes/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "vector-db/retrieval/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflows/.gitkeep",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "workflows/study-everything.yaml",
+      "size": 289,
+      "sha256": "5f2022592f6aefb77e56187a6669da5d0bd7c0e08086c9f0ad7eb2c0dd219796"
+    }
+  ]
+}

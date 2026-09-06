@@ -1,0 +1,114 @@
+{
+  "expo": {
+    "name": "StudyForge AI",
+    "slug": "ai-notes-maker",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "ai-notes-maker",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F9F8F7"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.studyforge.ainotes",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Scan notes and study documents.",
+        "NSMicrophoneUsageDescription": "Ask the AI tutor by voice.",
+        "NSPhotoLibraryUsageDescription": "Import study images and documents."
+      }
+    },
+    "android": {
+      "package": "com.studyforge.ainotes",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#F9F8F7"
+      },
+      "permissions": [
+        "CAMERA",
+        "RECORD_AUDIO",
+        "POST_NOTIFICATIONS"
+      ],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": false,
+          "data": [
+            {
+              "scheme": "ai-notes-maker",
+              "host": "notes"
+            },
+            {
+              "scheme": "ai-notes-maker",
+              "host": "quiz"
+            },
+            {
+              "scheme": "ai-notes-maker",
+              "host": "research"
+            },
+            {
+              "scheme": "ai-notes-maker",
+              "host": "reset-password"
+            },
+            {
+              "scheme": "ai-notes-maker",
+              "host": "verify-email"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ],
+      "edgeToEdgeEnabled": true
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow StudyForge AI to scan study material."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#2783DE"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 36,
+            "targetSdkVersion": 36,
+            "minSdkVersion": 24,
+            "buildToolsVersion": "36.0.0",
+            "ndkVersion": "27.1.12297006",
+            "kotlinVersion": "2.1.20",
+            "enableProguardInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true,
+            "usesCleartextTraffic": false
+          },
+          "ios": {
+            "deploymentTarget": "15.1"
+          }
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "apiUrl": null,
+      "appEnv": "production"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+# ---- secrets and local configuration (never commit) ----
+.env
+.env.local
+.env.production
+backend/.env
+mobile/.env
+mobile/.env.production
+mobile/android/local.properties
+mobile/android/keystore.properties
+*.jks
+*.keystore
+# The Android DEBUG keystore is deliberately committed. app/build.gradle
+# references this exact path, and without it :app:validateSigningDebug fails on a
+# clean checkout. Its credentials are the standard, public Android debug values
+# (storepass/keypass "android", alias "androiddebugkey") and are NOT secret.
+# Never add a release/upload keystore here.
+!mobile/android/app/debug.keystore
+*.p8
+*.pem
+service-account*.json
+google-services.json
+GoogleService-Info.plist
+
+# ---- templates are intentionally NOT ignored ----
+!*.example
+!*.example.*
+!.env.example
+!mobile/.env.example
+!mobile/.env.production.example
+!mobile/android/keystore.properties.example
+!mobile/android/local.properties.example
+!docs/RAILWAY-VARIABLES.example.env
+
+# ---- dependencies and build output ----
+node_modules/
+.expo/
+.expo-shared/
+dist/
+web-build/
+.gradle/
+.cxx/
+build/
+*.apk
+*.aab
+*.hprof
+
+# ---- python ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+
+# ---- editors / os ----
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.log

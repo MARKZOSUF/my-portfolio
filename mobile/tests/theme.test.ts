@@ -1,0 +1,1 @@
+import { light,dark,spacing } from '@/theme/tokens'; describe('theme',()=>{it('provides semantic tokens',()=>{expect(light.primary).toMatch(/^#/);expect(dark.canvas).not.toBe(light.canvas);expect(spacing.lg).toBeGreaterThan(spacing.sm)})});

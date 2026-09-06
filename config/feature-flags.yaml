@@ -1,0 +1,8 @@
+features:
+  deep_research: true
+  voice_tutor: true
+  youtube_ingestion: true
+  collaboration: true
+  local_ai: false
+rules:
+  local_ai: "No on-device model is bundled; keep disabled until a measured implementation exists."

@@ -1,0 +1,2 @@
+import { useAudioRecorder, AudioModule, RecordingPresets } from 'expo-audio';
+export function useVoiceRecorder(){const recorder=useAudioRecorder(RecordingPresets.HIGH_QUALITY);return {recorder,async start(){const p=await AudioModule.requestRecordingPermissionsAsync();if(!p.granted)throw new Error('Microphone permission is required');await recorder.prepareToRecordAsync();recorder.record();},async stop(){await recorder.stop();return recorder.uri}}}

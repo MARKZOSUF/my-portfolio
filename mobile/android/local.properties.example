@@ -1,0 +1,12 @@
+# StudyForge AI - Android SDK location template
+# Copy to mobile/android/local.properties. This file is machine specific and
+# gitignored; a real local.properties is never committed.
+
+# Windows
+sdk.dir=C:/Users/YOUR_USERNAME/AppData/Local/Android/Sdk
+
+# Linux example
+# sdk.dir=/home/YOUR_USERNAME/Android/Sdk
+
+# macOS example
+# sdk.dir=/Users/YOUR_USERNAME/Library/Android/sdk
