@@ -1,0 +1,10 @@
+{
+  "name": "ZOSUF - Image to QR & QR Code Studio",
+  "description": "Generate Image to QR codes, Wi-Fi, vCards, UPI payments, and URLs. 100% client-side privacy-first image and QR studio.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
