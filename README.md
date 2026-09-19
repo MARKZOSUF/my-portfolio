@@ -1,159 +1,90 @@
-# ZOSUF — Premium Image & QR Code Studio
+# ZOSUF
 
-ZOSUF is a high-precision, client-side QR code generator, scanner, and browser image processing suite. Engineered with modern React, Vite, and Tailwind CSS, ZOSUF operates 100% in the browser with zero remote database dependencies, zero API keys, and complete privacy.
+Privacy-first QR studio, Image-to-QR generator, QR scanner, image tools, safe prank QR creator and poster maker.
 
----
+Creator: [@markzosuf](https://instagram.com/markzosuf)  
+Production URL: `https://zosuf.pages.dev`
 
-## ⚡ Quick Start & Local Setup
+Core features require no login, database, external AI API, or QR API.
 
-### 1. Install Dependencies
+## Local setup
+
 ```bash
 npm install
-```
-
-### 2. Run Development Server
-```bash
 npm run dev
 ```
-Open your browser at `http://localhost:3000` to start creating custom QR codes.
 
-### 3. Production Build
+## Validate and build
+
 ```bash
+npm run typecheck
+npm run lint
+npm run test
 npm run build
-```
-This builds the fully optimized static assets into the `dist` folder.
-
-### 4. Preview Production Build
-```bash
 npm run preview
 ```
 
----
+## Cloudflare Pages
 
-## 🚀 Cloudflare Pages Deployment Configuration
+```text
+Framework preset: Vite
+Build command: npm run build
+Output directory: dist
+Root directory: /
+Node version: 20
+```
 
-Deploying ZOSUF to Cloudflare Pages is seamless because the application is a pure static single-page application (SPA).
+`public/_redirects` provides SPA route fallback. No environment variable is required for core tools.
 
-Configure your Cloudflare Pages project with these exact settings:
-
-| Setting | Value |
-| :--- | :--- |
-| **Framework preset** | `Vite` |
-| **Build command** | `npm run build` |
-| **Output directory** | `dist` |
-| **Root directory** | `/` |
-| **Environment variables** | None required (Zero API keys) |
-
-> **Note:** The `public/_redirects` file (`/* /index.html 200`) and `public/_headers` are automatically included in your build output to ensure direct page refreshes and strict security headers work out of the box on Cloudflare Pages.
-
----
-
-## 🐙 Push to GitHub
-
-To push your ZOSUF repository to GitHub:
+## Push from VS Code
 
 ```bash
 git init
 git add .
-git commit -m "Initial ZOSUF QR generator"
+git commit -m "Initial ZOSUF production app"
 git branch -M main
 git remote add origin YOUR_GITHUB_REPOSITORY_URL
 git push -u origin main
 ```
 
----
+Connect that repository in Cloudflare Workers & Pages. Future pushes deploy automatically.
 
-## 🎨 Supported QR Code Formats (16 Types)
+## Image-to-QR modes
 
-1. **Website URLs** — Instant browser redirect for any domain.
-2. **Image URLs** — Direct links to public photos, assets, or artwork.
-3. **Plain Text** — Text messages, notes, keys, or instructions.
-4. **Wi-Fi Networks** — Connect devices automatically without typing passwords (WPA/WPA2/WPA3, WEP, Open, Hidden SSID).
-5. **vCard Contacts** — Full contact book imports (name, phone, email, organization, job title).
-6. **UPI Payments** — Interoperable payment links for Google Pay, PhonePe, Paytm, and BHIM (`upi://pay?pa=...`).
-7. **Email Drafts** — Pre-fills recipient, subject line, and body (`mailto:`).
-8. **Phone Calls** — Dials phone numbers instantly (`tel:`).
-9. **SMS Messages** — Pre-fills phone number and text message (`smsto:`).
-10. **Map Locations** — Lat/long coordinates or geographic place queries (`geo:` and Google Maps).
-11. **Calendar Events** — Direct iCalendar VEVENT imports for conferences and meetings.
-12. **WhatsApp** — Direct chat initiates with pre-filled text (`wa.me`).
-13. **Telegram** — Direct user profiles or public channel links (`t.me`).
-14. **YouTube** — Direct video or channel links.
-15. **Instagram** — Direct profile links (including `@markzosuf`).
-16. **Custom URLs** — Custom mobile app deep links and raw URI schemes.
+1. **Public Image URL:** encodes a public HTTPS URL and works without a backend.
+2. **Direct Small Image:** compresses locally and only succeeds when the data URL fits QR capacity. Normal photos are too large.
+3. **Cloudflare Upload:** optional R2 hosting through Pages Functions.
 
----
+### Optional R2 setup
 
-## 🖼️ Image Functionality & Architecture Explanation
+1. Create an R2 bucket in Cloudflare.
+2. Open the Pages project → Settings → Functions → R2 bucket bindings.
+3. Add binding `ZOSUF_IMAGES` and choose the bucket.
+4. Redeploy.
+5. Optional: add `PUBLIC_R2_DOMAIN=images.example.com` as a Pages environment variable.
 
-### How Image QR URLs Work
-- When an image is uploaded locally in the browser, it is stored only in browser memory or local cache on that specific machine.
-- Smartphones scanning a QR code from another device cannot access the local file system of your computer.
-- **To create a QR code that opens an image on another phone:**
-  1. Upload your image to any public hosting provider, website, cloud drive, or CDN.
-  2. Copy the public URL (e.g., `https://example.com/photo.jpg`).
-  3. Paste it into the **Public Image URL** field in ZOSUF.
-  4. The generated QR code will now seamlessly display the image on any scanning phone.
+Without R2, the cloud option reports unavailable while all core tools keep working. Uploads accept JPG, PNG and WebP up to 10 MB and use random object keys.
 
-### In-Browser Image Studio
-ZOSUF also includes a standalone local image tool:
-- **Format Conversion:** Convert between JPG, PNG, and WebP.
-- **Client-Side Compression:** High-performance canvas compression with quality slider.
-- **Dimension Resizing:** Custom width/height with aspect ratio locking.
-- **Aspect Ratio Cropping:** 1:1 square, 16:9, and 4:3 presets.
-- **Privacy EXIF Removal:** Re-drawing pixel buffers into HTML Canvas automatically removes camera location and hardware metadata.
+## Advertising
 
----
+Ads are disabled in `src/config/ads.ts`. After AdSense approval, add only the approved publisher and slot IDs and update `public/ads.txt`. Never use fake IDs.
 
-## 📣 How to Add Approved Google AdSense Details
+## Branding and domain
 
-By default, advertising is **completely disabled** in ZOSUF, and no external tracking scripts will load.
+Update `src/config/site.ts`, `index.html`, `public/sitemap.xml` and `public/robots.txt` if the final domain changes. Logos are in `src/assets/Logos.tsx` and `public/favicon.svg`.
 
-To enable approved Google AdSense ads:
-1. Open `/index.html`.
-2. Locate `window.ZOSUF_ADS_CONFIG`:
-   ```javascript
-   window.ZOSUF_ADS_CONFIG = {
-     enabled: true, // Change to true
-     publisherId: "ca-pub-XXXXXXXXXXXXXXXX", // Your approved AdSense Publisher ID
-     slots: {
-       top: "1234567890",    // Your Top Banner Ad Slot ID
-       middle: "0987654321"  // Your Middle Content Ad Slot ID
-     }
-   };
-   ```
-3. Open `public/ads.txt` and replace the placeholder with your authorized seller record:
-   ```
-   google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
-   ```
+## Privacy and safe prank links
 
----
+Image processing and core QR generation run in the browser. Camera frames are not uploaded. Saved styles and optional scan history stay in localStorage and can be cleared from the footer. Prank data is length-limited, URL-safe, rendered as React text and never requests credentials, camera, microphone or location.
 
-## 👤 How to Update Instagram Creator Link
+## Troubleshooting
 
-The creator link is featured across the header, hero, about section, and footer as `@markzosuf` (`https://instagram.com/markzosuf`).
+- Use Node 20.
+- If build fails, delete `node_modules`, run `npm install`, then `npm run typecheck` and `npm run build`.
+- If direct routes return 404, confirm `_redirects` is present in `dist`.
+- If R2 mode is unavailable, verify the binding name is exactly `ZOSUF_IMAGES` and redeploy.
+- Camera scanning requires HTTPS and user permission.
+- If direct image QR is too large, use a public URL or R2.
+- If QR download is disabled, simplify colors/logo until local verification succeeds.
 
-To update this link:
-- Search for `https://instagram.com/markzosuf` or `@markzosuf` across `src/components/Navbar.tsx`, `src/components/Footer.tsx`, `src/components/Hero.tsx`, and `src/pages/AboutPage.tsx`.
-
----
-
-## 🌐 Updating Domain in Sitemap and Canonical Metadata
-
-The project is pre-configured with placeholder domain `https://zosuf.pages.dev`.
-
-When deploying to a custom domain:
-1. Update `<link rel="canonical" ...>` and `<meta property="og:url" ...>` in `/index.html`.
-2. Update the `<loc>` tags and domain in `/public/sitemap.xml`.
-3. Update the `Sitemap:` URL in `/public/robots.txt`.
-
----
-
-## 🛡️ Privacy & Security Highlights
-
-- **Zero Remote Storage:** No databases, no login screens, no tracking beacons.
-- **Client-Side Processing:** All QR matrix creation and image compression happen in the browser.
-- **Offline First:** Fully functional without an active network connection once cached.
-- **Safe Ads Mode:** No advertising script executes without explicit publisher credentials.
-
-Created by **@markzosuf**.
+The source ZIP is a developer delivery artifact only. The live website does not offer project-source or ZIP downloads.

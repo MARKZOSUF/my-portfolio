@@ -1,95 +1,54 @@
 import React from 'react';
-import { ShieldCheck, Lock, EyeOff, Camera, Cookie } from 'lucide-react';
+import { ShieldCheck, Lock, EyeOff, ServerOff } from 'lucide-react';
 
 export const PrivacyPage: React.FC = () => {
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-8 text-slate-300 text-xs sm:text-sm leading-relaxed">
-      <div className="border-b border-slate-800 pb-6 space-y-2">
-        <div className="flex items-center gap-2 text-emerald-400 font-semibold text-xs uppercase tracking-wider">
-          <ShieldCheck className="w-4 h-4" />
-          <span>Security & Sovereignty</span>
+    <div className="max-w-3xl mx-auto space-y-8 animate-in fade-in duration-300 py-6 text-slate-300 text-xs sm:text-sm leading-relaxed">
+      <div className="space-y-2 border-b border-slate-800 pb-6">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-800 text-emerald-400 text-xs font-semibold">
+          <ShieldCheck className="w-3.5 h-3.5" />
+          <span>Zero-Knowledge Architecture</span>
         </div>
-        <h1 className="text-3xl font-display font-bold text-white tracking-tight">
-          Privacy Policy
-        </h1>
-        <p className="text-xs text-slate-400">
-          Last updated: September 2026 • Effective immediately
-        </p>
+        <h1 className="text-3xl font-black text-white tracking-tight">Privacy Policy</h1>
+        <p className="text-slate-400 text-xs">Last updated: October 2026 • Applies to ZOSUF (zosuf.pages.dev)</p>
       </div>
 
-      {/* 1. Core Principle */}
-      <section className="space-y-3">
-        <h2 className="text-base font-bold text-white flex items-center gap-2">
-          <Lock className="w-4 h-4 text-purple-400" />
-          <span>1. 100% Client-Side Architecture</span>
-        </h2>
-        <p>
-          ZOSUF is fundamentally designed as an offline-capable, client-side web application. All QR code synthesis, image re-encoding, format conversion (JPG, PNG, WebP), compression, and metadata (EXIF) stripping occur entirely within your browser’s local sandbox.
-        </p>
-        <p>
-          <strong>No User Data Transmission:</strong> We do not operate a remote database, user account database, or storage bucket for user inputs. Text payloads, Wi-Fi credentials, contact details (vCards), UPI transaction VPAs, and uploaded images are never transmitted to our servers or stored remotely.
-        </p>
-      </section>
+      <div className="space-y-6">
+        <section className="space-y-2">
+          <h2 className="text-lg font-bold text-white">1. Core Privacy Philosophy</h2>
+          <p>
+            At ZOSUF, we believe your personal information, Wi-Fi keys, photos, and scanned records belong exclusively to you. ZOSUF does not use accounts, does not collect analytics via intrusive marketing cookies, and does not sell or share data with advertising brokers.
+          </p>
+        </section>
 
-      {/* 2. Image Processing & Uploads */}
-      <section className="space-y-3">
-        <h2 className="text-base font-bold text-white flex items-center gap-2">
-          <EyeOff className="w-4 h-4 text-cyan-400" />
-          <span>2. Image Processing Notice</span>
-        </h2>
-        <p>
-          When you upload an image in the ZOSUF Image Studio or Image QR tab:
-        </p>
-        <ul className="list-disc pl-5 space-y-1 text-slate-400">
-          <li>The image file is loaded strictly into your device’s local memory via standard HTML5 File and Canvas APIs.</li>
-          <li>Re-encoding the image to a new canvas automatically strips camera metadata (including EXIF location data).</li>
-          <li>Local images cannot be accessed by external phones. To generate a universally scannable QR code for an image, users provide a public web URL.</li>
-        </ul>
-      </section>
+        <section className="space-y-2">
+          <h2 className="text-lg font-bold text-white">2. In-Browser Local Processing</h2>
+          <p>
+            All standard QR generation, barcode decoding, image resizing, and metadata scrubbing occur strictly inside your device’s local browser sandbox using HTML5 Canvas and WebAssembly. No payloads are transmitted across networks unless you explicitly choose cloud hosted mode.
+          </p>
+        </section>
 
-      {/* 3. Camera Permissions */}
-      <section className="space-y-3">
-        <h2 className="text-base font-bold text-white flex items-center gap-2">
-          <Camera className="w-4 h-4 text-pink-400" />
-          <span>3. Camera Scanner Permissions</span>
-        </h2>
-        <p>
-          The QR Scanner feature requests access to your device’s camera exclusively to scan and decode QR codes in real time. Video streams are analyzed frame-by-frame on your device using bundled JavaScript (`jsqr`) and are never recorded, saved, or uploaded to any server. You may decline camera permissions at any time and use the file upload scanner instead.
-        </p>
-      </section>
+        <section className="space-y-2">
+          <h2 className="text-lg font-bold text-white">3. Local Storage</h2>
+          <p>
+            ZOSUF uses your browser's <code className="text-violet-300">localStorage</code> exclusively for your convenience: saving scan history, custom QR design presets, and theme preferences. This data remains on your physical device and can be cleared at any time with a single click.
+          </p>
+        </section>
 
-      {/* 4. Optional Advertising Language (AdSense Requirement) */}
-      <section className="space-y-3">
-        <h2 className="text-base font-bold text-white flex items-center gap-2">
-          <Cookie className="w-4 h-4 text-amber-400" />
-          <span>4. Optional Advertising & Cookies</span>
-        </h2>
-        <p>
-          By default, all advertising is disabled in ZOSUF, and no ad network scripts or tracking beacons are loaded.
-        </p>
-        <p>
-          If the website operator activates Google AdSense or another third-party advertising provider by supplying a valid publisher ID in the site configuration, third-party vendors (including Google) may use cookies to serve ads based on a user’s prior visits to this or other websites.
-        </p>
-        <p>
-          Users may opt out of personalized advertising by visiting Google's Ad Settings (<code>https://adssettings.google.com</code>) or via <code>www.aboutads.info</code>.
-        </p>
-      </section>
+        <section className="space-y-2">
+          <h2 className="text-lg font-bold text-white">4. Camera Access</h2>
+          <p>
+            When utilizing the camera QR scanner, live video frames are processed frame-by-frame in volatile memory and immediately discarded. No video streams or photos are ever saved to disk or broadcast over the internet.
+          </p>
+        </section>
 
-      {/* 5. Local Storage */}
-      <section className="space-y-3">
-        <h2 className="text-base font-bold text-white">5. Local Device Storage</h2>
-        <p>
-          ZOSUF may use browser <code>localStorage</code> solely to remember harmless interface preferences (such as your chosen theme color or recent generated QR codes for your convenience). You can wipe all locally stored data instantly at any time using the <strong>Clear Local Data</strong> button in the website footer.
-        </p>
-      </section>
-
-      {/* 6. Contact */}
-      <section className="space-y-3 pt-4 border-t border-slate-800">
-        <h2 className="text-base font-bold text-white">6. Inquiries & Creator</h2>
-        <p>
-          If you have questions regarding this privacy policy or the technical architecture of ZOSUF, contact the creator on Instagram at <strong>@markzosuf</strong>.
-        </p>
-      </section>
+        <section className="space-y-2">
+          <h2 className="text-lg font-bold text-white">5. Contact</h2>
+          <p>
+            For privacy inquiries, security reports, or technical audits, reach out to creator <strong>@markzosuf</strong> via Instagram at <a href="https://instagram.com/markzosuf" target="_blank" rel="noopener noreferrer" className="text-violet-400 underline">instagram.com/markzosuf</a>.
+          </p>
+        </section>
+      </div>
     </div>
   );
 };

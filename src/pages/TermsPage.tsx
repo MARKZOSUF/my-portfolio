@@ -1,71 +1,51 @@
 import React from 'react';
-import { FileText, AlertCircle, CheckCircle } from 'lucide-react';
+import { Scale, AlertCircle } from 'lucide-react';
 
 export const TermsPage: React.FC = () => {
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-8 text-slate-300 text-xs sm:text-sm leading-relaxed">
-      <div className="border-b border-slate-800 pb-6 space-y-2">
-        <div className="flex items-center gap-2 text-purple-400 font-semibold text-xs uppercase tracking-wider">
-          <FileText className="w-4 h-4" />
-          <span>Legal Agreement</span>
+    <div className="max-w-3xl mx-auto space-y-8 animate-in fade-in duration-300 py-6 text-slate-300 text-xs sm:text-sm leading-relaxed">
+      <div className="space-y-2 border-b border-slate-800 pb-6">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-950/60 border border-violet-800 text-violet-400 text-xs font-semibold">
+          <Scale className="w-3.5 h-3.5" />
+          <span>Acceptable Use & Legal Terms</span>
         </div>
-        <h1 className="text-3xl font-display font-bold text-white tracking-tight">
-          Terms of Use
-        </h1>
-        <p className="text-xs text-slate-400">
-          Last updated: September 2026
-        </p>
+        <h1 className="text-3xl font-black text-white tracking-tight">Terms of Service</h1>
+        <p className="text-slate-400 text-xs">Last updated: October 2026</p>
       </div>
 
-      <section className="space-y-3">
-        <h2 className="text-base font-bold text-white">1. Acceptance of Terms</h2>
-        <p>
-          By accessing and using ZOSUF, you agree to comply with and be bound by these Terms of Use. If you do not agree to these terms, please do not use the application.
-        </p>
-      </section>
+      <div className="space-y-6">
+        <section className="space-y-2">
+          <h2 className="text-lg font-bold text-white">1. Permitted Use</h2>
+          <p>
+            ZOSUF provides client-side utility tools for generating QR codes, scanning barcodes, processing images, and creating harmless interactive greeting cards. By accessing this service, you agree to use it strictly for lawful purposes.
+          </p>
+        </section>
 
-      <section className="space-y-3">
-        <h2 className="text-base font-bold text-white">2. Nature of the Service</h2>
-        <p>
-          ZOSUF provides client-side image editing, formatting, and QR code generation utilities for personal, commercial, and professional use. The application is provided "as is" without warranty of any kind.
-        </p>
-      </section>
+        <section className="space-y-2">
+          <h2 className="text-lg font-bold text-white">2. Prohibited Conduct</h2>
+          <p>You agree never to use ZOSUF to generate:</p>
+          <ul className="list-disc pl-5 space-y-1 text-slate-400">
+            <li>Deceptive phishing links or malicious payloads designed to impersonate financial institutions, authentication screens, or government bodies.</li>
+            <li>Fraudulent UPI payment requests intended to mislead or trick recipients.</li>
+            <li>Harassing, threatening, or non-consensual tracking links.</li>
+            <li>Malware distribution or unauthorized device control schemes.</li>
+          </ul>
+        </section>
 
-      <section className="space-y-3">
-        <h2 className="text-base font-bold text-white flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 text-amber-400" />
-          <span>3. QR Code Scan Reliability & Print Verification</span>
-        </h2>
-        <p>
-          While ZOSUF generates standards-compliant QR matrices according to ISO/IEC 18004:
-        </p>
-        <ul className="list-disc pl-5 space-y-1.5 text-slate-400">
-          <li>You are solely responsible for testing and verifying generated QR codes on multiple physical devices before printing bulk merchandise, signage, or promotional materials.</li>
-          <li>Adding high-density center logos, custom low-contrast colors, or selecting Low (L) error correction may reduce the optical scan readability under poor lighting or curved surfaces.</li>
-          <li>ZOSUF and its creator (@markzosuf) are not liable for any losses resulting from misprinted or unscannable QR codes.</li>
-        </ul>
-      </section>
+        <section className="space-y-2">
+          <h2 className="text-lg font-bold text-white">3. Safe Prank Policy</h2>
+          <p>
+            The Safe Prank QR feature is strictly intended for wholesome entertainment and compliments among consenting friends. Creating links that inflict distress, fear, or reputational damage violates our service policies.
+          </p>
+        </section>
 
-      <section className="space-y-3">
-        <h2 className="text-base font-bold text-white">4. Payment & Financial Disclaimers (UPI)</h2>
-        <p>
-          UPI payment QR codes encode standard URI parameters formatted by the user. ZOSUF is not a payment gateway, payment aggregator, or financial intermediary. We do not process, verify, facilitate, or settle transactions. Always verify payee account details before scanning or authorizing payments.
-        </p>
-      </section>
-
-      <section className="space-y-3">
-        <h2 className="text-base font-bold text-white">5. Intellectual Property & Brand</h2>
-        <p>
-          All branding, visual styling, vector logos, and proprietary code of ZOSUF are the property of the creator (@markzosuf). Generated QR code graphics and processed images remain the exclusive property of the user who generated them.
-        </p>
-      </section>
-
-      <section className="space-y-3 pt-4 border-t border-slate-800">
-        <h2 className="text-base font-bold text-white">6. Contact Information</h2>
-        <p>
-          For licensing or questions regarding ZOSUF, connect with @markzosuf on Instagram.
-        </p>
-      </section>
+        <section className="space-y-2">
+          <h2 className="text-lg font-bold text-white">4. Disclaimer of Warranty</h2>
+          <p>
+            ZOSUF is provided on an "as-is" and "as-available" basis without warranties of any kind. While ZOSUF incorporates real-time optical verification routines, users are responsible for physically verifying printed QR codes prior to mass manufacturing or print distribution.
+          </p>
+        </section>
+      </div>
     </div>
   );
 };
