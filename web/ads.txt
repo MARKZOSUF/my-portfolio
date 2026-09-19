@@ -1,0 +1,6 @@
+# ZOSUF - Google AdSense / Authorized Digital Sellers file
+# When approved for Google AdSense or an ad exchange, replace the placeholder line below:
+# Example: google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+#
+# Leave this file present in the public/ folder.
+# Cloudflare Pages will serve this at https://zosuf.pages.dev/ads.txt
