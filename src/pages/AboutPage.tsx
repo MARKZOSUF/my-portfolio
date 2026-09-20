@@ -4,9 +4,7 @@ import {
   ShieldCheck,
   Instagram,
   Globe,
-  Heart,
   Cpu,
-  Zap,
   ExternalLink,
 } from 'lucide-react';
 import { siteConfig } from '../config/site';

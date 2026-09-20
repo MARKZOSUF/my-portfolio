@@ -40,6 +40,61 @@ const imageTool = fs.readFileSync('src/features/images/ImageToQR.tsx', 'utf8');
 if (!imageTool.includes('QR_BYTE_CAPACITY[designConfig.errorCorrection]')) {
   failures.push('Image QR ignores selected error correction');
 }
+// Requirement: the image tool must encode a real HTTPS link, never base64 image data.
+if (!imageTool.includes('buildSiteLinkPayload(siteConfig.productionUrl)')) {
+  failures.push('Image QR no longer encodes the canonical production HTTPS URL');
+}
+if (!imageTool.includes('isPhoneScannableLink')) {
+  failures.push('Image QR does not guard its payload against unscannable schemes');
+}
+if (/data:image\/[a-z]+;base64/.test(imageTool.replace(/dataUrl/g, ''))) {
+  failures.push('Image QR source references an inline base64 image payload');
+}
+if (fs.readFileSync('src/config/site.ts', 'utf8').indexOf('https://markzosuf.pages.dev') === -1) {
+  failures.push('Production URL is not https://markzosuf.pages.dev');
+}
+
+// Requirement: designs, templates, frames and logos must survive rendering.
+const safety = fs.readFileSync('src/utils/qrSafety.ts', 'utf8');
+if (safety.includes('makeSafeQRConfig')) {
+  failures.push('Pre-emptive design flattening (makeSafeQRConfig) has returned');
+}
+for (const needed of ['enforceQRMinimums', 'repairQRConfig', 'enforceShapesMinimums', 'repairShapesConfig']) {
+  if (!safety.includes(`export function ${needed}`)) failures.push(`qrSafety is missing ${needed}`);
+}
+const renderer = fs.readFileSync('src/features/qr/QRRenderer.tsx', 'utf8');
+if (!renderer.includes('isUnscannablePayload')) {
+  failures.push('QRRenderer does not block data: payloads');
+}
+if (!renderer.includes('repairQRConfig')) {
+  failures.push('QRRenderer has no scannability fallback path');
+}
+
+// Requirement: Cloudflare Pages must work with no API or Worker.
+const swSource = fs.readFileSync('public/sw.js', 'utf8');
+if (!swSource.includes('__ZOSUF_BUILD_ID__')) {
+  failures.push('Service worker has no build-id placeholder — deploys will serve a stale cache');
+}
+if (!swSource.includes("request.mode === 'navigate'")) {
+  failures.push('Service worker does not handle SPA navigations');
+}
+if (!swSource.includes('url.search')) {
+  failures.push('Service worker may cache prank links carrying query data');
+}
+const headers = fs.readFileSync('public/_headers', 'utf8');
+for (const route of ['/qr-scanner', '/prank-qr', '/image-to-qr', '/p']) {
+  if (!headers.includes(`\n${route}\n`)) failures.push(`_headers has no cache rule for ${route}`);
+}
+const fallbackScript = fs.readFileSync('scripts/ensure-pages-fallback.mjs', 'utf8');
+if (!fallbackScript.includes('/* /index.html 200')) {
+  failures.push('Pages fallback script no longer writes the SPA redirect');
+}
+
+// Requirement: typecheck must be strict.
+const tsconfig = JSON.parse(fs.readFileSync('tsconfig.json', 'utf8'));
+for (const flag of ['strict', 'noUnusedLocals', 'noUnusedParameters']) {
+  if (tsconfig.compilerOptions?.[flag] !== true) failures.push(`tsconfig.${flag} must be enabled`);
+}
 
 const sourceFiles = fs.readdirSync('src', { recursive: true })
   .filter((file) => /\.(ts|tsx)$/.test(String(file)));
@@ -63,4 +118,8 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(`Static API-free audit passed: ${requiredFiles.length} core files, 60+ templates and 40+ frames verified.`);
+const templateCount = (templates.match(/id: '/g) || []).length;
+const frameCount = (frames.match(/id: '/g) || []).length;
+console.log(
+  `Static API-free audit passed: ${requiredFiles.length} core files, ${templateCount} templates, ${frameCount} frames, strict TS, no API/Worker.`
+);

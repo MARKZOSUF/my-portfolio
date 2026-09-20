@@ -1,4 +1,4 @@
-import { FrameConfig, FrameStyle } from '../../../types/qrStudio';
+import { FrameConfig } from '../../../types/qrStudio';
 
 export interface FramePresetItem {
   id: string;

@@ -8,7 +8,6 @@ import {
   Sparkles,
   Printer,
   ShieldCheck,
-  Zap,
   CheckCircle2,
   Lock,
   ArrowRight,

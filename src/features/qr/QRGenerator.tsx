@@ -15,13 +15,7 @@ import {
   ShieldCheck,
   Smartphone,
 } from 'lucide-react';
-import {
-  StudioTabId,
-  StudioDesignState,
-  StudioTemplate,
-  TemplateCategory,
-  ErrorCorrectionLevel,
-} from '../../types/qrStudio';
+import { StudioTabId, StudioDesignState, ErrorCorrectionLevel } from '../../types/qrStudio';
 import { StudioLivePreview, StudioLivePreviewHandle } from './StudioLivePreview';
 import { PREMADE_STUDIO_TEMPLATES } from './data/templatesData';
 import { ContentFormData } from './tabs/ContentTab';
@@ -272,8 +266,12 @@ export const QRGenerator: React.FC = () => {
         return sanitizeWebUrl(contentForm.videoUrl).sanitized;
       case 'file':
         return sanitizeWebUrl(contentForm.fileUrl).sanitized;
-      case 'custom-url':
-        return contentForm.customUri.trim();
+      case 'custom-url': {
+        const custom = contentForm.customUri.trim();
+        // App-scheme URIs (spotify:, upi:, geo:…) are fine; executable and
+        // inline-data schemes are not, and no camera would open them anyway.
+        return /^(data|javascript|vbscript|file):/i.test(custom) ? '' : custom;
+      }
       default:
         return contentForm.urlInput;
     }
@@ -467,7 +465,6 @@ export const QRGenerator: React.FC = () => {
               <MyTemplatesTab
                 currentDesign={designState}
                 onApplyTemplate={(tpl) => pushState(tpl.design)}
-                onSaveCurrentAsTemplate={(name, cat) => {}}
               />
             )}
           </Suspense>

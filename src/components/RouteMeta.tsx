@@ -1,5 +1,30 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { siteConfig } from '../config/site';
-const pages:Record<string,[string,string]>={'/':['ZOSUF — Privacy-First QR Studio',siteConfig.description],'/qr-generator':['Advanced QR Template Studio — ZOSUF','Create professional framed and branded QR artwork locally.'],'/image-to-qr':['Image to QR — ZOSUF','Create image QR codes with honest capacity limits.'],'/qr-scanner':['Private QR Scanner — ZOSUF','Scan QR codes locally from camera or image.'],'/image-tools':['Private Image Tools — ZOSUF','Resize and convert images locally.'],'/poster-maker':['QR Poster Maker — ZOSUF','Create printable QR posters.'],'/prank-qr':['Safe Prank QR — ZOSUF','Create harmless surprise QR experiences.'],'/privacy':['Privacy — ZOSUF','ZOSUF privacy policy.'],'/terms':['Terms — ZOSUF','ZOSUF terms of use.'],'/faq':['FAQ — ZOSUF','ZOSUF frequently asked questions.'],'/about':['About — ZOSUF','About the ZOSUF privacy-first toolkit.']};
-export function RouteMeta(){const{pathname}=useLocation();useEffect(()=>{const[t,d]=pages[pathname]||['Page Not Found — ZOSUF',siteConfig.description];document.title=t;document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute('content',d);document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.setAttribute('href',`${siteConfig.productionUrl}${pathname==='/'?'':pathname}`)},[pathname]);return null;}
+const pages:Record<string,[string,string]>={'/':['ZOSUF — Privacy-First QR Studio',siteConfig.description],'/qr-generator':['Advanced QR Template Studio — ZOSUF','Create professional framed and branded QR artwork locally.'],'/image-to-qr':['Image to QR — ZOSUF','Create image QR codes with honest capacity limits.'],'/qr-scanner':['Private QR Scanner — ZOSUF','Scan QR codes locally from camera or image.'],'/image-tools':['Private Image Tools — ZOSUF','Resize and convert images locally.'],'/poster-maker':['QR Poster Maker — ZOSUF','Create printable QR posters.'],'/prank-qr':['Safe Prank QR — ZOSUF','Create harmless surprise QR experiences.'],'/privacy':['Privacy — ZOSUF','ZOSUF privacy policy.'],'/terms':['Terms — ZOSUF','ZOSUF terms of use.'],'/faq':['FAQ — ZOSUF','ZOSUF frequently asked questions.'],'/about':['About — ZOSUF','About the ZOSUF privacy-first toolkit.'],'/p':['A Surprise For You — ZOSUF','Open a wholesome surprise created with the ZOSUF safe prank QR studio.']};
+export function RouteMeta() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const [title, description] = pages[pathname] || ['Page Not Found — ZOSUF', siteConfig.description];
+    document.title = title;
+    document
+      .querySelector<HTMLMetaElement>('meta[name="description"]')
+      ?.setAttribute('content', description);
+    document
+      .querySelector<HTMLLinkElement>('link[rel="canonical"]')
+      ?.setAttribute('href', `${siteConfig.productionUrl}${pathname === '/' ? '' : pathname}`);
+
+    // One-off prank links and unknown routes must never be indexed.
+    const shouldIndex = pathname !== '/p' && Boolean(pages[pathname]);
+    let robots = document.querySelector<HTMLMetaElement>('meta[name="robots"]');
+    if (!robots) {
+      robots = document.createElement('meta');
+      robots.name = 'robots';
+      document.head.appendChild(robots);
+    }
+    robots.setAttribute('content', shouldIndex ? 'index, follow' : 'noindex, follow');
+  }, [pathname]);
+
+  return null;
+}

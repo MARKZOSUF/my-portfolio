@@ -1,6 +1,6 @@
 import React from 'react';
 import { ShapesConfig } from '../../../types/qrStudio';
-import { Palette, ShieldAlert, Sparkles, Sliders } from 'lucide-react';
+import { Palette } from 'lucide-react';
 
 interface ShapesTabProps {
   config: ShapesConfig;

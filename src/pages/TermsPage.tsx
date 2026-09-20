@@ -1,5 +1,5 @@
 import React from 'react';
-import { Scale, AlertCircle } from 'lucide-react';
+import { Scale } from 'lucide-react';
 
 export const TermsPage: React.FC = () => {
   return (

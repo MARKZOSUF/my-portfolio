@@ -6,17 +6,11 @@ import {
   Square,
   AlertTriangle,
   Copy,
-  ExternalLink,
   Download,
   Check,
-  Palette,
   Eye,
 } from 'lucide-react';
-import {
-  SAFE_PRANK_TEMPLATES,
-  SAFE_PRANK_THEMES,
-  encodePrankPayload,
-} from '../../utils/safePrankEncoder';
+import { SAFE_PRANK_TEMPLATES, SAFE_PRANK_THEMES, encodePrankPayload } from '../../utils/safePrankEncoder';
 import { PrankPayload, PrankTemplateId, PrankTheme } from '../../types/prank';
 import { QRRenderer, QRRendererHandle } from '../qr/QRRenderer';
 import { QR_PRESET_STYLES } from '../qr/presets';
@@ -36,7 +30,7 @@ export const PrankCreator: React.FC = () => {
   const [isSafeConfirmed, setIsSafeConfirmed] = useState(false);
 
   // QR design preset for prank
-  const [designConfig, setDesignConfig] = useState<QRDesignConfig>({
+  const [designConfig] = useState<QRDesignConfig>({
     ...QR_PRESET_STYLES[14], // Prank Mode preset
     frameLabel: 'SURPRISE INSIDE',
     frameStyle: 'bottom-bar',

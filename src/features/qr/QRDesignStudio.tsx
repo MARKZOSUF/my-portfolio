@@ -13,7 +13,6 @@ import {
   AlertTriangle,
   Upload,
   X,
-  Copy,
   Check,
 } from 'lucide-react';
 import {

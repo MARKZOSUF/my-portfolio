@@ -84,16 +84,8 @@ export async function composeQRDesign(
   const frameBorderWidth = (frame.borderWidth ?? 3) * scale;
   const frameRadius = (frame.borderRadius ?? 24) * scale;
 
-  // Calculate heights needed for text layers
-  const headingHeight = textLayers.heading.enabled && isLayerVisible('heading')
-    ? textLayers.heading.size * 1.5 * scale
-    : 0;
-
-  const subtitleHeight = textLayers.subtitle.enabled && isLayerVisible('subtitle')
-    ? textLayers.subtitle.size * 1.5 * scale
-    : 0;
-
-  const topTextOffset = headingHeight + subtitleHeight;
+  // Top text layer heights are advanced incrementally while drawing (see the
+  // running `currentY` below), so no pre-computed reservation is needed here.
 
   // CTA height
   const ctaHeight = (frame.style !== 'none' && frame.ctaText) || (textLayers.cta.enabled && isLayerVisible('cta'))
@@ -355,7 +347,10 @@ export async function composeQRDesign(
   const qrBoxSize = Math.max(120 * scale, Math.min(availableW, availableH));
 
   const qrX = targetWidth / 2 - qrBoxSize / 2;
-  const qrY = currentY + (availableH - qrBoxSize) / 2;
+  // When many text layers are enabled `availableH` can go negative, which used
+  // to push the matrix above the frame and clip it. Clamp inside the card.
+  const qrYMax = Math.max(currentY, frameY + frameH - bottomReserved - qrBoxSize);
+  const qrY = Math.min(Math.max(currentY, currentY + (availableH - qrBoxSize) / 2), qrYMax);
 
   // 5. Draw Quiet Zone around QR (if configured in shapes)
   if (!shapes.transparentBg) {

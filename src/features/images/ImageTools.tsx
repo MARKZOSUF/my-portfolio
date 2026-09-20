@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Wand2,
-  Upload,
   Download,
   RotateCw,
   FlipHorizontal,
   FlipVertical,
   ShieldCheck,
   RefreshCw,
-  Sliders,
-  Maximize2,
   Trash2,
   ArrowRight,
   Sparkles,

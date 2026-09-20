@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, ShieldCheck } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 interface FAQItem {
   q: string;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Lock, EyeOff, ServerOff } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 
 export const PrivacyPage: React.FC = () => {
   return (

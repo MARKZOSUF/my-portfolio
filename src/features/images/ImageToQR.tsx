@@ -4,7 +4,6 @@ import {
   Link2,
   Cpu,
   AlertTriangle,
-  Sliders,
   Download,
   Upload,
   ShieldCheck,
@@ -12,11 +11,12 @@ import {
 } from 'lucide-react';
 import { ImageToQRMode, ProcessedImageResult } from '../../types/image';
 import { processImage, QR_BYTE_CAPACITY } from '../../utils/canvasImageOps';
-import { sanitizeWebUrl } from '../../utils/qrPayloads';
+import { buildSiteLinkPayload, isPhoneScannableLink, sanitizeWebUrl } from '../../utils/qrPayloads';
 import { QRRenderer, QRRendererHandle } from '../qr/QRRenderer';
 import { QRDesignStudio } from '../qr/QRDesignStudio';
 import { QR_PRESET_STYLES } from '../qr/presets';
 import { QRDesignConfig } from '../../types/qr';
+import { siteConfig } from '../../config/site';
 
 export const ImageToQR: React.FC = () => {
   const [mode, setMode] = useState<ImageToQRMode>('direct');
@@ -71,7 +71,8 @@ export const ImageToQR: React.FC = () => {
     processDirectImage(file);
   };
 
-  // Determine current active QR Payload based on mode
+  // Keep the image preview local, but encode a normal HTTPS destination.
+  // data:image/... payloads are not understood as links by many phone cameras.
   let activePayload = '';
   let payloadByteLength = 0;
   let isPayloadTooLarge = false;
@@ -80,11 +81,19 @@ export const ImageToQR: React.FC = () => {
     activePayload = urlValidation.isValid ? urlValidation.sanitized : '';
     payloadByteLength = new TextEncoder().encode(activePayload).length;
   } else if (mode === 'direct') {
-    activePayload = directResult?.dataUrl || '';
+    // NEVER a data:image/...;base64 payload. Phone cameras will not open one,
+    // and it exceeds QR capacity long before the picture is legible. The image
+    // stays on-device for preview; the QR carries a real HTTPS destination.
+    activePayload = buildSiteLinkPayload(siteConfig.productionUrl);
     payloadByteLength = new TextEncoder().encode(activePayload).length;
-    // QR Version 40 maximum bytes at Error Correction L is ~2953
-    isPayloadTooLarge = payloadByteLength > QR_BYTE_CAPACITY[designConfig.errorCorrection];
   }
+
+  // Hard guard: anything that is not an absolute http(s) URL never reaches the encoder.
+  const isScannableLink = isPhoneScannableLink(activePayload);
+  // Keep the selected error-correction level as the source of truth for the
+  // final link payload. This also prevents future custom destinations from
+  // silently exceeding the QR encoder's capacity.
+  isPayloadTooLarge = payloadByteLength > QR_BYTE_CAPACITY[designConfig.errorCorrection];
 
   return (
     <div className="space-y-8 animate-in fade-in duration-300">
@@ -99,7 +108,7 @@ export const ImageToQR: React.FC = () => {
             Image to QR Generator
           </h1>
           <p className="text-slate-300 text-sm leading-relaxed">
-            Store photos, avatars, and graphics inside scannable QR codes. Choose direct browser compression for offline embedding or instant URL linking.
+            Create phone-friendly QR links from images without APIs. Your image is processed locally for preview, while the downloaded QR opens ZOSUF on any phone.
           </p>
         </div>
       </div>
@@ -124,9 +133,9 @@ export const ImageToQR: React.FC = () => {
             </span>
           </div>
           <div>
-            <h3 className="font-bold text-sm text-white">Direct Small-Image QR</h3>
-            <p className="text-xs text-slate-400 mt-1">
-              Encodes micro-photos directly into the QR pattern. 100% offline.
+            <h3 className="font-bold text-sm text-white">Local Image Preview</h3>
+              <p className="text-xs text-slate-400 mt-1">
+              Keeps the image preview on-device and creates a universally recognized ZOSUF web link.
             </p>
           </div>
         </button>
@@ -184,7 +193,7 @@ export const ImageToQR: React.FC = () => {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Cpu className="w-5 h-5 text-violet-400" />
-                  <h2 className="text-base font-bold text-white">Direct Image Compression</h2>
+                  <h2 className="text-base font-bold text-white">Local Image Preview</h2>
                 </div>
                 <span className="text-xs text-slate-400">Canvas In-Browser</span>
               </div>
@@ -193,10 +202,10 @@ export const ImageToQR: React.FC = () => {
               <div className="p-3.5 rounded-2xl bg-violet-950/40 border border-violet-800/40 text-xs text-slate-300 leading-relaxed space-y-1">
                 <p className="font-semibold text-violet-300 flex items-center gap-1.5">
                   <Info className="w-4 h-4 text-violet-400 shrink-0" />
-                  <span>Technical Direct QR Rule:</span>
+                  <span>Universal QR Link:</span>
                 </p>
                 <p>
-                  Direct image QR works only for extremely small, heavily compressed images. Normal photos are too large for direct QR storage.
+                  The image is previewed locally. The downloadable QR contains a normal HTTPS link to ZOSUF so phone cameras can recognize and open it.
                 </p>
               </div>
 
@@ -234,6 +243,23 @@ export const ImageToQR: React.FC = () => {
                   </p>
                 </div>
               </div>
+
+              {isProcessing && (
+                <div className="flex items-center justify-center gap-2 py-2 px-3 rounded-2xl bg-slate-950/60 border border-slate-800 text-xs text-slate-400">
+                  <span className="w-3.5 h-3.5 rounded-full border-2 border-violet-500 border-t-transparent animate-spin" />
+                  <span>Processing image on this device…</span>
+                </div>
+              )}
+
+              {processError && (
+                <div className="p-3.5 rounded-2xl bg-rose-950/40 border border-rose-800/60 text-xs text-rose-300 space-y-1">
+                  <div className="font-semibold flex items-center gap-1.5 text-rose-400">
+                    <AlertTriangle className="w-4 h-4 shrink-0" />
+                    <span>Image could not be processed</span>
+                  </div>
+                  <p>{processError}</p>
+                </div>
+              )}
 
               {/* Processing Controls: Dimension & Quality */}
               {selectedFile && (
@@ -344,15 +370,27 @@ export const ImageToQR: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* Error if payload exceeds QR Version 40 capacity */}
+                      {/* Honest explanation of what the QR actually carries */}
+                      <div className="p-3 rounded-xl bg-slate-900/70 border border-slate-800 text-slate-300 space-y-2">
+                        <div className="font-bold flex items-center gap-1.5 text-violet-300">
+                          <ShieldCheck className="w-4 h-4 text-violet-400 shrink-0" />
+                          <span>Image preview stays on this device.</span>
+                        </div>
+                        <p className="text-[11px] leading-relaxed text-slate-400">
+                          The downloaded QR encodes{' '}
+                          <span className="font-mono text-violet-300 break-all">{activePayload}</span>{' '}
+                          so every stock phone camera recognises it as a link and opens the site.
+                        </p>
+                      </div>
+
                       {isPayloadTooLarge && (
                         <div className="p-3 rounded-xl bg-rose-950/60 border border-rose-800/80 text-rose-200 space-y-2">
                           <div className="font-bold flex items-center gap-1.5 text-rose-400">
                             <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0" />
-                            <span>This image is too large to store directly inside a QR code.</span>
+                            <span>Destination link exceeds QR capacity.</span>
                           </div>
                           <p className="text-[11px] leading-relaxed text-rose-300">
-                            Use Public Image URL instead, or lower the Max Dimension slider to 28px or Quality to 20%.
+                            Shorten the link or lower the error-correction level to fit it in.
                           </p>
                         </div>
                       )}
@@ -436,7 +474,7 @@ export const ImageToQR: React.FC = () => {
             </p>
 
             {/* QR Rendering Target */}
-            {activePayload && !isPayloadTooLarge ? (
+            {activePayload && isScannableLink && !isPayloadTooLarge ? (
               <QRRenderer
                 ref={qrRef}
                 data={activePayload}
@@ -449,7 +487,9 @@ export const ImageToQR: React.FC = () => {
                 <p className="text-xs text-slate-400 font-medium">
                   {isPayloadTooLarge
                     ? 'Payload too large for QR storage'
-                    : 'Select or input an image to generate QR'}
+                    : !isScannableLink && activePayload
+                      ? 'Only http(s) links are encoded — phone cameras cannot open other payloads'
+                      : 'Select or input an image to generate QR'}
                 </p>
               </div>
             )}
@@ -459,7 +499,7 @@ export const ImageToQR: React.FC = () => {
               <div className="grid grid-cols-2 gap-2">
                 <button
                   onClick={() => qrRef.current?.download('png', 'zosuf-image-qr')}
-                  disabled={!activePayload || isPayloadTooLarge || !isVerified}
+                  disabled={!activePayload || !isScannableLink || isPayloadTooLarge || !isVerified}
                   className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs shadow-lg shadow-violet-950 disabled:opacity-30 disabled:cursor-not-allowed transition"
                   title={!isVerified ? 'Verification required before downloading' : 'Download PNG'}
                 >
@@ -469,7 +509,7 @@ export const ImageToQR: React.FC = () => {
 
                 <button
                   onClick={() => qrRef.current?.download('svg', 'zosuf-image-qr')}
-                  disabled={!activePayload || isPayloadTooLarge || !isVerified}
+                  disabled={!activePayload || !isScannableLink || isPayloadTooLarge || !isVerified}
                   className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs disabled:opacity-30 disabled:cursor-not-allowed transition"
                   title={!isVerified ? 'Verification required before downloading' : 'Download SVG'}
                 >
@@ -478,7 +518,7 @@ export const ImageToQR: React.FC = () => {
                 </button>
               </div>
 
-              {!isVerified && activePayload && !isPayloadTooLarge && (
+              {!isVerified && activePayload && isScannableLink && !isPayloadTooLarge && (
                 <p className="text-[11px] text-amber-400 text-center font-medium">
                   Downloads unlock once optical scannability is verified.
                 </p>

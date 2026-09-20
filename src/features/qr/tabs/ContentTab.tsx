@@ -25,11 +25,9 @@ import {
   Tv,
   Coins,
   AppWindow,
-  ExternalLink,
   Plus,
   Trash2,
   Info,
-  ShieldAlert,
 } from 'lucide-react';
 import { ExtendedQRType } from '../../../types/qrStudio';
 

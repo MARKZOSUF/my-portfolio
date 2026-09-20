@@ -1,14 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import {
-  Printer,
-  Download,
-  Palette,
-  Type,
-  Layout,
-  QrCode,
-  Sparkles,
-  Share2,
-} from 'lucide-react';
+import { Printer, Download } from 'lucide-react';
 import QRCodeStyling from 'qr-code-styling';
 import { siteConfig } from '../../config/site';
 

@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
+# One-off prank surprise links are private to their recipient.
+Disallow: /p
 Sitemap: https://markzosuf.pages.dev/sitemap.xml

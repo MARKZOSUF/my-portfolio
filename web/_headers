@@ -4,15 +4,44 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(self), microphone=(), geolocation=()
 
+# Content-hashed bundles never change under the same name.
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
+# The SPA shell and every route that Cloudflare Pages rewrites to it must always
+# be revalidated, otherwise a reload on a deep link can serve a stale document
+# that references bundles from a previous deploy.
+/
+  Cache-Control: public, max-age=0, must-revalidate
 /index.html
+  Cache-Control: public, max-age=0, must-revalidate
+/image-to-qr
+  Cache-Control: public, max-age=0, must-revalidate
+/qr-generator
+  Cache-Control: public, max-age=0, must-revalidate
+/qr-scanner
+  Cache-Control: public, max-age=0, must-revalidate
+/image-tools
+  Cache-Control: public, max-age=0, must-revalidate
+/prank-qr
+  Cache-Control: public, max-age=0, must-revalidate
+/p
+  Cache-Control: no-store
+/poster-maker
+  Cache-Control: public, max-age=0, must-revalidate
+/about
+  Cache-Control: public, max-age=0, must-revalidate
+/faq
+  Cache-Control: public, max-age=0, must-revalidate
+/privacy
+  Cache-Control: public, max-age=0, must-revalidate
+/terms
   Cache-Control: public, max-age=0, must-revalidate
 
 /manifest.webmanifest
   Cache-Control: public, max-age=3600, must-revalidate
 
+# A cached service worker is the classic cause of a permanently stale PWA.
 /sw.js
   Cache-Control: no-cache, no-store, must-revalidate
   Service-Worker-Allowed: /

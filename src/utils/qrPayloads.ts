@@ -228,3 +228,38 @@ export function buildMultiLinkPayload(title: string, links: Array<{ label: strin
   const items = validLinks.map((l) => `• ${l.label}: ${l.url}`).join('\n');
   return `${title ? `${title}\n\n` : ''}${items}`;
 }
+
+/**
+ * Payloads that phone cameras cannot act on.
+ *
+ * `data:` URIs (e.g. data:image/jpeg;base64,...) encode fine into a QR matrix
+ * but virtually no stock camera app will open them, and they blow past the
+ * byte capacity long before an image is recognisable. ZOSUF therefore never
+ * encodes one — image tools keep the picture on-device and encode a real
+ * HTTPS link instead.
+ */
+export function isUnscannablePayload(value: string): boolean {
+  return /^\s*data:/i.test(value || '');
+}
+
+/** True only for an absolute http(s) URL that a phone scanner will open. */
+export function isPhoneScannableLink(value: string): boolean {
+  try {
+    const parsed = new URL(String(value || '').trim());
+    return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Canonical deployed ZOSUF link, optionally with a path and query.
+ * Always returns an absolute HTTPS URL, never a relative or preview-origin one,
+ * so a downloaded QR keeps working after the page that made it is closed.
+ */
+export function buildSiteLinkPayload(productionUrl: string, pathAndQuery = ''): string {
+  const base = String(productionUrl || '').replace(/\/+$/, '');
+  if (!pathAndQuery) return base;
+  const suffix = pathAndQuery.startsWith('/') ? pathAndQuery : `/${pathAndQuery}`;
+  return `${base}${suffix}`;
+}

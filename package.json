@@ -5,12 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "npm run typecheck && vite build",
+    "build": "npm run typecheck && vite build && node scripts/ensure-pages-fallback.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "typecheck": "tsc --noEmit",
     "lint": "tsc --noEmit",
-    "test": "node tests/static-audit.mjs",
-    "clean": "node -e \"require('fs').rmSync('web',{recursive:true,force:true})\""
+    "test": "node tests/static-audit.mjs && node tests/qr-payload.mjs && node tests/pages-smoke.mjs",
+    "clean": "node -e \"require('fs').rmSync('web',{recursive:true,force:true})\"",
+    "test:static": "node tests/static-audit.mjs",
+    "test:payload": "node tests/qr-payload.mjs",
+    "test:pages": "node tests/pages-smoke.mjs",
+    "verify": "npm run build && npm test"
   },
   "dependencies": {
     "@zxing/browser": "^0.2.1",
@@ -32,6 +36,6 @@
   },
   "description": "Advanced privacy-first QR template studio and browser tools.",
   "engines": {
-    "node": ">=24"
+    "node": ">=20"
   }
 }

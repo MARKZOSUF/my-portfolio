@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState, useImperativeHandle, forwardRef } from 'react';
+import { useEffect, useRef, useState, useImperativeHandle, forwardRef } from 'react';
 import QRCodeStyling from 'qr-code-styling';
 import { QRDesignConfig } from '../../types/qr';
 import { verifyQRCode, VerificationResult } from '../../utils/qrVerifier';
-import { makeSafeQRConfig } from '../../utils/qrSafety';
-import { CheckCircle2, AlertTriangle, XCircle, RefreshCw, ShieldCheck } from 'lucide-react';
+import { isUnscannablePayload } from '../../utils/qrPayloads';
+import { enforceQRMinimums, repairQRConfig } from '../../utils/qrSafety';
+import { CheckCircle2, AlertTriangle, XCircle, RefreshCw, Wand2 } from 'lucide-react';
 
 export interface QRRendererHandle {
   download: (format: 'png' | 'svg', filename?: string) => Promise<void>;
@@ -24,93 +25,148 @@ export const QRRenderer = forwardRef<QRRendererHandle, QRRendererProps>(
     const qrCodeInstance = useRef<QRCodeStyling | null>(null);
     const [verification, setVerification] = useState<VerificationResult | null>(null);
     const [isVerifying, setIsVerifying] = useState(false);
-    const safeConfig = makeSafeQRConfig(config);
+    const [autoRepaired, setAutoRepaired] = useState(false);
+    // The config actually rendered (may be the auto-repaired fallback). Kept in a
+    // ref so exports and the frame compositor always match what was verified.
+    const effectiveConfigRef = useRef<QRDesignConfig>(enforceQRMinimums(config));
 
-    // Initialize or update QRCodeStyling instance
+    // Render + verify. The user's design is always attempted first; the hard
+    // fallback profile is only used if that design fails to decode locally.
     useEffect(() => {
       if (!data) return;
-      const dotsOptions: any = {
-        type: safeConfig.dotType,
-      };
+      // Defensive stop: a data: URI must never reach the encoder, no matter
+      // which screen called us. Phone cameras cannot open one.
+      if (isUnscannablePayload(data)) {
+        console.warn('QRRenderer refused a data: payload — phone scanners cannot open it.');
+        return;
+      }
+      let cancelled = false;
 
-      if (safeConfig.gradientType !== 'none' && safeConfig.gradientColor2) {
-        dotsOptions.gradient = {
-          type: safeConfig.gradientType,
-          rotation: (safeConfig.gradientRotation * Math.PI) / 180,
-          colorStops: [
-            { offset: 0, color: safeConfig.fgColor },
-            { offset: 1, color: safeConfig.gradientColor2 },
-          ],
+      const buildOptions = (source: QRDesignConfig) => {
+        const dotsOptions: Record<string, unknown> = { type: source.dotType };
+
+        if (source.gradientType !== 'none' && source.gradientColor2) {
+          dotsOptions.gradient = {
+            type: source.gradientType,
+            rotation: (source.gradientRotation * Math.PI) / 180,
+            colorStops: [
+              { offset: 0, color: source.fgColor },
+              { offset: 1, color: source.gradientColor2 },
+            ],
+          };
+        } else {
+          dotsOptions.color = source.fgColor;
+        }
+
+        return {
+          width: source.size || 512,
+          height: source.size || 512,
+          data,
+          margin: source.margin ?? 20,
+          qrOptions: {
+            typeNumber: 0,
+            mode: 'Byte',
+            errorCorrectionLevel: source.errorCorrection || 'Q',
+          },
+          image: source.logoDataUrl || undefined,
+          imageOptions: {
+            hideBackgroundDots: true,
+            imageSize: source.logoSize || 0,
+            margin: source.logoMargin || 0,
+            crossOrigin: 'anonymous',
+          },
+          dotsOptions,
+          backgroundOptions: {
+            color: source.transparentBg ? 'transparent' : source.bgColor,
+          },
+          cornersSquareOptions: {
+            type: source.cornerSquareType,
+            color: source.cornerSquareColor || source.fgColor,
+          },
+          cornersDotOptions: {
+            type: source.cornerDotType,
+            color: source.cornerDotColor || source.fgColor,
+          },
         };
-      } else {
-        dotsOptions.color = safeConfig.fgColor;
-      }
-
-      const options: any = {
-        width: safeConfig.size || 512,
-        height: safeConfig.size || 512,
-        data: data,
-        margin: safeConfig.margin ?? 20,
-        qrOptions: {
-          typeNumber: 0,
-          mode: 'Byte',
-          errorCorrectionLevel: safeConfig.errorCorrection || 'H',
-        },
-        image: safeConfig.logoDataUrl || undefined,
-        imageOptions: {
-          hideBackgroundDots: true,
-          imageSize: safeConfig.logoSize || 0,
-          margin: safeConfig.logoMargin || 6,
-          crossOrigin: 'anonymous',
-        },
-        dotsOptions,
-        backgroundOptions: {
-          color: safeConfig.transparentBg ? 'transparent' : safeConfig.bgColor,
-        },
-        cornersSquareOptions: {
-          type: safeConfig.cornerSquareType,
-          color: safeConfig.cornerSquareColor || safeConfig.fgColor,
-        },
-        cornersDotOptions: {
-          type: safeConfig.cornerDotType,
-          color: safeConfig.cornerDotColor || safeConfig.fgColor,
-        },
       };
 
-      if (!qrCodeInstance.current) {
-        qrCodeInstance.current = new QRCodeStyling(options);
-        if (containerRef.current) {
-          containerRef.current.replaceChildren();
-          qrCodeInstance.current.append(containerRef.current);
-        }
-      } else {
-        qrCodeInstance.current.update(options);
-      }
-
-      // Automatically verify readability after update
-      const verifyTimer = setTimeout(async () => {
-        if (!containerRef.current) return;
-        setIsVerifying(true);
-        try {
-          const canvas = containerRef.current.querySelector('canvas');
-          if (canvas) {
-            const result = await verifyQRCode(
-              canvas,
-              data,
-              safeConfig.fgColor,
-              safeConfig.transparentBg ? '#ffffff' : safeConfig.bgColor
-            );
-            setVerification(result);
-            if (onVerificationChange) onVerificationChange(result);
+      const paint = (source: QRDesignConfig) => {
+        effectiveConfigRef.current = source;
+        const options = buildOptions(source);
+        if (!qrCodeInstance.current) {
+          qrCodeInstance.current = new QRCodeStyling(options as never);
+          if (containerRef.current) {
+            containerRef.current.replaceChildren();
+            qrCodeInstance.current.append(containerRef.current);
           }
-        } catch (err) {
-          console.warn('Auto verification check error:', err);
-        } finally {
-          setIsVerifying(false);
+        } else {
+          qrCodeInstance.current.update(options as never);
         }
-      }, 350);
+      };
 
-      return () => clearTimeout(verifyTimer);
+      const settle = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+      const check = async (source: QRDesignConfig) => {
+        const canvas = containerRef.current?.querySelector('canvas');
+        if (!canvas) return null;
+        return verifyQRCode(
+          canvas,
+          data,
+          source.fgColor,
+          source.transparentBg ? '#ffffff' : source.bgColor
+        );
+      };
+
+      const run = async () => {
+        const designed = enforceQRMinimums(config);
+        paint(designed);
+        setAutoRepaired(false);
+        setIsVerifying(true);
+
+        try {
+          await settle(320);
+          if (cancelled) return;
+
+          let result = await check(designed);
+
+          // Only now, after a real decode failure, flatten the design.
+          if (result && !result.verified) {
+            const repaired = repairQRConfig(config);
+            paint(repaired);
+            await settle(320);
+            if (cancelled) return;
+            const retry = await check(repaired);
+            if (retry?.verified) {
+              setAutoRepaired(true);
+              result = {
+                ...retry,
+                warnings: [
+                  ...retry.warnings,
+                  'Your styling made this code unreadable, so ZOSUF rebuilt it with high-contrast squares. Reduce the logo size or raise contrast to keep your original look.',
+                ],
+              };
+            } else {
+              // Repair did not help either — restore the user's design so the
+              // preview still shows what they built, and report honestly.
+              paint(designed);
+              await settle(200);
+            }
+          }
+
+          if (cancelled || !result) return;
+          setVerification(result);
+          if (onVerificationChange) onVerificationChange(result);
+        } catch (err) {
+          if (!cancelled) console.warn('QR verification error:', err);
+        } finally {
+          if (!cancelled) setIsVerifying(false);
+        }
+      };
+
+      void run();
+      return () => {
+        cancelled = true;
+      };
     }, [data, config, onVerificationChange]);
 
     // Draw frame label around QR if configured
@@ -126,7 +182,8 @@ export const QRRenderer = forwardRef<QRRendererHandle, QRRendererProps>(
         img.src = url;
       });
 
-      const qrSize = config.size || 512;
+      const active = effectiveConfigRef.current;
+      const qrSize = active.size || 512;
       const hasFrame = config.frameStyle && config.frameStyle !== 'none' && config.frameLabel;
 
       if (!hasFrame) {
@@ -151,7 +208,7 @@ export const QRRenderer = forwardRef<QRRendererHandle, QRRendererProps>(
       const ctx = canvas.getContext('2d')!;
 
       // Background
-      ctx.fillStyle = config.transparentBg ? '#0c0e24' : config.bgColor;
+      ctx.fillStyle = active.transparentBg ? '#0c0e24' : active.bgColor;
       ctx.fillRect(0, 0, totalWidth, totalHeight);
 
       // Frame background pill / bar
@@ -217,11 +274,12 @@ export const QRRenderer = forwardRef<QRRendererHandle, QRRendererProps>(
         if (!containerRef.current) return null;
         const canvas = containerRef.current.querySelector('canvas');
         if (!canvas) return null;
+        const active = effectiveConfigRef.current;
         return verifyQRCode(
           canvas,
           data,
-          safeConfig.fgColor,
-          safeConfig.transparentBg ? '#ffffff' : safeConfig.bgColor
+          active.fgColor,
+          active.transparentBg ? '#ffffff' : active.bgColor
         );
       },
     }));
@@ -290,6 +348,13 @@ export const QRRenderer = forwardRef<QRRendererHandle, QRRendererProps>(
                   </>
                 )}
               </div>
+
+              {autoRepaired && (
+                <div className="mt-1.5 flex items-start gap-1.5 text-[11px] text-violet-200">
+                  <Wand2 className="w-3.5 h-3.5 text-violet-300 shrink-0 mt-0.5" />
+                  <span>Auto-repaired for scannability. Your style is kept everywhere it still decodes.</span>
+                </div>
+              )}
 
               {verification.error && (
                 <p className="mt-1 text-[11px] text-rose-200">{verification.error}</p>

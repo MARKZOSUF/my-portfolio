@@ -15,8 +15,6 @@ import {
   Vibrate,
   History,
   ShieldCheck,
-  RefreshCw,
-  Share2,
 } from 'lucide-react';
 
 interface ScanHistoryItem {
@@ -90,25 +88,35 @@ export const QRScanner: React.FC = () => {
     } catch {}
   };
 
-  // Enumerate video devices on mount
-  useEffect(() => {
-    navigator.mediaDevices
-      ?.enumerateDevices()
-      .then((devices) => {
-        const videoInputs = devices.filter((d) => d.kind === 'videoinput');
-        setVideoDevices(videoInputs);
-        // Prefer back / environment camera
-        const backCamera = videoInputs.find(
-          (d) => d.label.toLowerCase().includes('back') || d.label.toLowerCase().includes('rear')
+  // Enumerate video devices. Before camera permission is granted the browser
+  // reports empty labels, so we must not guess a deviceId here: picking
+  // videoInputs[0] opens the FRONT camera on most phones. We stay on
+  // facingMode:'environment' until the user explicitly chooses a camera, then
+  // re-enumerate once labels are available.
+  const refreshDevices = React.useCallback(async () => {
+    if (!navigator.mediaDevices?.enumerateDevices) return;
+    try {
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const videoInputs = devices.filter((d) => d.kind === 'videoinput');
+      setVideoDevices(videoInputs);
+
+      setSelectedDeviceId((current) => {
+        if (current && videoInputs.some((d) => d.deviceId === current)) return current;
+        const labelled = videoInputs.filter((d) => d.label);
+        if (labelled.length === 0) return '';
+        const back = labelled.find((d) =>
+          /back|rear|environment/i.test(d.label)
         );
-        if (backCamera) {
-          setSelectedDeviceId(backCamera.deviceId);
-        } else if (videoInputs.length > 0) {
-          setSelectedDeviceId(videoInputs[0].deviceId);
-        }
-      })
-      .catch(() => {});
+        return back ? back.deviceId : '';
+      });
+    } catch {
+      /* enumeration is best-effort */
+    }
   }, []);
+
+  useEffect(() => {
+    void refreshDevices();
+  }, [refreshDevices]);
 
   // Record scan result
   const handleScanSuccess = (text: string) => {
@@ -138,20 +146,41 @@ export const QRScanner: React.FC = () => {
   // Start Live Camera
   const startCamera = async () => {
     setCameraError('');
+
+    if (!navigator.mediaDevices?.getUserMedia) {
+      setCameraError(
+        'This browser will not expose a camera on an insecure connection. Open ZOSUF over HTTPS, or upload a QR image below instead.'
+      );
+      return;
+    }
+
     if (!readerRef.current) {
       readerRef.current = new BrowserMultiFormatReader();
     }
 
     try {
       setIsScanning(true);
-      const constraints: MediaStreamConstraints = {
-        video: selectedDeviceId
-          ? { deviceId: { exact: selectedDeviceId } }
-          : { facingMode: 'environment' },
-      };
 
-      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      // Prefer the rear camera. `exact` on a stale deviceId throws
+      // OverconstrainedError, so fall back to facingMode before giving up.
+      let stream: MediaStream;
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: selectedDeviceId
+            ? { deviceId: { exact: selectedDeviceId } }
+            : { facingMode: { ideal: 'environment' } },
+        });
+      } catch (primaryError) {
+        if (!selectedDeviceId) throw primaryError;
+        setSelectedDeviceId('');
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { ideal: 'environment' } },
+        });
+      }
+
       streamRef.current = stream;
+      // Labels only become readable after permission is granted.
+      void refreshDevices();
 
       const track = stream.getVideoTracks()[0];
       const capabilities = (track.getCapabilities?.() as any) || {};
@@ -169,12 +198,17 @@ export const QRScanner: React.FC = () => {
           }
         });
       }
-    } catch (err: any) {
-      setIsScanning(false);
+    } catch (err) {
+      stopCamera();
+      const name = err instanceof Error ? err.name : '';
       setCameraError(
-        err.name === 'NotAllowedError'
-          ? 'Camera permission denied. Please allow camera access in your browser settings to scan live codes.'
-          : 'Failed to access video stream. Try selecting another camera or upload a QR image below.'
+        name === 'NotAllowedError' || name === 'SecurityError'
+          ? 'Camera permission denied. Allow camera access in your browser settings to scan live codes.'
+          : name === 'NotFoundError'
+            ? 'No camera was found on this device. Upload or paste a QR image below instead.'
+            : name === 'NotReadableError'
+              ? 'The camera is already in use by another app or tab. Close it and try again.'
+              : 'Failed to access the video stream. Try another camera or upload a QR image below.'
       );
     }
   };
@@ -253,10 +287,14 @@ export const QRScanner: React.FC = () => {
     return () => window.removeEventListener('paste', handlePaste);
   }, []);
 
-  const copyToClipboard = (text: string, id: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2500);
+  const copyToClipboard = async (text: string, id: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 2500);
+    } catch {
+      setCameraError('Clipboard access is blocked here. Select the text above and copy it manually.');
+    }
   };
 
   const clearAllHistory = () => {
@@ -501,7 +539,7 @@ export const QRScanner: React.FC = () => {
 
               <div className="flex items-center gap-2 pt-1">
                 <button
-                  onClick={() => copyToClipboard(latestResult, 'latest')}
+                  onClick={() => void copyToClipboard(latestResult, 'latest')}
                   className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs shadow-lg shadow-violet-950 transition"
                 >
                   {copiedId === 'latest' ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
@@ -566,7 +604,7 @@ export const QRScanner: React.FC = () => {
 
                     <div className="flex items-center gap-1 shrink-0 pt-1">
                       <button
-                        onClick={() => copyToClipboard(item.text, item.id)}
+                        onClick={() => void copyToClipboard(item.text, item.id)}
                         className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
                         title="Copy content"
                       >
@@ -634,7 +672,7 @@ export const QRScanner: React.FC = () => {
                 Cancel
               </button>
               <a
-                href={safeLinkModal}
+                href={/^https?:\/\//i.test(safeLinkModal) ? safeLinkModal : '#'}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setSafeLinkModal(null)}

@@ -4,17 +4,13 @@ import {
   Sparkles,
   ArrowLeft,
   FastForward,
-  Gift,
   HelpCircle,
-  Trophy,
-  Heart,
   ShieldCheck,
   RefreshCw,
   ExternalLink,
 } from 'lucide-react';
 import { decodePrankPayload } from '../../utils/safePrankEncoder';
 import { PrankPayload } from '../../types/prank';
-import { ZosufLogo } from '../../assets/Logos';
 
 export const PrankRecipient: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -58,6 +54,16 @@ export const PrankRecipient: React.FC = () => {
       return () => clearInterval(interval);
     }
   }, [payload?.t, isRevealed]);
+
+  // The riddle template ships its answer inside the message; keep it hidden
+  // behind an explicit tap instead of spoiling it on reveal.
+  const riddleParts = (() => {
+    const body = payload?.msg || '';
+    if (payload?.t !== 'riddle') return { question: body, answer: '' };
+    const match = body.match(/^([\s\S]*?)\n+\s*(Answer\s*:[\s\S]*)$/i);
+    if (!match) return { question: body, answer: '' };
+    return { question: match[1].trim(), answer: match[2].trim() };
+  })();
 
   // Trigger reveal & confetti particles
   const handleReveal = () => {
@@ -185,12 +191,19 @@ export const PrankRecipient: React.FC = () => {
                       setSelectedBox(boxNum);
                       setIsRevealed(true);
                     }}
-                    className="p-4 rounded-2xl bg-slate-950 border border-slate-800 hover:border-fuchsia-500 text-2xl transition hover:scale-105 active:scale-95"
+                    className={`p-4 rounded-2xl bg-slate-950 border text-2xl transition hover:scale-105 active:scale-95 ${
+                      selectedBox === boxNum
+                        ? 'border-fuchsia-500 ring-2 ring-fuchsia-500/40'
+                        : 'border-slate-800 hover:border-fuchsia-500'
+                    }`}
                   >
                     🎁
                     <span className="block text-[10px] font-bold text-slate-400 mt-1">
                       Box #{boxNum}
                     </span>
+                    {selectedBox === boxNum && (
+                      <span className="block text-[9px] font-bold text-fuchsia-400 mt-0.5">Opened</span>
+                    )}
                   </button>
                 ))}
               </div>
@@ -242,8 +255,24 @@ export const PrankRecipient: React.FC = () => {
 
             {/* Wholesome Message Body (strictly rendered as text) */}
             <div className="p-5 rounded-2xl bg-black/50 border border-violet-900/50 text-sm leading-relaxed text-slate-200 whitespace-pre-wrap font-medium">
-              {wheelResult || payload.msg}
+              {wheelResult || riddleParts.question}
             </div>
+
+            {/* Riddle answers stay hidden behind a tap, as the template promises */}
+            {riddleParts.answer && !wheelResult && (
+              showRiddleAnswer ? (
+                <div className="p-4 rounded-2xl bg-violet-950/50 border border-violet-700/60 text-sm text-violet-100 whitespace-pre-wrap font-medium animate-in fade-in duration-200">
+                  {riddleParts.answer}
+                </div>
+              ) : (
+                <button
+                  onClick={() => setShowRiddleAnswer(true)}
+                  className="w-full py-2.5 px-4 rounded-2xl border border-violet-500/50 bg-violet-950/40 hover:bg-violet-900/50 text-violet-200 font-bold text-xs transition"
+                >
+                  Tap to reveal the answer
+                </button>
+              )
+            )}
 
             {payload.from && (
               <p className="text-xs text-slate-400 italic">

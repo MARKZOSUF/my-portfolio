@@ -57,7 +57,7 @@ export const ZosufWordmark: React.FC<{ className?: string; showTagline?: boolean
   className = 'h-8',
   showTagline = false,
 }) => (
-  <div className="flex flex-col justify-center select-none">
+  <div className={`flex flex-col justify-center select-none ${className}`}>
     <div className="flex items-center gap-2">
       <span className="font-extrabold tracking-wider text-xl md:text-2xl bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent font-['Space_Grotesk',sans-serif]">
         ZOSUF

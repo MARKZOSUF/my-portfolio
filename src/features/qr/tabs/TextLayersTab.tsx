@@ -6,7 +6,6 @@ import {
   LayerId,
 } from '../../../types/qrStudio';
 import {
-  Type,
   Layers,
   Eye,
   EyeOff,
@@ -14,7 +13,6 @@ import {
   ArrowDown,
   RotateCcw,
   RotateCw,
-  Sliders,
 } from 'lucide-react';
 
 interface TextLayersTabProps {

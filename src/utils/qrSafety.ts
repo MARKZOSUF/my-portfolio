@@ -2,14 +2,35 @@ import { QRDesignConfig } from '../types/qr';
 import { LogoConfig, ShapesConfig } from '../types/qrStudio';
 
 /**
- * QR styling is decorative, but the matrix itself must remain conservative
- * enough for phone cameras. These helpers keep the exported code readable
- * even when a colorful preset, gradient, transparent background, or logo is
- * selected.
+ * ZOSUF - QR scannability safeguards.
+ *
+ * Design intent (important):
+ *   The user's chosen template, frame, dot shape, palette, gradient and logo
+ *   are PRESERVED. We only enforce the small set of physical minimums a QR
+ *   matrix needs (quiet zone, logo area vs. error correction, non-degenerate
+ *   contrast) and leave everything else exactly as designed.
+ *
+ *   A hard "repair" profile also exists, but it is only ever applied as an
+ *   automatic second attempt *after* optical verification of the original
+ *   design has actually failed. It is never applied pre-emptively.
  */
 
+const SAFE_FOREGROUND = '#111827';
+const SAFE_BACKGROUND = '#ffffff';
+
+/** Largest logo area (as a fraction of the QR) that each EC level tolerates. */
+const MAX_LOGO_SIZE_BY_EC: Record<'L' | 'M' | 'Q' | 'H', number> = {
+  L: 0.1,
+  M: 0.14,
+  Q: 0.2,
+  H: 0.28,
+};
+
+/** Absolute floor for the quiet zone, in px, at the 512px render size. */
+const MIN_MARGIN = 12;
+
 function hexLuminance(value: string): number | null {
-  const raw = value.replace('#', '').trim();
+  const raw = String(value || '').replace('#', '').trim();
   const normalized =
     raw.length === 3
       ? raw
@@ -37,73 +58,105 @@ export function qrContrastRatio(foreground: string, background: string): number 
   return (lighter + 0.05) / (darker + 0.05);
 }
 
-const SAFE_FOREGROUND = '#111827';
-const SAFE_BACKGROUND = '#ffffff';
+type PaletteLike = {
+  fgColor: string;
+  bgColor: string;
+  transparentBg: boolean;
+  errorCorrection: 'L' | 'M' | 'Q' | 'H';
+};
 
-export function makeSafeQRConfig(config: QRDesignConfig): QRDesignConfig {
-  const contrast = qrContrastRatio(config.fgColor, config.bgColor);
-  const needsSafePalette =
-    config.transparentBg ||
-    config.gradientType !== 'none' ||
-    contrast < 4.5;
+/**
+ * Only a *degenerate* palette is corrected up-front: one where the modules and
+ * the background are so close that no camera could ever separate them. Stylish
+ * but still-readable palettes (e.g. deep violet on cream) are left untouched.
+ */
+function isDegenerateContrast(config: PaletteLike): boolean {
+  // A transparent background is composited over the frame/backdrop later, so
+  // it is only judged against the foreground once, loosely.
+  const background = config.transparentBg ? SAFE_BACKGROUND : config.bgColor;
+  return qrContrastRatio(config.fgColor, background) < 2.2;
+}
+
+/**
+ * Light-touch pass applied to every render. Keeps the design, fixes physics.
+ */
+export function enforceQRMinimums(config: QRDesignConfig): QRDesignConfig {
+  const ec = config.errorCorrection || 'Q';
+  const degenerate = isDegenerateContrast(config);
 
   return {
     ...config,
-    ...(needsSafePalette
-      ? {
-          fgColor: SAFE_FOREGROUND,
-          bgColor: SAFE_BACKGROUND,
-          transparentBg: false,
-          gradientType: 'none' as const,
-          gradientColor2: SAFE_FOREGROUND,
-        }
-      : {}),
-    // Square modules and finder patterns are the most tolerant across
-    // cameras, print sizes, and low-light conditions.
+    ...(degenerate ? { fgColor: SAFE_FOREGROUND, bgColor: SAFE_BACKGROUND, transparentBg: false } : {}),
+    margin: Math.max(MIN_MARGIN, config.margin || 0),
+    logoSize: config.logoDataUrl ? Math.min(config.logoSize || 0, MAX_LOGO_SIZE_BY_EC[ec]) : 0,
+    logoMargin: config.logoDataUrl ? Math.max(4, config.logoMargin || 0) : (config.logoMargin || 0),
+  };
+}
+
+export function enforceShapesMinimums(config: ShapesConfig): ShapesConfig {
+  const degenerate = isDegenerateContrast(config);
+  return {
+    ...config,
+    ...(degenerate ? { fgColor: SAFE_FOREGROUND, bgColor: SAFE_BACKGROUND, transparentBg: false } : {}),
+    margin: Math.max(MIN_MARGIN, config.margin || 0),
+  };
+}
+
+export function enforceLogoMinimums(config: LogoConfig, errorCorrection: 'L' | 'M' | 'Q' | 'H' = 'Q'): LogoConfig {
+  return {
+    ...config,
+    size: config.dataUrl ? Math.min(config.size || 0, MAX_LOGO_SIZE_BY_EC[errorCorrection]) : 0,
+    padding: config.dataUrl ? Math.max(4, config.padding || 0) : (config.padding || 0),
+  };
+}
+
+/**
+ * Hard fallback profile. ONLY used after an optical decode of the styled
+ * design has already failed, so a colourful template is never flattened
+ * unless it genuinely could not be read back.
+ */
+export function repairQRConfig(config: QRDesignConfig): QRDesignConfig {
+  return {
+    ...config,
+    fgColor: SAFE_FOREGROUND,
+    bgColor: SAFE_BACKGROUND,
+    transparentBg: false,
+    gradientType: 'none',
+    gradientColor2: SAFE_FOREGROUND,
     dotType: 'square',
     cornerSquareType: 'square',
     cornerDotType: 'square',
-    cornerSquareColor: needsSafePalette ? SAFE_FOREGROUND : config.fgColor,
-    cornerDotColor: needsSafePalette ? SAFE_FOREGROUND : config.fgColor,
+    cornerSquareColor: SAFE_FOREGROUND,
+    cornerDotColor: SAFE_FOREGROUND,
     errorCorrection: 'H',
     margin: Math.max(20, config.margin || 0),
-    logoSize: config.logoDataUrl ? Math.min(config.logoSize || 0, 0.1) : 0,
+    logoSize: config.logoDataUrl ? Math.min(config.logoSize || 0, 0.12) : 0,
     logoMargin: Math.max(6, config.logoMargin || 0),
   };
 }
 
-export function makeSafeShapesConfig(config: ShapesConfig): ShapesConfig {
-  const contrast = qrContrastRatio(config.fgColor, config.bgColor);
-  const needsSafePalette =
-    config.transparentBg ||
-    config.gradientType !== 'none' ||
-    contrast < 4.5;
-
+export function repairShapesConfig(config: ShapesConfig): ShapesConfig {
   return {
     ...config,
-    ...(needsSafePalette
-      ? {
-          fgColor: SAFE_FOREGROUND,
-          bgColor: SAFE_BACKGROUND,
-          transparentBg: false,
-          gradientType: 'none' as const,
-          gradientColor2: SAFE_FOREGROUND,
-        }
-      : {}),
+    fgColor: SAFE_FOREGROUND,
+    bgColor: SAFE_BACKGROUND,
+    transparentBg: false,
+    gradientType: 'none',
+    gradientColor2: SAFE_FOREGROUND,
     dotType: 'square',
     cornerSquareType: 'square',
     cornerDotType: 'square',
-    cornerSquareColor: needsSafePalette ? SAFE_FOREGROUND : config.fgColor,
-    cornerDotColor: needsSafePalette ? SAFE_FOREGROUND : config.fgColor,
+    cornerSquareColor: SAFE_FOREGROUND,
+    cornerDotColor: SAFE_FOREGROUND,
     errorCorrection: 'H',
     margin: Math.max(20, config.margin || 0),
   };
 }
 
-export function makeSafeLogoConfig(config: LogoConfig): LogoConfig {
+export function repairLogoConfig(config: LogoConfig): LogoConfig {
   return {
     ...config,
-    size: config.dataUrl ? Math.min(config.size || 0, 0.1) : 0,
-    padding: Math.max(6, config.padding || 0),
+    size: config.dataUrl ? Math.min(config.size || 0, 0.12) : 0,
+    padding: config.dataUrl ? Math.max(6, config.padding || 0) : (config.padding || 0),
   };
 }

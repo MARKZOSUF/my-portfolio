@@ -20,7 +20,6 @@ import { TEMPLATE_CATEGORIES } from '../data/templatesData';
 interface MyTemplatesTabProps {
   currentDesign: StudioDesignState;
   onApplyTemplate: (template: StudioTemplate) => void;
-  onSaveCurrentAsTemplate: (name: string, category: TemplateCategory) => void;
 }
 
 const STORAGE_KEY = 'zosuf_my_custom_templates';
@@ -28,7 +27,6 @@ const STORAGE_KEY = 'zosuf_my_custom_templates';
 export const MyTemplatesTab: React.FC<MyTemplatesTabProps> = ({
   currentDesign,
   onApplyTemplate,
-  onSaveCurrentAsTemplate,
 }) => {
   const [templates, setTemplates] = useState<StudioTemplate[]>(() => {
     try {
