@@ -10,7 +10,7 @@ export const PrivacyPage: React.FC = () => {
           <span>Zero-Knowledge Architecture</span>
         </div>
         <h1 className="text-3xl font-black text-white tracking-tight">Privacy Policy</h1>
-        <p className="text-slate-400 text-xs">Last updated: October 2026 • Applies to ZOSUF (zosuf.pages.dev)</p>
+        <p className="text-slate-400 text-xs">Last updated: September 2026 • Applies to ZOSUF (zosuf.pages.dev)</p>
       </div>
 
       <div className="space-y-6">
@@ -24,7 +24,7 @@ export const PrivacyPage: React.FC = () => {
         <section className="space-y-2">
           <h2 className="text-lg font-bold text-white">2. In-Browser Local Processing</h2>
           <p>
-            All standard QR generation, barcode decoding, image resizing, and metadata scrubbing occur strictly inside your device’s local browser sandbox using HTML5 Canvas and WebAssembly. No payloads are transmitted across networks unless you explicitly choose cloud hosted mode.
+            QR generation, barcode decoding, image resizing, and metadata scrubbing occur strictly inside your device’s local browser sandbox using HTML5 Canvas and WebAssembly. ZOSUF has no upload API and does not transmit your files or QR payloads to a ZOSUF server.
           </p>
         </section>
 

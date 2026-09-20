@@ -8,12 +8,4 @@ export interface ProcessedImageResult {
   format: 'image/jpeg' | 'image/png' | 'image/webp';
 }
 
-export type ImageToQRMode = 'url' | 'direct' | 'cloud';
-
-export interface CloudUploadStatus {
-  available: boolean;
-  r2Configured: boolean;
-  maxSizeBytes: number;
-  allowedMimeTypes: string[];
-  message: string;
-}
+export type ImageToQRMode = 'url' | 'direct';

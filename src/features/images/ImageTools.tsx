@@ -38,18 +38,13 @@ export const ImageTools: React.FC = () => {
   // Output result
   const [processed, setProcessed] = useState<ProcessedImageResult | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [processError, setProcessError] = useState('');
 
   // Load selected file
   const handleSelectFile = (file: File) => {
-    setProcessError('');
-    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) { setProcessError('Choose a JPG, PNG or WebP image.'); return; }
-    if (file.size > 20 * 1024 * 1024) { setProcessError('Image must be smaller than 20 MB.'); return; }
     setSourceFile(file);
     const reader = new FileReader();
     reader.onload = (e) => {
       const img = new Image();
-      img.onerror = () => { setProcessError('This image could not be decoded.'); setSourceFile(null); };
       img.onload = () => {
         setSourceImageEl(img);
         setTargetWidth(img.naturalWidth);
@@ -68,7 +63,6 @@ export const ImageTools: React.FC = () => {
       };
       img.src = e.target?.result as string;
     };
-    reader.onerror = () => { setProcessError('This file could not be read.'); setSourceFile(null); };
     reader.readAsDataURL(file);
   };
 
@@ -86,7 +80,6 @@ export const ImageTools: React.FC = () => {
     }>
   ) => {
     setIsProcessing(true);
-    setProcessError('');
     try {
       const res = await processImage(img, {
         targetWidth: customOpts?.targetWidth ?? targetWidth,
@@ -100,7 +93,7 @@ export const ImageTools: React.FC = () => {
       });
       setProcessed(res);
     } catch (e) {
-      setProcessError(e instanceof Error ? e.message : 'Image processing failed.');
+      console.error('Image processing failed:', e);
     } finally {
       setIsProcessing(false);
     }
@@ -181,8 +174,6 @@ export const ImageTools: React.FC = () => {
           Image processing happens locally in your browser. Resize, compress, reformat, rotate, flip, and strip metadata with Canvas precision.
         </p>
       </div>
-
-      {processError && <div role="alert" className="p-3 rounded-xl border border-rose-800 bg-rose-950/40 text-sm text-rose-300">{processError}</div>}
 
       {!sourceFile ? (
         /* Upload Area */

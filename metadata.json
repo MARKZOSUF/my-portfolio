@@ -1,6 +1,6 @@
 {
   "name": "ZOSUF",
-  "description": "Privacy-first QR studio, Image-to-QR generator, scanner, image tools and safe prank creator.",
+  "description": "Advanced privacy-first QR design studio, scanner and image tools.",
   "requestFramePermissions": [
     "camera"
   ],

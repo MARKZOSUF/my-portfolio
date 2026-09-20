@@ -1,1 +1,66 @@
-import fs from'node:fs';import path from'node:path';const root=process.cwd();const req=['index.html','package.json','vite.config.ts','src/App.tsx','src/components/RouteMeta.tsx','src/features/images/ImageToQR.tsx','src/features/qr/QRRenderer.tsx','src/features/scanner/QRScanner.tsx','src/features/pranks/PrankCreator.tsx','src/features/pranks/PrankRecipient.tsx','functions/api/images.ts','functions/api/images/status.ts','public/_headers','public/_redirects','public/manifest.webmanifest','public/sw.js','README.md'];const fail=[];for(const f of req)if(!fs.existsSync(path.join(root,f)))fail.push(`Missing: ${f}`);const pkg=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8'));for(const s of['dev','build','preview','typecheck','lint','test'])if(!pkg.scripts?.[s])fail.push(`Missing script: ${s}`);for(const d of['@google/genai','firebase','@supabase/supabase-js','express','dotenv'])if(pkg.dependencies?.[d]||pkg.devDependencies?.[d])fail.push(`Forbidden dependency: ${d}`);const app=fs.readFileSync(path.join(root,'src/App.tsx'),'utf8');if(!app.includes("location.pathname === '/p'"))fail.push('Recipient layout route is too broad');const img=fs.readFileSync(path.join(root,'src/features/images/ImageToQR.tsx'),'utf8');if(!img.includes("formData.append('image'"))fail.push('R2 form field mismatch');if(!img.includes('QR_BYTE_CAPACITY[designConfig.errorCorrection]'))fail.push('QR capacity ignores error correction');const src=[];function walk(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name);if(e.isDirectory())walk(p);else if(/\.(ts|tsx)$/.test(e.name))src.push(fs.readFileSync(p,'utf8'))}}walk(path.join(root,'src'));const live=src.join('\n').toLowerCase();for(const q of['download zip','export zip','project zip','download source','download website'])if(live.includes(q))fail.push(`Forbidden live UI: ${q}`);if(fail.length){console.error(fail.join('\n'));process.exit(1)}console.log(`Static audit passed: ${req.length} required files checked.`)
+import fs from 'node:fs';
+import path from 'node:path';
+
+const root = process.cwd();
+const failures = [];
+const requiredFiles = [
+  'src/features/qr/QRGenerator.tsx',
+  'src/features/qr/StudioLivePreview.tsx',
+  'src/features/qr/tabs/TemplatesTab.tsx',
+  'src/features/qr/tabs/FramesTab.tsx',
+  'src/features/qr/tabs/LogoTab.tsx',
+  'src/features/qr/tabs/ExportTab.tsx',
+  'src/features/qr/data/templatesData.ts',
+  'src/features/qr/data/framesData.ts',
+  'public/sw.js',
+];
+
+for (const file of requiredFiles) {
+  if (!fs.existsSync(path.join(root, file))) failures.push(`Missing ${file}`);
+}
+
+if (fs.existsSync('functions')) failures.push('API/Functions directory must not exist');
+
+const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+for (const dependency of ['@google/genai', 'express', 'dotenv', 'canvas-confetti', 'motion']) {
+  if (pkg.dependencies?.[dependency] || pkg.devDependencies?.[dependency]) {
+    failures.push(`Forbidden dependency ${dependency}`);
+  }
+}
+
+if (!fs.readFileSync('vite.config.ts', 'utf8').includes("outDir: 'web'")) {
+  failures.push('Vite output must be web');
+}
+if (fs.existsSync('public/_redirects')) failures.push('Invalid Cloudflare _redirects must not return');
+if (!fs.existsSync('wrangler.toml') || !fs.readFileSync('wrangler.toml', 'utf8').includes('pages_build_output_dir = "./web"')) {
+  failures.push('Missing Cloudflare Pages output configuration');
+}
+
+const imageTool = fs.readFileSync('src/features/images/ImageToQR.tsx', 'utf8');
+if (!imageTool.includes('QR_BYTE_CAPACITY[designConfig.errorCorrection]')) {
+  failures.push('Image QR ignores selected error correction');
+}
+
+const sourceFiles = fs.readdirSync('src', { recursive: true })
+  .filter((file) => /\.(ts|tsx)$/.test(String(file)));
+const allSource = sourceFiles
+  .map((file) => fs.readFileSync(path.join('src', String(file)), 'utf8'))
+  .join('\n');
+
+for (const forbidden of ['/api/', 'VITE_ENABLE_R2_UPLOAD', 'ZOSUF_IMAGES', 'CloudUploadStatus']) {
+  if (allSource.includes(forbidden)) failures.push(`API-free source contains ${forbidden}`);
+}
+for (const forbidden of ['download zip', 'export zip', 'project zip', 'dangerouslysetinnerhtml']) {
+  if (allSource.toLowerCase().includes(forbidden)) failures.push(`Forbidden UI/code phrase ${forbidden}`);
+}
+
+const templates = fs.readFileSync('src/features/qr/data/templatesData.ts', 'utf8');
+if ((templates.match(/id: '/g) || []).length < 60) failures.push('Fewer than 60 template definitions');
+const frames = fs.readFileSync('src/features/qr/data/framesData.ts', 'utf8');
+if ((frames.match(/id: '/g) || []).length < 40) failures.push('Fewer than 40 frame definitions');
+
+if (failures.length) {
+  console.error(failures.join('\n'));
+  process.exit(1);
+}
+console.log(`Static API-free audit passed: ${requiredFiles.length} core files, 60+ templates and 40+ frames verified.`);

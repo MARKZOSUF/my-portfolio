@@ -17,11 +17,11 @@ const FAQS: FAQItem[] = [
   },
   {
     q: 'Are my images or scanned contents uploaded to any server?',
-    a: 'Core QR generation, scanning and image processing run locally in your browser. An image is uploaded only when you explicitly choose Cloudflare Upload mode and the site owner has configured R2. Camera frames are never uploaded.',
+    a: 'No. Everything runs 100% locally in your web browser memory. Your images, personal contact details, Wi-Fi credentials, and scanned codes never touch our servers or any third-party clouds.',
   },
   {
-    q: 'How does Cloudflare R2 image storage work if I choose Hosted Mode?',
-    a: 'If the Cloudflare Pages project has an R2 bucket binding named ZOSUF_IMAGES, Cloud Upload mode can store a normal photo and place its public URL in the QR code. Configure the binding in the Cloudflare dashboard. If R2 is unavailable, ZOSUF disables only that mode and keeps Public Image URL and Direct Small-Image QR available.',
+    q: 'Does ZOSUF require an API, database, or cloud-storage binding?',
+    a: 'No. ZOSUF is a static browser application. It requires no API key, database, server function, Cloudflare R2 bucket, or environment variable. You can embed a tiny image directly or create a QR code for an image URL that is already publicly available.',
   },
   {
     q: 'Can I print QR codes on flyers, posters, or business cards?',

@@ -16,6 +16,7 @@ import {
   History,
   ShieldCheck,
   RefreshCw,
+  Share2,
 } from 'lucide-react';
 
 interface ScanHistoryItem {
@@ -220,27 +221,19 @@ export const QRScanner: React.FC = () => {
   // Upload image to decode
   const handleImageUploadToDecode = async (file: File) => {
     setCameraError('');
-    if (!file.type.startsWith('image/')) { setCameraError('Please choose a valid image file.'); return; }
+    if (!file.type.startsWith('image/')) { setCameraError('Choose a valid image file.'); return; }
     if (file.size > 10 * 1024 * 1024) { setCameraError('QR image must be smaller than 10 MB.'); return; }
-    let objectUrl = '';
+    const objectUrl = URL.createObjectURL(file);
     try {
       const reader = new BrowserMultiFormatReader();
       const img = new Image();
-      objectUrl = URL.createObjectURL(file);
       img.src = objectUrl;
-      await new Promise<void>((resolve, reject) => {
-        img.onload = () => resolve();
-        img.onerror = () => reject(new Error('Invalid image'));
-      });
+      await new Promise<void>((resolve, reject) => { img.onload = () => resolve(); img.onerror = () => reject(new Error('Invalid image')); });
       const result = await reader.decodeFromImageElement(img);
-      if (result) {
-        handleScanSuccess(result.getText());
-      }
+      if (result) handleScanSuccess(result.getText());
     } catch {
       setCameraError('No readable QR code found in this image. Ensure the image is clear and well-lit.');
-    } finally {
-      if (objectUrl) URL.revokeObjectURL(objectUrl);
-    }
+    } finally { URL.revokeObjectURL(objectUrl); }
   };
 
   // Handle clipboard paste
@@ -260,12 +253,10 @@ export const QRScanner: React.FC = () => {
     return () => window.removeEventListener('paste', handlePaste);
   }, []);
 
-  const copyToClipboard = async (text: string, id: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopiedId(id);
-      setTimeout(() => setCopiedId(null), 2500);
-    } catch { setCameraError('Clipboard access was blocked. Copy the result manually.'); }
+  const copyToClipboard = (text: string, id: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2500);
   };
 
   const clearAllHistory = () => {

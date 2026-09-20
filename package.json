@@ -1,7 +1,7 @@
 {
   "name": "zosuf",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "tsc --noEmit",
     "test": "node tests/static-audit.mjs",
-    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
+    "clean": "node -e \"require('fs').rmSync('web',{recursive:true,force:true})\""
   },
   "dependencies": {
     "@zxing/browser": "^0.2.1",
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
-    "@types/node": "^22.14.0",
+    "@types/node": "^24.0.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.1",
@@ -30,8 +30,8 @@
     "typescript": "^7.0.2",
     "vite": "^8.3.0"
   },
-  "description": "Privacy-first QR studio, scanner, image tools and safe prank creator for Cloudflare Pages.",
+  "description": "Advanced privacy-first QR template studio and browser tools.",
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   }
 }

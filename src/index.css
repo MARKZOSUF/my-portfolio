@@ -1,2 +1,39 @@
 @import "tailwindcss";
-:root{color-scheme:dark;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}html{scroll-behavior:smooth}body{margin:0;min-width:320px;overflow-x:hidden}button,a,input,select,textarea{min-height:44px}canvas,svg,img,video{max-width:100%}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}@media print{header,footer,nav,.no-print{display:none!important}body{background:#fff!important;color:#000!important}}
+
+:root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; overflow-x: hidden; }
+button, a, input, select, textarea { min-height: 44px; }
+canvas, svg, img, video { max-width: 100%; }
+
+/* ZOSUF light professional studio: scoped so the rest of the privacy suite stays dark. */
+.qr-studio-light { color-scheme: light; }
+.qr-studio-light [class*="bg-slate-950"],
+.qr-studio-light [class*="bg-slate-900"] { background-color: #f8fafc !important; }
+.qr-studio-light [class*="border-slate-8"],
+.qr-studio-light [class*="border-slate-7"] { border-color: #dbe1ea !important; }
+.qr-studio-light [class*="text-slate-2"],
+.qr-studio-light [class*="text-slate-3"] { color: #334155 !important; }
+.qr-studio-light [class*="text-slate-4"] { color: #64748b !important; }
+.qr-studio-light [class*="text-slate-5"] { color: #64748b !important; }
+.qr-studio-light [class*="text-white"] { color: #18233b; }
+.qr-studio-light button[class*="bg-violet-6"],
+.qr-studio-light button[class*="from-violet-6"],
+.qr-studio-light [class*="bg-violet-600"][class*="text-white"] { color: #fff !important; }
+.qr-studio-light input,
+.qr-studio-light select,
+.qr-studio-light textarea { background: #fff !important; color: #162036 !important; border-color: #d8dee8 !important; }
+.qr-studio-light input:focus,
+.qr-studio-light select:focus,
+.qr-studio-light textarea:focus { border-color: #a21caf !important; box-shadow: 0 0 0 3px rgba(168,85,247,.12); outline: none; }
+.qr-studio-light .qr-studio-tabs::-webkit-scrollbar { height: 5px; }
+.qr-studio-light .qr-studio-tabs::-webkit-scrollbar-thumb { background: #c4b5fd; border-radius: 999px; }
+.qr-studio-light .studio-thumbnail-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; }
+.qr-studio-light .studio-thumb { min-height: 116px; background:#fff; border:1px solid #dbe1ea; box-shadow:0 1px 2px rgba(15,23,42,.04); }
+.qr-studio-light .studio-thumb:hover { border-color:#c026d3; box-shadow:0 8px 22px rgba(126,34,206,.12); transform:translateY(-1px); }
+.qr-studio-light .studio-scroll { scrollbar-width: thin; scrollbar-color:#c4b5fd #f1f5f9; }
+@media (min-width:640px){ .qr-studio-light .studio-thumbnail-grid { grid-template-columns: repeat(5,minmax(0,1fr)); } }
+@media (min-width:1100px){ .qr-studio-light .studio-thumbnail-grid { grid-template-columns: repeat(7,minmax(0,1fr)); } }
+@media (max-width:1023px){ .qr-studio-light .lg\:sticky { position:static !important; } }
+@media (prefers-reduced-motion: reduce){ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important;} }
+@media print { header,footer,nav,.no-print{display:none!important} body{background:#fff!important;color:#000!important} }

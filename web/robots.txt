@@ -1,5 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /api/
-
 Sitemap: https://zosuf.pages.dev/sitemap.xml

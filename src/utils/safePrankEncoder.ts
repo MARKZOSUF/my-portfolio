@@ -256,6 +256,9 @@ export function encodePrankPayload(payload: PrankPayload): { url: string; encode
     confetti: payload.confetti !== false,
   };
 
+  if (payload.extra && typeof payload.extra === 'object') {
+    sanitized.extra = payload.extra;
+  }
 
   const jsonStr = JSON.stringify(sanitized);
   const encodedData = base64UrlEncode(jsonStr);
@@ -300,13 +303,14 @@ export function decodePrankPayload(encodedData: string): { success: boolean; dat
     const payload: PrankPayload = {
       v: 1,
       t: templateId,
-      th: SAFE_PRANK_THEMES.some((theme) => theme.id === parsed.th) ? parsed.th : 'zosuf-signature',
+      th: typeof parsed.th === 'string' ? parsed.th : 'zosuf-signature',
       to: typeof parsed.to === 'string' ? parsed.to.slice(0, 40) : '',
       from: typeof parsed.from === 'string' ? parsed.from.slice(0, 40) : '',
       title: typeof parsed.title === 'string' ? parsed.title.slice(0, 90) : 'A Surprise For You',
       msg: typeof parsed.msg === 'string' ? parsed.msg.slice(0, 400) : 'Hope you have an awesome day!',
       emoji: typeof parsed.emoji === 'string' ? parsed.emoji.slice(0, 10) : '🎉',
       confetti: Boolean(parsed.confetti),
+      extra: typeof parsed.extra === 'object' && parsed.extra !== null ? parsed.extra : undefined,
     };
 
     return { success: true, data: payload };

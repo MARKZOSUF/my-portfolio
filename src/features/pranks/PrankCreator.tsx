@@ -70,9 +70,10 @@ export const PrankCreator: React.FC = () => {
 
   const { url, isTooLong } = encodePrankPayload(payload);
 
-  const copyLink = async () => {
-    try { await navigator.clipboard.writeText(url); setCopied(true); setTimeout(() => setCopied(false), 2500); }
-    catch { setCopied(false); window.prompt('Copy this safe surprise link:', url); }
+  const copyLink = () => {
+    navigator.clipboard.writeText(url);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
   };
 
   return (

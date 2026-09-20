@@ -1,20 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Image as ImageIcon,
   Link2,
   Cpu,
-  CloudUpload,
   AlertTriangle,
-  CheckCircle2,
   Sliders,
   Download,
   Upload,
-  RefreshCw,
-  ExternalLink,
   ShieldCheck,
   Info,
 } from 'lucide-react';
-import { ImageToQRMode, CloudUploadStatus, ProcessedImageResult } from '../../types/image';
+import { ImageToQRMode, ProcessedImageResult } from '../../types/image';
 import { processImage, QR_BYTE_CAPACITY } from '../../utils/canvasImageOps';
 import { sanitizeWebUrl } from '../../utils/qrPayloads';
 import { QRRenderer, QRRendererHandle } from '../qr/QRRenderer';
@@ -42,54 +38,14 @@ export const ImageToQR: React.FC = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [processError, setProcessError] = useState('');
 
-  // Mode C: Cloudflare R2 Upload
-  const [cloudStatus, setCloudStatus] = useState<CloudUploadStatus>({
-    available: false,
-    r2Configured: false,
-    maxSizeBytes: 10 * 1024 * 1024,
-    allowedMimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
-    message: 'Checking Cloudflare status...',
-  });
-  const [cloudFile, setCloudFile] = useState<File | null>(null);
-  const [isUploading, setIsUploading] = useState(false);
-  const [cloudUploadedUrl, setCloudUploadedUrl] = useState('');
-  const [uploadError, setUploadError] = useState('');
-
   // Scannability verification state
   const [isVerified, setIsVerified] = useState(false);
-
-  // Check Cloudflare R2 status on mount
-  useEffect(() => {
-    fetch('/api/images/status')
-      .then((res) => res.json())
-      .then((data) => {
-        setCloudStatus({
-          available: Boolean(data.available),
-          r2Configured: Boolean(data.r2Configured),
-          maxSizeBytes: data.maxSizeBytes || 10 * 1024 * 1024,
-          allowedMimeTypes: data.allowedMimeTypes || ['image/jpeg', 'image/png', 'image/webp'],
-          message: data.message || '',
-        });
-      })
-      .catch(() => {
-        setCloudStatus({
-          available: false,
-          r2Configured: false,
-          maxSizeBytes: 10 * 1024 * 1024,
-          allowedMimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
-          message: 'Cloud upload is not configured. You can still use Public Image URL or Direct Small-Image QR.',
-        });
-      });
-  }, []);
 
   // Process Direct Small Image whenever file, maxDimension, or quality changes
   const processDirectImage = async (file: File) => {
     setIsProcessing(true);
     setProcessError('');
     try {
-      if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
-        throw new Error('Only JPG, PNG and WebP images are supported');
-      }
       if (file.size > 10 * 1024 * 1024) {
         throw new Error('Input image exceeds maximum 10MB limit');
       }
@@ -128,48 +84,7 @@ export const ImageToQR: React.FC = () => {
     payloadByteLength = new TextEncoder().encode(activePayload).length;
     // QR Version 40 maximum bytes at Error Correction L is ~2953
     isPayloadTooLarge = payloadByteLength > QR_BYTE_CAPACITY[designConfig.errorCorrection];
-  } else if (mode === 'cloud') {
-    activePayload = cloudUploadedUrl;
-    payloadByteLength = new TextEncoder().encode(activePayload).length;
   }
-
-  useEffect(() => { setIsVerified(false); }, [activePayload, designConfig]);
-
-  const selectCloudFile = (file: File | null) => {
-    setCloudUploadedUrl('');
-    setUploadError('');
-    if (!file) { setCloudFile(null); return; }
-    if (!cloudStatus.allowedMimeTypes.includes(file.type)) { setCloudFile(null); setUploadError('Only JPG, PNG and WebP images are supported.'); return; }
-    if (file.size > cloudStatus.maxSizeBytes) { setCloudFile(null); setUploadError(`Image exceeds the ${(cloudStatus.maxSizeBytes / 1048576).toFixed(0)} MB limit.`); return; }
-    setCloudFile(file);
-  };
-
-  // Handle Cloud Upload
-  const handleCloudUploadSubmit = async () => {
-    if (!cloudFile) return;
-    setIsUploading(true);
-    setUploadError('');
-    try {
-      const formData = new FormData();
-      formData.append('image', cloudFile);
-
-      const res = await fetch('/api/images', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const data = await res.json();
-      if (!res.ok || !data.success) {
-        throw new Error(data.error || 'Upload failed');
-      }
-
-      setCloudUploadedUrl(data.url);
-    } catch (err: any) {
-      setUploadError(err.message || 'Upload failed');
-    } finally {
-      setIsUploading(false);
-    }
-  };
 
   return (
     <div className="space-y-8 animate-in fade-in duration-300">
@@ -241,30 +156,22 @@ export const ImageToQR: React.FC = () => {
           </div>
         </button>
 
-        {/* Mode C: Optional Cloudflare Upload */}
-        <button
-          onClick={() => setMode('cloud')}
-          className={`p-4 rounded-2xl border text-left transition relative flex flex-col justify-between ${
-            mode === 'cloud'
-              ? 'bg-violet-600/20 border-violet-500 shadow-lg shadow-violet-950/50 text-white'
-              : 'bg-slate-900/50 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-200'
-          }`}
-        >
+        <div className="p-4 rounded-2xl border border-slate-800 bg-slate-900/30 text-slate-400 flex flex-col justify-between">
           <div className="flex items-center justify-between mb-3">
-            <div className={`p-2.5 rounded-xl ${mode === 'cloud' ? 'bg-violet-600 text-white' : 'bg-slate-800 text-slate-400'}`}>
-              <CloudUpload className="w-5 h-5" />
+            <div className="p-2.5 rounded-xl bg-slate-800 text-slate-400">
+              <ShieldCheck className="w-5 h-5" />
             </div>
-            <span className={`text-[10px] font-semibold px-2 py-0.5 rounded ${cloudStatus.r2Configured ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-slate-800 text-slate-400'}`}>
-              {cloudStatus.r2Configured ? 'Connected' : 'Optional'}
+            <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
+              API-Free
             </span>
           </div>
           <div>
-            <h3 className="font-bold text-sm text-white">Cloudflare R2 Upload</h3>
+            <h3 className="font-bold text-sm text-white">Private Browser Processing</h3>
             <p className="text-xs text-slate-400 mt-1">
-              Uploads image to your configured Cloudflare bucket.
+              Images stay on your device. No server, API key, or upload setup required.
             </p>
           </div>
-        </button>
+        </div>
       </div>
 
       {/* Main Workspace Layout: Configuration & Live QR Output */}
@@ -347,14 +254,13 @@ export const ImageToQR: React.FC = () => {
                         onChange={(e) => {
                           const val = parseInt(e.target.value);
                           setMaxDimension(val);
-                          setIsVerified(false);
                           if (selectedFile) {
                             processImage(selectedFile, {
                               maxWidth: val,
                               maxHeight: val,
                               quality: quality,
                               format: 'image/jpeg',
-                            }).then(setDirectResult).catch((err) => { setProcessError(err instanceof Error ? err.message : 'Image processing failed'); setDirectResult(null); });
+                            }).then(setDirectResult).catch((error) => { setProcessError(error instanceof Error ? error.message : 'Image processing failed'); setDirectResult(null); });
                           }
                         }}
                         className="w-full accent-violet-500"
@@ -381,14 +287,13 @@ export const ImageToQR: React.FC = () => {
                         onChange={(e) => {
                           const val = parseFloat(e.target.value);
                           setQuality(val);
-                          setIsVerified(false);
                           if (selectedFile) {
                             processImage(selectedFile, {
                               maxWidth: maxDimension,
                               maxHeight: maxDimension,
                               quality: val,
                               format: 'image/jpeg',
-                            }).then(setDirectResult).catch((err) => { setProcessError(err instanceof Error ? err.message : 'Image processing failed'); setDirectResult(null); });
+                            }).then(setDirectResult).catch((error) => { setProcessError(error instanceof Error ? error.message : 'Image processing failed'); setDirectResult(null); });
                           }
                         }}
                         className="w-full accent-violet-500"
@@ -447,7 +352,7 @@ export const ImageToQR: React.FC = () => {
                             <span>This image is too large to store directly inside a QR code.</span>
                           </div>
                           <p className="text-[11px] leading-relaxed text-rose-300">
-                            Use Public Image URL or Cloudflare Upload mode instead. Or lower the Max Dimension slider to 28px or Quality to 20%.
+                            Use Public Image URL instead, or lower the Max Dimension slider to 28px or Quality to 20%.
                           </p>
                         </div>
                       )}
@@ -509,95 +414,6 @@ export const ImageToQR: React.FC = () => {
                   ))}
                 </div>
               </div>
-            </div>
-          )}
-
-          {/* MODE C: Cloudflare R2 Upload Controls */}
-          {mode === 'cloud' && (
-            <div className="p-6 rounded-3xl bg-slate-900/40 border border-slate-800 backdrop-blur-md space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <CloudUpload className="w-5 h-5 text-violet-400" />
-                  <h2 className="text-base font-bold text-white">Cloudflare R2 Bucket Upload</h2>
-                </div>
-                <span
-                  className={`text-xs px-2.5 py-0.5 rounded-full font-semibold ${
-                    cloudStatus.r2Configured
-                      ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
-                      : 'bg-amber-950 text-amber-300 border border-amber-800'
-                  }`}
-                >
-                  {cloudStatus.r2Configured ? 'Active & Ready' : 'Storage Not Bound'}
-                </span>
-              </div>
-
-              {!cloudStatus.r2Configured ? (
-                <div className="p-4 rounded-2xl bg-amber-950/40 border border-amber-800/60 text-xs text-amber-200 space-y-2">
-                  <div className="font-bold flex items-center gap-1.5 text-amber-400">
-                    <Info className="w-4 h-4" />
-                    <span>Cloud upload is not configured. You can still use Public Image URL or Direct Small-Image QR.</span>
-                  </div>
-                  <p className="leading-relaxed">
-                    To enable automatic cloud hosting, bind an R2 bucket named <code className="bg-black/40 px-1 py-0.5 rounded">ZOSUF_IMAGES</code> in Cloudflare Pages settings. In the meantime, Modes A & B work completely standalone!
-                  </p>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    Upload any photo up to {(cloudStatus.maxSizeBytes / (1024 * 1024)).toFixed(0)}MB. It will be stored in your Cloudflare bucket and a permanent QR code will be generated.
-                  </p>
-
-                  <div className="space-y-3">
-                    <input
-                      type="file"
-                      accept="image/jpeg,image/png,image/webp"
-                      onChange={(e) => selectCloudFile(e.target.files?.[0] || null)}
-                      className="block w-full text-xs text-slate-300 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-violet-600 file:text-white hover:file:bg-violet-500"
-                    />
-
-                    {cloudFile && (
-                      <button
-                        onClick={handleCloudUploadSubmit}
-                        disabled={isUploading}
-                        className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-xs font-bold shadow-lg shadow-violet-900/30 hover:brightness-110 disabled:opacity-50 transition"
-                      >
-                        {isUploading ? (
-                          <>
-                            <RefreshCw className="w-4 h-4 animate-spin" />
-                            <span>Uploading to Cloudflare R2...</span>
-                          </>
-                        ) : (
-                          <>
-                            <CloudUpload className="w-4 h-4" />
-                            <span>Upload & Generate QR</span>
-                          </>
-                        )}
-                      </button>
-                    )}
-
-                    {uploadError && (
-                      <p className="text-xs text-rose-400 font-medium">{uploadError}</p>
-                    )}
-
-                    {cloudUploadedUrl && (
-                      <div className="p-3 rounded-xl bg-emerald-950/40 border border-emerald-800/60 text-xs text-emerald-300 space-y-1">
-                        <div className="font-semibold flex items-center gap-1.5">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                          <span>Image Stored Successfully</span>
-                        </div>
-                        <a
-                          href={cloudUploadedUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-mono text-[11px] underline break-all hover:text-white"
-                        >
-                          {cloudUploadedUrl}
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
             </div>
           )}
 

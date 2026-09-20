@@ -27,7 +27,6 @@ export const QRRenderer = forwardRef<QRRendererHandle, QRRendererProps>(
     // Initialize or update QRCodeStyling instance
     useEffect(() => {
       if (!data) return;
-      setVerification(null);
 
       const dotsOptions: any = {
         type: config.dotType,
@@ -121,9 +120,8 @@ export const QRRenderer = forwardRef<QRRendererHandle, QRRendererProps>(
 
       const img = new Image();
       const url = URL.createObjectURL(rawBlob as Blob);
-      await new Promise<void>((resolve, reject) => {
-        img.onload = () => resolve();
-        img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('Unable to render QR image for export')); };
+      await new Promise((resolve) => {
+        img.onload = resolve;
         img.src = url;
       });
 

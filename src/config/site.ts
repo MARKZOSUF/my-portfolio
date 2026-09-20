@@ -6,5 +6,4 @@ export const siteConfig = {
   creator: '@markzosuf',
   instagram: 'https://instagram.com/markzosuf',
   productionUrl: 'https://zosuf.pages.dev',
-  r2BindingName: 'ZOSUF_IMAGES',
 };
