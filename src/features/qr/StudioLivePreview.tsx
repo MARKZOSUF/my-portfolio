@@ -3,6 +3,7 @@ import QRCodeStyling from 'qr-code-styling';
 import { StudioDesignState } from '../../types/qrStudio';
 import { composeQRDesign, ComposeResult } from './canvasComposer';
 import { verifyQRCode, VerificationResult } from '../../utils/qrVerifier';
+import { makeSafeLogoConfig, makeSafeShapesConfig } from '../../utils/qrSafety';
 import {
   CheckCircle2,
   AlertTriangle,
@@ -47,7 +48,9 @@ export const StudioLivePreview = forwardRef<StudioLivePreviewHandle, StudioLiveP
       if (!payload) return;
       setVerification(null);
 
-      const { shapes, logo } = design;
+      const shapes = makeSafeShapesConfig(design.shapes);
+      const logo = makeSafeLogoConfig(design.logo);
+      const safeDesign = { ...design, shapes, logo };
 
       const dotsOptions: any = {
         type: shapes.dotType,
@@ -70,7 +73,7 @@ export const StudioLivePreview = forwardRef<StudioLivePreviewHandle, StudioLiveP
         width: 512,
         height: 512,
         data: payload,
-        margin: shapes.margin ?? 15,
+        margin: shapes.margin ?? 20,
         qrOptions: {
           typeNumber: 0,
           mode: 'Byte',
@@ -115,7 +118,7 @@ export const StudioLivePreview = forwardRef<StudioLivePreviewHandle, StudioLiveP
           if (!rawCanvas) return;
 
           // Render high-res composed artwork
-          const composed = await composeQRDesign(rawCanvas, design, {
+          const composed = await composeQRDesign(rawCanvas, safeDesign, {
             width: 512,
             height: 512,
             format: 'png',

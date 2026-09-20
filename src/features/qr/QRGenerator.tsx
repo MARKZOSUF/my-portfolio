@@ -43,6 +43,7 @@ import {
   buildPlayStorePayload,
   buildMultiLinkPayload,
 } from '../../utils/qrPayloads';
+import { siteConfig } from '../../config/site';
 
 // Code-split all 8 studio tabs with React.lazy
 const ContentTab = lazy(() =>
@@ -86,7 +87,7 @@ export const QRGenerator: React.FC = () => {
   // Form State for Content Tab
   const [contentForm, setContentForm] = useState<ContentFormData>({
     selectedType: 'url',
-    urlInput: 'https://zosuf.pages.dev',
+    urlInput: siteConfig.productionUrl,
     textInput: 'Secure, privacy-first QR generated with ZOSUF Studio.',
     wifiData: {
       ssid: 'ZOSUF_WiFi',
@@ -100,8 +101,8 @@ export const QRGenerator: React.FC = () => {
       organization: 'ZOSUF Studio',
       title: 'Lead Architect',
       phone: '+1 555 0199',
-      email: 'hello@zosuf.pages.dev',
-      website: 'https://zosuf.pages.dev',
+      email: 'hello@markzosuf.pages.dev',
+      website: siteConfig.productionUrl,
       address: 'San Francisco, CA',
     },
     upiData: {
@@ -111,7 +112,7 @@ export const QRGenerator: React.FC = () => {
       transactionNote: 'Support ZOSUF',
     },
     emailData: {
-      email: 'hello@zosuf.pages.dev',
+      email: 'hello@markzosuf.pages.dev',
       subject: 'Inquiry from ZOSUF Studio',
       body: 'Hello! I scanned your ZOSUF QR code.',
     },
@@ -143,19 +144,19 @@ export const QRGenerator: React.FC = () => {
     appStoreId: '1234567890',
     playStorePackage: 'com.zosuf.app',
     multiLinks: [
-      { label: 'Website', url: 'https://zosuf.pages.dev' },
+      { label: 'Website', url: siteConfig.productionUrl },
       { label: 'Instagram', url: 'https://instagram.com/markzosuf' },
     ],
-    productData: { name: 'ZOSUF Master Tool', sku: 'ZOSUF-001', price: '0.00', url: 'https://zosuf.pages.dev' },
-    eventData: { name: 'VIP Gala Night', venue: 'Grand Atrium', date: '2026-12-31', url: 'https://zosuf.pages.dev' },
-    ticketData: { code: 'TK-98214', holder: 'Guest', event: 'ZOSUF Tour', url: 'https://zosuf.pages.dev' },
-    menuUrl: 'https://zosuf.pages.dev/menu',
-    bookingUrl: 'https://zosuf.pages.dev/book',
-    reviewUrl: 'https://zosuf.pages.dev/reviews',
-    pdfUrl: 'https://zosuf.pages.dev/docs/whitepaper.pdf',
-    audioUrl: 'https://zosuf.pages.dev/audio/track.mp3',
-    videoUrl: 'https://zosuf.pages.dev/video/demo.mp4',
-    fileUrl: 'https://zosuf.pages.dev/download/package.zip',
+    productData: { name: 'ZOSUF Master Tool', sku: 'ZOSUF-001', price: '0.00', url: siteConfig.productionUrl },
+    eventData: { name: 'VIP Gala Night', venue: 'Online', date: '2026-12-31', url: siteConfig.productionUrl },
+    ticketData: { code: 'TK-98214', holder: 'Guest', event: 'ZOSUF Tour', url: siteConfig.productionUrl },
+    menuUrl: siteConfig.productionUrl,
+    bookingUrl: siteConfig.productionUrl,
+    reviewUrl: siteConfig.productionUrl,
+    pdfUrl: siteConfig.productionUrl,
+    audioUrl: siteConfig.productionUrl,
+    videoUrl: siteConfig.productionUrl,
+    fileUrl: siteConfig.productionUrl,
     customUri: 'spotify:playlist:37i9dQZF1DXcBWIGoYBM5M',
   });
 
@@ -252,11 +253,11 @@ export const QRGenerator: React.FC = () => {
       case 'multi-link':
         return buildMultiLinkPayload('Links Hub', contentForm.multiLinks);
       case 'product':
-        return contentForm.productData.url || `https://zosuf.pages.dev/p/${contentForm.productData.sku}`;
+        return contentForm.productData.url || `${siteConfig.productionUrl}/p/${contentForm.productData.sku}`;
       case 'event':
-        return contentForm.eventData.url || `https://zosuf.pages.dev/e/${encodeURIComponent(contentForm.eventData.name)}`;
+        return contentForm.eventData.url || `${siteConfig.productionUrl}/e/${encodeURIComponent(contentForm.eventData.name)}`;
       case 'ticket':
-        return contentForm.ticketData.url || `https://zosuf.pages.dev/t/${contentForm.ticketData.code}`;
+        return contentForm.ticketData.url || `${siteConfig.productionUrl}/t/${contentForm.ticketData.code}`;
       case 'menu':
         return sanitizeWebUrl(contentForm.menuUrl).sanitized;
       case 'booking':

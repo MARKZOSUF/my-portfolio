@@ -262,7 +262,9 @@ export function encodePrankPayload(payload: PrankPayload): { url: string; encode
 
   const jsonStr = JSON.stringify(sanitized);
   const encodedData = base64UrlEncode(jsonStr);
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin : siteConfig.productionUrl;
+  // Always point shareable QR links at the canonical deployed site. Using the
+  // current preview origin made locally-generated codes fail after download.
+  const baseUrl = siteConfig.productionUrl;
   const url = `${baseUrl}/p?d=${encodedData}`;
 
   // QR reliable size check (keep URL under ~1200 chars for reliable scanning)

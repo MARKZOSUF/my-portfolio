@@ -148,7 +148,7 @@ export function buildCalendarPayload(opts: CalendarEventPayloadOptions): string 
     'VERSION:2.0',
     'PRODID:-//ZOSUF//EN',
     'BEGIN:VEVENT',
-    `UID:zosuf-${Date.now()}@zosuf.pages.dev`,
+    `UID:zosuf-${Date.now()}@markzosuf.pages.dev`,
     `DTSTAMP:${now}`,
     opts.allDay ? `DTSTART;VALUE=DATE:${dtStart}` : `DTSTART:${dtStart}`,
     opts.allDay ? `DTEND;VALUE=DATE:${dtEnd}` : `DTEND:${dtEnd}`,

@@ -10,7 +10,7 @@ export const PrivacyPage: React.FC = () => {
           <span>Zero-Knowledge Architecture</span>
         </div>
         <h1 className="text-3xl font-black text-white tracking-tight">Privacy Policy</h1>
-        <p className="text-slate-400 text-xs">Last updated: September 2026 • Applies to ZOSUF (zosuf.pages.dev)</p>
+        <p className="text-slate-400 text-xs">Last updated: September 2026 • Applies to ZOSUF (markzosuf.pages.dev)</p>
       </div>
 
       <div className="space-y-6">

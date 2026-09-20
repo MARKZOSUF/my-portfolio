@@ -44,6 +44,31 @@ export interface VerificationResult {
   error?: string;
 }
 
+function makeDecodeRetryCanvas(source: HTMLCanvasElement): HTMLCanvasElement {
+  const retry = document.createElement('canvas');
+  const scale = 2;
+  retry.width = source.width * scale;
+  retry.height = source.height * scale;
+  const context = retry.getContext('2d');
+  if (!context) return source;
+
+  // Nearest-neighbour scaling preserves the hard module edges that QR
+  // decoders expect after a styled preview has been resized by CSS.
+  context.imageSmoothingEnabled = false;
+  context.fillStyle = '#ffffff';
+  context.fillRect(0, 0, retry.width, retry.height);
+  context.drawImage(source, 0, 0, retry.width, retry.height);
+  return retry;
+}
+
+function decodeCanvasWithRetry(reader: BrowserMultiFormatReader, source: HTMLCanvasElement) {
+  try {
+    return reader.decodeFromCanvas(source);
+  } catch {
+    return reader.decodeFromCanvas(makeDecodeRetryCanvas(source));
+  }
+}
+
 /**
  * Verifies a QR code from a canvas or image source
  */
@@ -67,7 +92,7 @@ export async function verifyQRCode(
     let result;
 
     if (source instanceof HTMLCanvasElement) {
-      result = await reader.decodeFromCanvas(source);
+      result = decodeCanvasWithRetry(reader, source);
     } else {
       result = await reader.decodeFromImageElement(source);
     }

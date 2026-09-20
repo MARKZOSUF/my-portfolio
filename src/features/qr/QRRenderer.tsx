@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useImperativeHandle, forwardRef } f
 import QRCodeStyling from 'qr-code-styling';
 import { QRDesignConfig } from '../../types/qr';
 import { verifyQRCode, VerificationResult } from '../../utils/qrVerifier';
+import { makeSafeQRConfig } from '../../utils/qrSafety';
 import { CheckCircle2, AlertTriangle, XCircle, RefreshCw, ShieldCheck } from 'lucide-react';
 
 export interface QRRendererHandle {
@@ -23,56 +24,56 @@ export const QRRenderer = forwardRef<QRRendererHandle, QRRendererProps>(
     const qrCodeInstance = useRef<QRCodeStyling | null>(null);
     const [verification, setVerification] = useState<VerificationResult | null>(null);
     const [isVerifying, setIsVerifying] = useState(false);
+    const safeConfig = makeSafeQRConfig(config);
 
     // Initialize or update QRCodeStyling instance
     useEffect(() => {
       if (!data) return;
-
       const dotsOptions: any = {
-        type: config.dotType,
+        type: safeConfig.dotType,
       };
 
-      if (config.gradientType !== 'none' && config.gradientColor2) {
+      if (safeConfig.gradientType !== 'none' && safeConfig.gradientColor2) {
         dotsOptions.gradient = {
-          type: config.gradientType,
-          rotation: (config.gradientRotation * Math.PI) / 180,
+          type: safeConfig.gradientType,
+          rotation: (safeConfig.gradientRotation * Math.PI) / 180,
           colorStops: [
-            { offset: 0, color: config.fgColor },
-            { offset: 1, color: config.gradientColor2 },
+            { offset: 0, color: safeConfig.fgColor },
+            { offset: 1, color: safeConfig.gradientColor2 },
           ],
         };
       } else {
-        dotsOptions.color = config.fgColor;
+        dotsOptions.color = safeConfig.fgColor;
       }
 
       const options: any = {
-        width: config.size || 512,
-        height: config.size || 512,
+        width: safeConfig.size || 512,
+        height: safeConfig.size || 512,
         data: data,
-        margin: config.margin ?? 15,
+        margin: safeConfig.margin ?? 20,
         qrOptions: {
           typeNumber: 0,
           mode: 'Byte',
-          errorCorrectionLevel: config.errorCorrection || 'Q',
+          errorCorrectionLevel: safeConfig.errorCorrection || 'H',
         },
-        image: config.logoDataUrl || undefined,
+        image: safeConfig.logoDataUrl || undefined,
         imageOptions: {
           hideBackgroundDots: true,
-          imageSize: config.logoSize || 0.2,
-          margin: config.logoMargin || 4,
+          imageSize: safeConfig.logoSize || 0,
+          margin: safeConfig.logoMargin || 6,
           crossOrigin: 'anonymous',
         },
         dotsOptions,
         backgroundOptions: {
-          color: config.transparentBg ? 'transparent' : config.bgColor,
+          color: safeConfig.transparentBg ? 'transparent' : safeConfig.bgColor,
         },
         cornersSquareOptions: {
-          type: config.cornerSquareType,
-          color: config.cornerSquareColor || config.fgColor,
+          type: safeConfig.cornerSquareType,
+          color: safeConfig.cornerSquareColor || safeConfig.fgColor,
         },
         cornersDotOptions: {
-          type: config.cornerDotType,
-          color: config.cornerDotColor || config.fgColor,
+          type: safeConfig.cornerDotType,
+          color: safeConfig.cornerDotColor || safeConfig.fgColor,
         },
       };
 
@@ -96,8 +97,8 @@ export const QRRenderer = forwardRef<QRRendererHandle, QRRendererProps>(
             const result = await verifyQRCode(
               canvas,
               data,
-              config.fgColor,
-              config.transparentBg ? '#ffffff' : config.bgColor
+              safeConfig.fgColor,
+              safeConfig.transparentBg ? '#ffffff' : safeConfig.bgColor
             );
             setVerification(result);
             if (onVerificationChange) onVerificationChange(result);
@@ -219,8 +220,8 @@ export const QRRenderer = forwardRef<QRRendererHandle, QRRendererProps>(
         return verifyQRCode(
           canvas,
           data,
-          config.fgColor,
-          config.transparentBg ? '#ffffff' : config.bgColor
+          safeConfig.fgColor,
+          safeConfig.transparentBg ? '#ffffff' : safeConfig.bgColor
         );
       },
     }));

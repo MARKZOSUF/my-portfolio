@@ -34,3 +34,10 @@ The included `web` directory can also be uploaded directly to Cloudflare Pages.
 - `index.html` is always revalidated so new deployments become visible immediately.
 - The web app manifest uses a short revalidation window.
 - `sw.js` remains uncached so service-worker updates are detected promptly.
+
+## QR reliability pass
+
+- Added a shared scan-safe renderer policy: unsafe gradients, transparent backgrounds, low-contrast palettes, rounded finder patterns, small margins, and oversized logos are normalized to a high-contrast QR matrix with H-level error correction.
+- Hardened local ZXing verification with a nearest-neighbour retry canvas so CSS-scaled previews do not produce false readability failures.
+- Updated generated share links, QR defaults, metadata, sitemap, and prank links to the canonical deployment URL: `https://markzosuf.pages.dev`.
+- Rebuilt the Cloudflare Pages output in `web/` and re-ran typecheck, static audit, and production build successfully.
